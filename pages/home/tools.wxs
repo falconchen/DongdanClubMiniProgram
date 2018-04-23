@@ -1,0 +1,12 @@
+var foo = "abc";
+var bar = function(d) {
+  return d;
+}
+
+module.exports = {
+  foo : foo,
+  bar : bar
+};
+
+module.exports.msg = "some msg";
+

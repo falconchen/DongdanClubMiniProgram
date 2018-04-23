@@ -1,0 +1,31 @@
+<!--home.wxml-->
+<wxs src="../../utils/util.wxs" module="util"></wxs>
+<import src="/towxml/entry.wxml"/>
+
+
+<view class="container">
+
+  <view wx:for="{{tweets}}" wx:key="index" class="item">
+    <image  class='avatar' src="{{item.portrait}}"></image> 
+    <view class="tweet-area">
+    <view class="tweet-header">
+      <navigator class="author" url="/pages/author/author?id={{item.authorid}}">{{item.author}}</navigator>
+      <text class="pubdate">{{ util.timeSince(item.pubDate) }}</text>    
+      </view>
+      <navigator class="body2" url="/pages/detail/detail?id={{item.id}}">
+      <template is="entry" data="{{...item.body2}}"/>
+      </navigator>
+      <view wx:if="{{item.thumbs}}" class="thumb-container">
+        <block wx:for="{{tweets[index].thumbs}}" wx:key="idx" wx:for-item="thumb">
+        <image class='thumb' src="{{thumb}}"></image> 
+        </block>
+      </view>      
+      <view class="tweet-meta">
+      <view class="reply">         
+        <text> {{item.commentCount}} </text><label>{{tweets.index.author}}评 </label>
+      </view>
+      </view>
+    </view>
+  </view>            
+  
+</view>

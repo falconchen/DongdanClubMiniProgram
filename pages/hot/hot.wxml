@@ -1,0 +1,10 @@
+<!--pages/order/order.wxml-->
+<text>pages/order/order.wxml</text>
+<navigator 
+hover-class='hoverClassName'
+hover-start-time='3000' 
+hover-stay-time='10'  
+url="orderContent/orderContent?id=1">点击跳转</navigator>
+
+
+<navigator open-type='redirectTo' url="orderContent/orderContent?id=2">as</navigator>

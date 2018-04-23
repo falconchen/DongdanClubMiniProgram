@@ -1,0 +1,5 @@
+/* pages/order/order.wxss */
+
+.hoverClassName {
+  color:#cff;
+}

@@ -1,0 +1,49 @@
+/* pages/home/home.wxss */
+
+
+.avatar {
+  width: 48px;
+  height:48px;
+  flex-shrink: 0;
+  display:inline-block;
+  border-radius: 50%;
+  background: rgba(0,0,0,.05);
+}
+
+.tweet-area {
+  margin:0 10px 0 10px;
+  flex:1 1 auto;
+}
+
+
+.tweet-area .content {
+  display:block;
+  color: #778087;
+}
+
+.thumb-container{
+  display: inline-flex;
+  flex-flow: row wrap;
+  align-content: flex-start;    
+}
+.thumb{
+  width: 120rpx;
+  height:120rpx;
+  border:2rpx solid #ccc;
+  
+  margin: 5rpx;
+  flex-shrink:0;
+}
+
+.tweet-header {
+  display: flex;
+  justify-content:space-between  ; 
+}
+.h2w__a {
+  word-wrap:break-word;
+  word-break:break-all;
+}
+.pubdate {
+  font-size:28rpx;
+  
+}

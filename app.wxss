@@ -1,0 +1,52 @@
+text {
+  /* color:#f00; */
+}
+
+.container {
+  display:flex;
+  flex-direction:column;
+  background:#ccc;
+}
+.item {
+    display:flex;
+   flex-direction:row;
+   padding:.3rem;
+   border: .1rem solid #ccc;
+   background: #fff;
+   
+}
+.body {
+  flex-wrap:wrap;
+}
+.author {
+    font-weight: 500;
+    color: #022856;
+    font-size:32rpx;
+}
+.h2w-light {
+  font-size:32rpx;
+  line-height:48rpx;
+
+}
+.tweet-meta {
+   display:flex;
+   flex-direction:row;
+  justify-content:flex-end ; 
+  
+}
+
+.tweet-meta .reply {
+   
+  background-color:#ccc;
+  color:#fff;
+  border-radius:12rpx;
+  padding:4rpx 20rpx 4rpx 20rpx;
+  font-size: 24rpx;
+}
+
+.h2w__img {
+  height: 48rpx;
+  width:48rpx;
+
+}
+
