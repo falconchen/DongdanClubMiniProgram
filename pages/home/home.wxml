@@ -12,7 +12,7 @@
       <navigator class="author" url="/pages/author/author?id={{item.authorid}}">{{item.author}}</navigator>
       <text class="pubdate">{{ util.timeSince(item.pubDate) }}</text>    
       </view>
-      <navigator class="body2" url="/pages/detail/detail?id={{item.id}}">
+      <navigator class="body2" bindtap = "clickMe" data-id="{{item.id}}" data-index="{{ index }}" url="/pages/detail/detail?id={{item.id}}">
       <template is="entry" data="{{...item.body2}}"/>
       </navigator>
       <view wx:if="{{item.thumbs}}" class="thumb-container">
@@ -27,5 +27,5 @@
       </view>
     </view>
   </view>            
-  
+  <view class="loading" hidden="{{!loadingMore}}">正在载入更多...</view>  
 </view>

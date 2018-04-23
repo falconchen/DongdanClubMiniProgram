@@ -75,10 +75,124 @@ function quoteSplit(str) {
   return temp;
 }
 
+function getTweetList(userid, currentPage, tweetPerPage, successCallback, completeCallback,errorCallback) {
+
+  try {
+    
+    // 请求数据
+    wx.request({
+      url: "https://dev.cellmean.com/",
+
+      data: {
+        osc_api: 'tweet_list',
+        page_index: currentPage,
+        page_size: tweetPerPage 
+      },  
+      header: {
+        'cache-control': 'max-age=120'
+      },
+      success: function (res) {
+
+        var app = getApp();
+        for (let i = 0; i < res.data.length; i++) {
+          res.data[i].body2 = app.towxml.toJson(res.data[i].body, 'html');
+          var date = new Date(res.data[i].pubDate.replace(/-/g, '/'));
+          res.data[i].pubDate = (Date.parse(date)) / 1000;
+
+          if (res.data[i].imgSmall) {
+            let imgPreUrl = 'https://staticosc.cellmean.com/uploads/space/';
+            var thumbs = quoteSplit(res.data[i].imgSmall);
+            if (thumbs.length > 1) {
+
+              for (let j = 0; j < thumbs.length; j++) {
+                if (j > 0) {
+                  thumbs[j] = imgPreUrl + thumbs[j];
+                }
+              }
+
+            }
+            res.data[i].thumbs = thumbs;
+          }
+        }
+        //console.log(res.data);
+        
+        successCallback(res.data);
+
+      },
+      complete: function () {
+        completeCallback();
+
+      }
+    });
+  } catch (e) {
+    errorCallback(e)
+    // Do something when catch error
+  }
+
+}
+function getTweetDetail(id, currentPage, tweetPerPage, successCallback, completeCallback, errorCallback) {
+
+  try {
+
+    // 请求数据
+    wx.request({
+      url: "https://dev.cellmean.com/",
+
+      data: {
+        osc_api: 'tweet_list',
+        page_index: currentPage,
+        page_size: tweetPerPage
+      },
+      header: {
+        'cache-control': 'max-age=120'
+      },
+      success: function (res) {
+
+        var app = getApp();
+        for (let i = 0; i < res.data.length; i++) {
+          res.data[i].body2 = app.towxml.toJson(res.data[i].body, 'html');
+          var date = new Date(res.data[i].pubDate.replace(/-/g, '/'));
+          res.data[i].pubDate = (Date.parse(date)) / 1000;
+
+          if (res.data[i].imgSmall) {
+            let imgPreUrl = 'https://staticosc.cellmean.com/uploads/space/';
+            var thumbs = quoteSplit(res.data[i].imgSmall);
+            if (thumbs.length > 1) {
+
+              for (let j = 0; j < thumbs.length; j++) {
+                if (j > 0) {
+                  thumbs[j] = imgPreUrl + thumbs[j];
+                }
+              }
+
+            }
+            res.data[i].thumbs = thumbs;
+          }
+        }
+        //console.log(res.data);
+
+        successCallback(res.data);
+
+      },
+      complete: function () {
+        completeCallback();
+
+      }
+    });
+  } catch (e) {
+    errorCallback()
+    // Do something when catch error
+  }
+
+}
+
+
+
 module.exports = {
   formatTime: formatTime,
   redirect: redirect,
   isNeedParse: isNeedParse,
   utilParseTemArray: utilParseTemArray,
-  quoteSplit: quoteSplit
+  quoteSplit: quoteSplit,
+  getTweetList: getTweetList 
 }

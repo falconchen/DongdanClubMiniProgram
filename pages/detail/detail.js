@@ -1,25 +1,50 @@
 // pages/detail/detail.js
+var util = require('../../utils/util.js');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    tweet:{},
+    replies: [],
+    replyPage: 0,
+    tweetId: '',
+    tweetBodyHtml:'',
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this;
+    that.tweetId = options.id;
+    var app = getApp();
+    //app.loading();
+
+    wx.getStorage({
+      key: 'tweet_' + that.tweetId,
+      success: function (res) {
+        //console.log(res.data)
+        //var thumbs = (res.data.thumbs) ? res.data.thumbs :[];
+        wx.setNavigationBarTitle({
+          title: res.data.author+' 的动弹'
+        })
+        //var tweetBodyHtml = app.towxml.toJson(res.data.body, 'html');      
+        var tweetBodyHtml = res.data.body2;
+        that.setData({ tweet: res.data, tweetBodyHtml: tweetBodyHtml})
+      }
+    })
+    console.log(options);
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
