@@ -7,7 +7,7 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
   },
-  towxml: new Towxml(),
+  towxml: new Towxml(),  
   loading: function (title) {
     var tlt = title || '加载中';
     wx.showLoading({

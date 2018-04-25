@@ -1,2 +1,5 @@
 <!--pages/daily/daily.wxml-->
-<text>pages/daily/daily.wxml</text>
+<view>body</view>
+<import src="../../towxml/entry.wxml" />
+
+<template is="entry" data="{{...html}}" />

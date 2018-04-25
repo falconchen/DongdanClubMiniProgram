@@ -15,6 +15,13 @@ function formatTime(date) {
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 /**
+ * 
+ */
+
+function clickHtmlLink(event) {
+  console.log('click link');
+}
+/**
  * 格式化时间日期数据
  */
 function formatNumber(n) {
@@ -244,7 +251,7 @@ module.exports = {
   isNeedParse: isNeedParse,
   utilParseTemArray: utilParseTemArray,
   quoteSplit: quoteSplit,
-  
+  clickHtmlLink: clickHtmlLink,
   getTweetList: getTweetList,
   getTweetCommentList: getTweetCommentList,
   getHotTweetList: getHotTweetList

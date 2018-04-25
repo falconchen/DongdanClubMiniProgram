@@ -1,18 +1,24 @@
 // pages/daily/daily.js
+//import tempObj from '../template/template'
+var util = require('../../utils/util.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    html:''
   },
-
+  clickHtmlLink: util.clickHtmlLink,  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+
+    var app = getApp()
+    var html = app.towxml.toJson('<a href="http://www.baidu.com">去百度一下</a>好吗？', 'html')
+    this.setData({html:html})
+    
   },
 
   /**

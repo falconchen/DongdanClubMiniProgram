@@ -1,0 +1,4 @@
+
+<template name="A">
+  <view bindtap="clickHtmlLink" class="tempClass">temp模板</view>
+</template>
