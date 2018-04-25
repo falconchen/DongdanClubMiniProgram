@@ -21,7 +21,33 @@ function timeSince(timestamp) {
   return '刚刚';
 }
 
+function parseDeviceName(num) {
+//1-WEB、2-WAP、3-Android、4-IOS、5-WP
+  var num = parseInt(num);
+  var device = '';
+  switch (num) {
+    case 5:
+      device = 'WP'
+    case 4:
+      device = 'iOS';
+      break;
+    case 3:
+      device = 'Android';
+      break
+    case 2:
+      device = 'WAP'
+    case 1:
+    case 0:
+    default:
+      device = ''
+      break;
+
+  } 
+  return device;
+
+}
 
 module.exports = {
-  timeSince: timeSince
+  timeSince: timeSince,
+  parseDeviceName: parseDeviceName
 };

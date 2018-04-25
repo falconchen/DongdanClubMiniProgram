@@ -33,7 +33,7 @@ var config = {
    */
   onPullDownRefresh: function () {
     //app.loading();
-    //console.log('上拉');
+    console.log('上拉');
     wx.reLaunch({
       url: 'home',
     });

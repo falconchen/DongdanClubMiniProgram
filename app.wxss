@@ -3,100 +3,108 @@ text {
 }
 
 .container {
-  display:flex;
-  flex-direction:column;
-  background:#ccc;
+  display: flex;
+  flex-direction: column;
+  background: #ccc;
 }
+
 .item {
-    display:flex;
-   flex-direction:row;
+  display: flex;
+  flex-direction: row;
+  padding: 20rpx 16rpx 20rpx 16rpx;
+  border: 4rpx solid #ccc;
+  /*
    padding:.3rem;
    border: .1rem solid #ccc;
-   background: #fff;
-   
+  */
+  background: #fff;
 }
-.body {
-  flex-wrap:wrap;
-}
-.author {
-    font-weight: 500;
-    color: #022856;
-    font-size:32rpx;
-}
-.h2w-light {
-  font-size:32rpx;
-  line-height:48rpx;
 
+.body {
+  flex-wrap: wrap;
 }
+
+.author {
+  font-weight: 500;
+  color: #022856;
+  font-size: 32rpx;
+}
+
+.hover-author-link {
+  color: #49ab4f;
+}
+
+.h2w-light {
+  font-size: 32rpx;
+  line-height: 48rpx;
+}
+
 .tweet-meta {
-   display:flex;
-   flex-direction:row;
-  justify-content:flex-end ; 
-  
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
 .tweet-meta .reply {
-   
-  background-color:#ccc;
-  color:#fff;
-  border-radius:12rpx;
-  padding:4rpx 20rpx 4rpx 20rpx;
+  background-color: #ccc;
+  color: #fff;
+  border-radius: 12rpx;
+  padding: 4rpx 20rpx 4rpx 20rpx;
   font-size: 24rpx;
 }
 
 .h2w__img {
   height: 48rpx;
-  width:48rpx;
-
+  width: 48rpx;
 }
 
-
-
 .avatar {
-  width: 48px;
-  height:48px;
+  width: 96rpx;
+  height: 96rpx;
   flex-shrink: 0;
-  display:inline-block;
+  display: inline-block;
   border-radius: 50%;
-  background: rgba(0,0,0,.05);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .tweet-area {
-  margin:0 10px 0 10px;
-  flex:1 1 auto;
+  margin: 0 20rpx 0 20rpx;
+  flex: 1 1 auto;
 }
 
-
 .tweet-area .content {
-  display:block;
+  display: block;
   color: #778087;
 }
 
-.thumb-container{
+.thumb-container {
   display: inline-flex;
   flex-flow: row wrap;
-  align-content: flex-start;    
+  align-content: flex-start;
 }
-.thumb{
+
+.thumb {
   width: 120rpx;
-  height:120rpx;
-  border:2rpx solid #ccc;
-  
+  height: 120rpx;
+  border: 2rpx solid #ccc;
   margin: 5rpx;
-  flex-shrink:0;
+  flex-shrink: 0;
 }
 
 .tweet-header {
   display: flex;
-  justify-content:space-between  ; 
+  justify-content: space-between;
 }
+
 .h2w__a {
   /* word-wrap:break-word; */
-  word-break:break-all;
+  word-break: break-all;
+  display: inline;
+  color: #49ab4f;
 }
+
 .pubdate {
-  font-size:28rpx;
-  
+  font-size: 28rpx;
 }
 
 .loading {

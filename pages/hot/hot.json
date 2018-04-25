@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "热门动弹"
+  "navigationBarTitleText": "热门动弹",
+  
+  "enablePullDownRefresh": true
+  
 }
