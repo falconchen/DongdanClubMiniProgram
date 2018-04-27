@@ -7,12 +7,12 @@
   <!-- <navigator url="/pages/daily/article?id=1800705">文章</navigator> -->
   <view wx:for="{{tweets}}" wx:key="index" class="item">
     
-    <image class='avatar' src="{{item.portrait}}"></image>
+    <image class='avatar' src="{{item.portrait}}" bindtap="test"></image>
     
     <navigator class="tweet-area" hover-class='hover-body-link' hover-start-time='10' hover-stay-time='1000'  url="/pages/detail/detail?id={{item.id}}" 
  data-index="{{ index }}" bindtap="clickMe" data-id="{{item.id}}">
       <view class="tweet-header">
-        <navigator class="author" hover-class='hover-white-link' hover-start-time='100' hover-stay-time='1000' bindtap='abc' url="/pages/author/author?id={{item.authorid}}">{{item.author}}</navigator>
+        <view class="author" hover-class='hover-white-link' hover-start-time='100' hover-stay-time='1000' bindtap='abc' url="/pages/author/author?id={{item.authorid}}">{{item.author}}</view>
         <text class="pubdate">{{ util.timeSince(item.pubDate) }}</text>
       </view>
 
@@ -21,8 +21,8 @@
       </view>
 
       <view wx:if="{{item.thumbs}}" class="thumb-container">
-        <block wx:for="{{tweets[index].thumbs}}" wx:key="idx" wx:for-item="thumb">
-          <image class='thumb' src="{{thumb}}"></image>
+        <block wx:for="{{tweets[index].thumbs}}" wx:for-index="tid" wx:key="idx" wx:for-item="thumb">
+          <image catchtap="modalSubmit" class='thumb' src="{{thumb}}" data-src="{{tweets[index].bigImgs[tid]}}"></image>
         </block>
       </view>
       <view class="tweet-meta">
@@ -35,3 +35,5 @@
   </view>
   
 </view>
+
+<include src="../template/modal-img.wxml" />

@@ -60,8 +60,8 @@ function timeSince(timestamp) {
 
 function clickLink(event) {
 
-  console.log('click link');
-  console.log(event);
+  // console.log('click link');
+  // console.log(event);
 }
 /**
  * 格式化时间日期数据
@@ -128,28 +128,27 @@ function getTweetList(userid, currentPage, tweetPerPage, successCallback, comple
         for (let i = 0; i < res.data.length; i++) {
 
           res.data[i].body2 = app.towxml.toJson(res.data[i].body, 'html');
-
-
           var date = new Date(res.data[i].pubDate.replace(/-/g, '/'));
           res.data[i].pubDate = (Date.parse(date)) / 1000; //取秒
-
           if (res.data[i].imgSmall) {
             let imgPreUrl = 'https://staticosc.cellmean.com/uploads/space/';
             var thumbs = quoteSplit(res.data[i].imgSmall);
+            var bigImgs = quoteSplit(res.data[i].imgBig);            
             if (thumbs.length > 1) {
 
-              for (let j = 0; j < thumbs.length; j++) {
-                if (j > 0) {
-                  thumbs[j] = imgPreUrl + thumbs[j];
-                }
+              for (let j = 1; j < thumbs.length; j++) {
+
+                thumbs[j] = imgPreUrl + thumbs[j];
+                bigImgs[j] = imgPreUrl + bigImgs[j];
+
               }
 
             }
+            res.data[i].bigImgs = bigImgs;
             res.data[i].thumbs = thumbs;
           }
         }
-        //console.log(res.data);
-
+        
         successCallback(res.data);
 
       },
@@ -244,19 +243,25 @@ function getHotTweetList(successCallback, completeCallback, errorCallback) {
           if (res.data[i].imgSmall) {
             let imgPreUrl = 'https://staticosc.cellmean.com/uploads/space/';
             var thumbs = quoteSplit(res.data[i].imgSmall);
+            var bigImgs = quoteSplit(res.data[i].imgBig);            
             if (thumbs.length > 1) {
 
-              for (let j = 0; j < thumbs.length; j++) {
-                if (j > 0) {
+              for (let j = 1; j < thumbs.length; j++) {
+                
                   thumbs[j] = imgPreUrl + thumbs[j];
-                }
+                  bigImgs[j] = imgPreUrl +  bigImgs[j];
+                
               }
 
             }
+            res.data[i].bigImgs = bigImgs;
             res.data[i].thumbs = thumbs;
           }
-        }
 
+
+
+        }
+        //console.log(res.data)
         successCallback(res.data);
 
       },
@@ -347,11 +352,14 @@ function getBlogDetail(id, successCallback, completeCallback, errorCallback) {
 }
 
 function gotoTweet(event) {
-  console.log(getCurrentPages())
+  //console.log(getCurrentPages())
 //  wx.navigateTo({
 //     url: '/pages/detail/detail?id=' + event.currentTarget.dataset.id
 //   })
 
+}
+function test(event) {
+  console.log(this)
 }
 module.exports = {
   formatTime: formatTime,
@@ -359,7 +367,7 @@ module.exports = {
   redirect: redirect,
   quoteSplit: quoteSplit,
   blogDateReplace: blogDateReplace,  
-  clickLink: clickLink,
+  clickLink: clickLink,  
   gotoTweet: gotoTweet,
   getTweetList: getTweetList,
   getTweetCommentList: getTweetCommentList,

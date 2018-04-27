@@ -8,7 +8,7 @@
     <image class='avatar' src="{{cover}}"></image>
     <view class="tweet-area">
       <view class="tweet-header">
-        <navigator class="author" url="/pages/author/author?id={{item.authorid}}">{{article.author}}</navigator>
+        <view class="author" url="/pages/author/author?id={{item.authorid}}">{{article.author}}</view>
         <text  wx:if="{{ article.pubDate }}" class="pubdate">{{ article.pubDate }}</text>
       </view>
       <view class="blog-title">{{article.title}}</view>

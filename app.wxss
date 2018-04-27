@@ -46,14 +46,17 @@ text {
   justify-content: flex-end;
 }
 
-.tweet-meta .reply {
+.tweet-meta .reply,.like {
   
   background-color:#fff;
   border-radius:12rpx;
   padding:4rpx 20rpx 4rpx 20rpx;
   font-size:24rpx;
   border:1px solid #eee;
-
+  margin-left:12rpx;
+}
+.like {
+  background: #f0f0f0;
 }
 
 .h2w__img {
@@ -87,9 +90,10 @@ text {
 }
 
 .thumb {
-  width: 120rpx;
-  height: 120rpx;
+  width: 160rpx;
+  height: 160rpx;
   border: 2rpx solid #ccc;
+  padding:5rpx;
   margin: 5rpx;
   flex-shrink: 0;
 }

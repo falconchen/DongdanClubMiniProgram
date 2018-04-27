@@ -3,6 +3,7 @@
   padding:20rpx;
 }
 .h2w__img {
+  min-height: 50rpx;
   width:100%;
 }
 .pubdate{

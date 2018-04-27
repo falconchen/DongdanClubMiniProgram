@@ -1,7 +1,7 @@
 //获取应用实例
 var app = getApp();
 var util = require('../../utils/util.js');
-
+var modalImg = require('../template/modal-img.js');
 
 var config = {
   data: {
@@ -50,6 +50,12 @@ var config = {
     });
 
     //console.log(that.data.tweets);
-  }
+  },
+  modalSubmit: modalImg.modalSubmit,
+  preventTouchMove: modalImg.preventTouchMove,
+  closeImgModal: modalImg.closeImgModal,
+  bigImgLoaded: modalImg.bigImgLoaded
+
+
 };
 Page(config);

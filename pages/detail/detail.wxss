@@ -1,4 +1,5 @@
 /* pages/detail/detail.wxss */
+@import '../template/modal-img.wxss';
 
 .item {
 

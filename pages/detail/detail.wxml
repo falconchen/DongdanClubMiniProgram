@@ -8,14 +8,16 @@
     <image class='avatar' src="{{tweet.portrait}}"></image>
     <view class="tweet-area">
       <view class="tweet-header">
-        <navigator class="author" url="/pages/author/author?id={{item.authorid}}">{{tweet.author}}</navigator>
+        <view class="author" url="/pages/author/author?id={{item.authorid}}">{{tweet.author}}</view>
         <text  wx:if="{{ tweet.pubDate }}" class="pubdate">{{ util.timeSince(tweet.pubDate) }}</text>
+         <text  wx:if="{{ tweet.likes }}" class="like">{{ tweet.likes }}赞</text>
       </view>
       <template is="entry" data="{{...tweetBodyHtml}}" />
 
       <view wx:if="{{tweet.thumbs.length}}" class="thumb-container">
-        <block wx:for="{{tweet.thumbs}}" wx:key="tidx" wx:for-item="thumb">
-          <image class='thumb' src="{{thumb}}"></image>
+      
+        <block wx:for="{{tweet.thumbs}}"  wx:for-index="tid" wx:key="tidx" wx:for-item="thumb">
+          <image catchtap="modalSubmit" class='thumb' src="{{thumb}}" data-src="{{tweet.bigImgs[tid]}}"></image>
         </block>
       </view>
 
@@ -58,3 +60,4 @@
   </view>
 
 </view>
+<include src="../template/modal-img.wxml" />

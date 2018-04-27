@@ -10,7 +10,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor":"#45B05D",
-    "navigationBarTitleText":"动弹俱乐部",
+    "navigationBarTitleText":"开源中国动弹俱乐部",
     "navigatiionBarTextStyle":"black"
     
 
@@ -24,22 +24,22 @@
       
       "pagePath": "pages/home/home",
       "text": "最新",
-      "iconPath": "pages/resources/home.png",
-      "selectedIconPath": "pages/resources/homeSelected.png"
+      "iconPath": "pages/resources/ic_nav_tweet_normal.png",
+      "selectedIconPath": "pages/resources/ic_nav_tweet_actived.png"
       
             
     },
     {
       "pagePath":"pages/hot/hot",
       "text": "热门",
-      "iconPath": "pages/resources/order.png",
-      "selectedIconPath": "pages/resources/orderSelected.png"
+      "iconPath": "pages/resources/ic_nav_discover_normal.png",
+      "selectedIconPath": "pages/resources/ic_nav_discover_actived.png"
     },
     {
       "pagePath": "pages/daily/daily",
       "text": "乱弹",
-      "iconPath": "pages/resources/info.png",
-      "selectedIconPath": "pages/resources/infoSelected.png"      
+      "iconPath": "pages/resources/ic_nav_news_normal.png",
+      "selectedIconPath": "pages/resources/ic_nav_news_actived.png"      
     }
 
     ]

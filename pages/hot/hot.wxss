@@ -1,4 +1,4 @@
-
+@import '../template/modal-img.wxss';
 
 .hoverClassName {
   color:#cff;

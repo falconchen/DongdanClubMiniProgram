@@ -1,5 +1,6 @@
 // pages/detail/detail.js
 var util = require('../../utils/util.js');
+var modalImg = require('../template/modal-img.js');
 const commentPerPage = 20;
 var currentPage = 1;
 var app = getApp();
@@ -34,9 +35,7 @@ Page({
       key: 'tweet_' + that.tweetId,
       success: function (res) {
         currentPage = 1;
-        //console.log(res.data)
-        //var thumbs = (res.data.thumbs) ? res.data.thumbs :[];
-        console.log(res)
+                        
         wx.setNavigationBarTitle({
           title: res.data.author + ' 的动弹'
         })
@@ -59,6 +58,7 @@ Page({
     })
     //console.log(options);
   },
+  
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -93,19 +93,19 @@ Page({
    */
   onPullDownRefresh: function () {
 
-    wx.showToast({
-      title: '暂时禁止下拉刷新',
-      icon: "success"
+    // wx.showToast({
+    //   title: '暂时禁止下拉刷新',
+    //   icon: "success"
 
-    })
-    return;//暂时禁止
+    // })
+    // return;//暂时禁止
     
-    var that = this;
+    // var that = this;
     
-    //console.log(that.tweetId);
-    wx.reLaunch({
-      url: 'detail?id='+that.tweetId,
-    });
+    
+    // wx.reLaunch({
+    //   url: 'detail?id='+that.tweetId,
+    // });
 
   },
 
@@ -146,5 +146,10 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  modalSubmit: modalImg.modalSubmit,
+  preventTouchMove: modalImg.preventTouchMove,
+  closeImgModal: modalImg.closeImgModal,
+  bigImgLoaded: modalImg.bigImgLoaded
+
 })

@@ -16,7 +16,7 @@
 
     <view class="tweet-area">
       <view class="tweet-header">
-        <navigator class="author" hover-class='hover-author-link' hover-start-time='100' hover-stay-time='1000' url="/pages/author/author?id={{item.authorid}}">{{item.author}}</navigator>
+        <view class="author" hover-class='hover-author-link' hover-start-time='100' hover-stay-time='1000' url="/pages/author/author?id={{item.authorid}}">{{item.author}}</view>
         <text class="pubdate">{{ item.pubDate }}</text>
       </view>
       <navigator class="blog-title" hover-class='hover-body-link' hover-start-time='10' hover-stay-time='1000' data-id="{{item.id}}" data-index="{{ index }}" url="article?id={{item.id}}">

@@ -9,25 +9,33 @@
     
     <image class='avatar' src="{{item.portrait}}"></image>
     
-    <view class="tweet-area">
+    
+        <navigator class="tweet-area" hover-class='hover-body-link' hover-start-time='10' hover-stay-time='1000'  url="/pages/detail/detail?id={{item.id}}" 
+ data-index="{{ index }}" bindtap="clickMe" data-id="{{item.id}}">
+
       <view class="tweet-header">
-        <navigator class="author" hover-class='hover-author-link' hover-start-time='100' hover-stay-time='1000'  url="/pages/author/author?id={{item.authorid}}">{{item.author}}</navigator>        
+        <view class="author" hover-class='hover-author-link' hover-start-time='100' hover-stay-time='1000'  url="/pages/author/author?id={{item.authorid}}">{{item.author}}</view>        
       </view>
-      <navigator class="body2" hover-class='hover-body-link' hover-start-time='10' hover-stay-time='1000' bindtap="clickMe" data-id="{{item.id}}" data-index="{{ index }}" url="/pages/detail/detail?id={{item.id}}">
+      <view class="body2" bindtap="clickMe" data-id="{{item.id}}" data-index="{{ index }}" url="/pages/detail/detail?id={{item.id}}">
         <template is="entry" data="{{...item.body2}}" />
-      </navigator>
+      </view>
       <view wx:if="{{item.thumbs}}" class="thumb-container">
-        <block wx:for="{{tweets[index].thumbs}}" wx:key="idx" wx:for-item="thumb">
-          <image class='thumb' src="{{thumb}}"></image>
+        <block wx:for="{{tweets[index].thumbs}}" wx:for-index="tid" wx:key="idx" wx:for-item="thumb">
+          <image catchtap="modalSubmit" class='thumb' src="{{thumb}}" data-src="{{tweets[index].bigImgs[tid]}}"></image>
         </block>
       </view>
       <view class="tweet-meta">
+        <view class="like" wx:if="{{item.likes}}">
+          <text> {{item.likes}}</text>
+          <label> 赞 </label>
+        </view>
         <view class="reply">
           <text> {{item.commentCount}} </text>
-          <label>{{tweets.index.author}}评 </label>
+          <label> 评 </label>
         </view>
       </view>
-    </view>
+    </navigator>
   </view>
   
 </view>
+<include src="../template/modal-img.wxml" />
