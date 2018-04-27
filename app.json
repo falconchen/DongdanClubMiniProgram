@@ -3,6 +3,7 @@
     "pages/home/home",    
     "pages/hot/hot",
     "pages/daily/daily",
+    "pages/daily/article",
     "pages/author/author",
     "pages/detail/detail"
   ],

@@ -1,10 +1,9 @@
 /* pages/detail/detail.wxss */
 
 .item {
-  border-top:none;
-  border-left: none;
-  border-right: none;
-  padding-bottom: 60rpx;
+
+  border:none;
+  padding-bottom: 80rpx;
   background: #fff;
 }
 .reply-container {
@@ -13,12 +12,16 @@
   justify-content:flex-start;  
 }
 .reply-header {
-  background-color:#ccc;
-  color:#fff;  
-  padding:4rpx 20rpx 4rpx 16rpx;
-  font-size:24rpx;
+  background-color:#f6f6f6;
+  color: #4eaa4c;  
+  padding:16rpx ;
+
+
+  font-size:32rpx;
+  font-weight:400;
 
 }
+
 .reply-item {
   display:flex;
   flex-direction:row;

@@ -13,7 +13,7 @@
       <view class="tweet-header">
         <navigator class="author" hover-class='hover-author-link' hover-start-time='100' hover-stay-time='1000'  url="/pages/author/author?id={{item.authorid}}">{{item.author}}</navigator>        
       </view>
-      <navigator class="body2"  bindtap="clickMe" data-id="{{item.id}}" data-index="{{ index }}" url="/pages/detail/detail?id={{item.id}}">
+      <navigator class="body2" hover-class='hover-body-link' hover-start-time='10' hover-stay-time='1000' bindtap="clickMe" data-id="{{item.id}}" data-index="{{ index }}" url="/pages/detail/detail?id={{item.id}}">
         <template is="entry" data="{{...item.body2}}" />
       </navigator>
       <view wx:if="{{item.thumbs}}" class="thumb-container">
@@ -29,5 +29,5 @@
       </view>
     </view>
   </view>
-  <view class="loading" hidden="{{!loadingMore}}">正在载入更多...</view>
+  
 </view>

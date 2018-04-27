@@ -3,6 +3,7 @@ var util = require('../../utils/util.js');
 const commentPerPage = 20;
 var currentPage = 1;
 var app = getApp();
+var finishLoadComments =false;
 Page({
 
   /**
@@ -16,10 +17,10 @@ Page({
     commentCount: 0,
     tweetBodyHtml: '',
     comments: [],
-    finishLoadComments: false,
+    finishLoadComments: finishLoadComments,
     commentPerPage: currentPage
   },
-
+  clickLink: util.clickLink,
   /**
    * 生命周期函数--监听页面加载
    */
@@ -35,6 +36,7 @@ Page({
         currentPage = 1;
         //console.log(res.data)
         //var thumbs = (res.data.thumbs) ? res.data.thumbs :[];
+        console.log(res)
         wx.setNavigationBarTitle({
           title: res.data.author + ' 的动弹'
         })
@@ -44,8 +46,8 @@ Page({
 
         util.getTweetCommentList(that.tweetId, currentPage, commentPerPage,
           function (resdata) {
-            var finishLoadComments = Boolean(resdata.length == 0 )
-            //var finishLoadComments = Boolean(resdata.length < commentPerPage)
+            finishLoadComments = Boolean(resdata.length == 0 )
+            //finishLoadComments = Boolean(resdata.length < commentPerPage)
             that.setData({ comments: resdata, finishLoadComments: finishLoadComments })
             currentPage++
           },
@@ -90,7 +92,21 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    console.log('上拉详情页')
+
+    wx.showToast({
+      title: '暂时禁止下拉刷新',
+      icon: "success"
+
+    })
+    return;//暂时禁止
+    
+    var that = this;
+    
+    //console.log(that.tweetId);
+    wx.reLaunch({
+      url: 'detail?id='+that.tweetId,
+    });
+
   },
 
   /**
@@ -100,20 +116,26 @@ Page({
     
     var that = this;
     //console.log(that.data.finishLoadComments);return;
-    if (that.data.comments.length < commentPerPage || that.finishLoadComments) {
+    
+    if (finishLoadComments || that.data.comments.length < commentPerPage) {
+      that.setData({  finishLoadComments: true })
       return;
     }
+
+    //console.log(currentPage)
     app.loading('评论加载中');
     util.getTweetCommentList(that.tweetId, currentPage, commentPerPage,
       function (resdata) {
-        var finishLoadComments = Boolean(resdata.length < commentPerPage)
+        finishLoadComments = Boolean(resdata.length < commentPerPage)
+        //console.log(finishLoadComments)
+        wx.hideLoading()
         that.setData({ comments: that.data.comments.concat(resdata), finishLoadComments: finishLoadComments })
         currentPage++
-        wx.hideLoading()
+        
 
       },
       function () {
-        wx.hideLoading()
+        //wx.hideLoading()
         //that.setData({ loadingMore: false });
       }
     );

@@ -1,1 +1,4 @@
-{}
+{
+  "navigationBarTitleText": "每日乱弹",
+  "enablePullDownRefresh": true
+}

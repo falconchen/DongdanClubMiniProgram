@@ -1,5 +1,29 @@
-<!--pages/daily/daily.wxml-->
-<view>body</view>
-<import src="../../towxml/entry.wxml" />
+<!--home.wxml-->
+<wxs src="../../utils/util.wxs" module="util"></wxs>
 
-<template is="entry" data="{{...html}}" />
+
+<view class="container">
+
+  <view wx:for="{{projectlist}}" wx:key="index" class="item">
+
+    
+    <view class="comment-count">
+      
+        <view class="comment-num">{{item.commentCount}}</view>
+        <label class="comment-text">评</label>
+      
+    </view>
+
+    <view class="tweet-area">
+      <view class="tweet-header">
+        <navigator class="author" hover-class='hover-author-link' hover-start-time='100' hover-stay-time='1000' url="/pages/author/author?id={{item.authorid}}">{{item.author}}</navigator>
+        <text class="pubdate">{{ item.pubDate }}</text>
+      </view>
+      <navigator class="blog-title" hover-class='hover-body-link' hover-start-time='10' hover-stay-time='1000' data-id="{{item.id}}" data-index="{{ index }}" url="article?id={{item.id}}">
+        {{ item.title }}
+      </navigator>
+
+
+    </view>
+  </view>
+</view>

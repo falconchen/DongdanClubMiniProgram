@@ -1,5 +1,8 @@
-/* pages/order/order.wxss */
+
 
 .hoverClassName {
   color:#cff;
+}
+.container .item:last-child {
+  border-bottom: none;
 }

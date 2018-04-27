@@ -1,0 +1,10 @@
+/* pages/daily/article.wxss */
+.h2w__p{
+  padding:20rpx;
+}
+.h2w__img {
+  width:100%;
+}
+.pubdate{
+  color:#ccc;
+}

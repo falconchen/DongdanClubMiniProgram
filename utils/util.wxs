@@ -1,10 +1,20 @@
 function timeSince(timestamp) {
+
+  timestamp =parseInt(timestamp)
   
-  var now = getDate().valueOf() / 1000; // 当前时间戳（秒）
+  var now = getDate().valueOf() / 1000; // 当前时间戳（秒）  
   var diff = now - timestamp; // 时间差
 
+  if(diff < 0) {
+    return '刚刚';
+  }
+  if(diff < 60) {
+    return parseInt(diff) + ' ' + '秒前'
+  }
+
+  
   var periods = [
-    [parseInt(diff / 31536000), '年前'],
+    [parseInt(diff / 31536000), '年前'], // 有bug，科学计数法时有bug
     [parseInt(diff / 2592000), '个月前'],
     [parseInt(diff / 18144000), '周前'],
     [parseInt(diff / 86400), '天前'],
@@ -21,6 +31,16 @@ function timeSince(timestamp) {
   return '刚刚';
 }
 
+/**
+ * osc专用的时间显示
+ */
+function oscTimeSince(timeStr) {
+  timeStr = timeStr.replace('-', '/')  
+  var timeStamp = (Date.parse(timeStr)) / 1000;  
+  return timeSince(timeStamp)
+}
+
+
 function parseDeviceName(num) {
 //1-WEB、2-WAP、3-Android、4-IOS、5-WP
   var num = parseInt(num);
@@ -29,7 +49,7 @@ function parseDeviceName(num) {
     case 5:
       device = 'WP'
     case 4:
-      device = 'iOS';
+      device = 'iPhone';
       break;
     case 3:
       device = 'Android';
@@ -47,7 +67,10 @@ function parseDeviceName(num) {
 
 }
 
+
+
 module.exports = {
   timeSince: timeSince,
-  parseDeviceName: parseDeviceName
+  oscTimeSince: oscTimeSince, // 真机测试会显示为刚刚
+  parseDeviceName: parseDeviceName,
 };

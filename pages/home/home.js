@@ -9,8 +9,10 @@ var config = {
     tweets: [],
     loadingMore:false
   },
+  gotoTweet: util.gotoTweet,
+  clickLink: util.clickLink,
   onLoad: function (options) {
-
+    currentPage = 1;
     //console.log(app.globalData.api_prefix)
     var that = this;
     // var nodeId = options.nodeid;
@@ -33,7 +35,7 @@ var config = {
    */
   onPullDownRefresh: function () {
     //app.loading();
-    console.log('上拉');
+    //console.log('上拉');
     wx.reLaunch({
       url: 'home',
     });
@@ -64,7 +66,7 @@ var config = {
     var that = this;
     var index = event.currentTarget.dataset.index;
     var id = event.currentTarget.dataset.id;
-    console.log(event.currentTarget.dataset)
+    //console.log(event.currentTarget.dataset)
     wx.setStorage({
       key: 'tweet_'+id,
       data: that.data.tweets[index]

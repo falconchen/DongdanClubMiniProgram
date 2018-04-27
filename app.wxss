@@ -5,19 +5,20 @@ text {
 .container {
   display: flex;
   flex-direction: column;
-  background: #ccc;
+  /* background: #ccc; */
 }
 
 .item {
   display: flex;
   flex-direction: row;
   padding: 20rpx 16rpx 20rpx 16rpx;
-  border: 4rpx solid #ccc;
+  border-bottom: 2rpx solid #ccc;
   /*
    padding:.3rem;
    border: .1rem solid #ccc;
   */
   background: #fff;
+  
 }
 
 .body {
@@ -46,11 +47,13 @@ text {
 }
 
 .tweet-meta .reply {
-  background-color: #ccc;
-  color: #fff;
-  border-radius: 12rpx;
-  padding: 4rpx 20rpx 4rpx 20rpx;
-  font-size: 24rpx;
+  
+  background-color:#fff;
+  border-radius:12rpx;
+  padding:4rpx 20rpx 4rpx 20rpx;
+  font-size:24rpx;
+  border:1px solid #eee;
+
 }
 
 .h2w__img {
@@ -97,10 +100,14 @@ text {
 }
 
 .h2w__a {
-  /* word-wrap:break-word; */
+  word-wrap:break-word; 
   word-break: break-all;
   display: inline;
   color: #49ab4f;
+}
+.h2w__main {
+    word-wrap:break-word; 
+  word-break: break-all;
 }
 
 .pubdate {
@@ -110,4 +117,12 @@ text {
 .loading {
   height: 100rpx;
   text-align: center;
+}
+.hover-body-link,.hover-white-link {
+  background: #fff;
+}
+.blog-title {
+  font-size:32rpx;
+  padding:10rpx 0;
+  font-weight:400;
 }

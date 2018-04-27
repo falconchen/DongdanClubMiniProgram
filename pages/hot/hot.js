@@ -31,7 +31,7 @@ var config = {
    * 下拉刷新
    */
   onPullDownRefresh: function () {
-    app.loading();
+    
     //console.log('上拉');
     wx.reLaunch({
       url: 'hot',

@@ -4,19 +4,22 @@
 
 
 <view class="container">
-
+  <!-- <navigator url="/pages/daily/article?id=1800705">文章</navigator> -->
   <view wx:for="{{tweets}}" wx:key="index" class="item">
     
     <image class='avatar' src="{{item.portrait}}"></image>
     
-    <view class="tweet-area">
+    <navigator class="tweet-area" hover-class='hover-body-link' hover-start-time='10' hover-stay-time='1000'  url="/pages/detail/detail?id={{item.id}}" 
+ data-index="{{ index }}" bindtap="clickMe" data-id="{{item.id}}">
       <view class="tweet-header">
-        <navigator class="author" hover-class='hover-author-link' hover-start-time='100' hover-stay-time='1000' bindtap='abc' url="/pages/author/author?id={{item.authorid}}">{{item.author}}</navigator>
+        <navigator class="author" hover-class='hover-white-link' hover-start-time='100' hover-stay-time='1000' bindtap='abc' url="/pages/author/author?id={{item.authorid}}">{{item.author}}</navigator>
         <text class="pubdate">{{ util.timeSince(item.pubDate) }}</text>
       </view>
-      <navigator class="body2"  bindtap="clickMe" data-id="{{item.id}}" data-index="{{ index }}" url="/pages/detail/detail?id={{item.id}}">
+
+      <view class="body2" bindtap="clickMe" data-id="{{item.id}}" data-index="{{ index }}" url="/pages/detail/detail?id={{item.id}}">
         <template is="entry" data="{{...item.body2}}" />
-      </navigator>
+      </view>
+
       <view wx:if="{{item.thumbs}}" class="thumb-container">
         <block wx:for="{{tweets[index].thumbs}}" wx:key="idx" wx:for-item="thumb">
           <image class='thumb' src="{{thumb}}"></image>
@@ -28,7 +31,7 @@
           <label>{{tweets.index.author}}评 </label>
         </view>
       </view>
-    </view>
+    </navigator>
   </view>
-  <view class="loading" hidden="{{!loadingMore}}">正在载入更多...</view>
+  
 </view>
