@@ -351,6 +351,68 @@ function getBlogDetail(id, successCallback, completeCallback, errorCallback) {
 
 }
 
+
+function getUserInfo(userid, currentPage, tweetPerPage, successCallback, completeCallback, errorCallback) {
+
+  try {
+
+    // 请求数据
+    wx.request({
+      url: api_host,
+
+      data: {
+        osc_api: 'tweet_list',
+        page_index: currentPage,
+        page_size: tweetPerPage
+      },
+      header: {
+        'cache-control': 'max-age=120'
+      },
+      success: function (res) {
+
+        var app = getApp();
+
+
+        for (let i = 0; i < res.data.length; i++) {
+
+          res.data[i].body2 = app.towxml.toJson(res.data[i].body, 'html');
+          var date = new Date(res.data[i].pubDate.replace(/-/g, '/'));
+          res.data[i].pubDate = (Date.parse(date)) / 1000; //取秒
+          if (res.data[i].imgSmall) {
+            let imgPreUrl = 'https://staticosc.cellmean.com/uploads/space/';
+            var thumbs = quoteSplit(res.data[i].imgSmall);
+            var bigImgs = quoteSplit(res.data[i].imgBig);
+            if (thumbs.length > 1) {
+
+              for (let j = 1; j < thumbs.length; j++) {
+
+                thumbs[j] = imgPreUrl + thumbs[j];
+                bigImgs[j] = imgPreUrl + bigImgs[j];
+
+              }
+
+            }
+            res.data[i].bigImgs = bigImgs;
+            res.data[i].thumbs = thumbs;
+          }
+        }
+
+        successCallback(res.data);
+
+      },
+      complete: function () {
+        completeCallback();
+
+      }
+    });
+  } catch (e) {
+    errorCallback(e)
+    // Do something when catch error
+  }
+
+}
+
+
 function gotoTweet(event) {
   //console.log(getCurrentPages())
 //  wx.navigateTo({

@@ -130,3 +130,7 @@ text {
   padding:10rpx 0;
   font-weight:400;
 }
+.avatar-wrap {
+  width:96rpx;
+  height: 96rpx;
+}

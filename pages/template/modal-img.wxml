@@ -1,5 +1,5 @@
 <view class="mask" catchtap="closeImgModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
 
- <image hidden="{{!imgLoaded}}" wx:if="{{showModal}}" class="modal-img" mode="widthFix" src="{{bigImg}}" bindload="bigImgLoaded" style="max-height:{{imgHeight}};top:{{imgTop}};"></image>
+ <image hidden="{{!imgLoaded}}" wx:if="{{showModal}}" catchtap="closeImgModal" class="modal-img" mode="widthFix" src="{{bigImg}}" bindload="bigImgLoaded" style="max-height:{{imgHeight}};top:{{imgTop}};"></image>
 
 <image class="modal-img-loading" wx:if="{{showModal && !imgLoaded}}" src="../resources/loading293.gif"/>

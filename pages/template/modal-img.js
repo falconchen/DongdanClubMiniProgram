@@ -23,14 +23,14 @@ var bigImgLoaded = function(event) {
   var that = this;
   var detail = event.detail
 
-  if ((detail.height / detail.width) > 1.83) {
+  if ((detail.height / detail.width) > 1.69) {
     that.setData({
       imgHeight: '1100rpx',
       imgTop: 0,
       imgLoaded: true
     })
   } else {
-    var imgHeight = (600 * detail.height / detail.width)
+    var imgHeight = (640 * detail.height / detail.width)
     that.setData({
       imgHeight: imgHeight + 'rpx',
       imgTop: (1100 - imgHeight) / 2 + 'rpx',
