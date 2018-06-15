@@ -24,8 +24,6 @@ Page({
     app.loading();
     util.getUserBlogList(xxbianid, currentPage, blogPerPage, function (data) { //成功
       
-      //console.log(data.projectlist);
-      //data = JSON.parse(data);
 
       if (data.projectlist) {
         
@@ -99,6 +97,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    
   }
 })

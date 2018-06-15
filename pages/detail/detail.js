@@ -70,7 +70,7 @@ Page({
         currentPage = 1;
         util.getTweetCommentList(that.tweetId, currentPage, commentPerPage,
           function (resdata) {
-            finishLoadComments = Boolean(resdata.length <= commentPerPage)
+            finishLoadComments = Boolean(resdata.length < commentPerPage)
             //finishLoadComments = Boolean(resdata.length < commentPerPage)
             that.setData({ comments: resdata, finishLoadComments: finishLoadComments })
             currentPage++
