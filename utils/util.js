@@ -383,10 +383,12 @@ function prepare_tweet_item(tweet) {
 
         
   tweet.body2 = app.towxml.toJson(tweet.body, 'html');
-  if(tweet.pubData){
+  
+  if(tweet.pubDate){
     var date = new Date(tweet.pubDate.replace(/-/g, '/'));
-    tweet.pubDate = (Date.parse(date)) / 1000; //取秒
-  }  
+    tweet.pubDate = (Date.parse(date)) / 1000; //取秒  
+  } 
+  
   if (tweet.imgSmall) {
     let imgPreUrl = 'https://staticosc.cellmean.com/uploads/space/';
     var thumbs = quoteSplit(tweet.imgSmall);
