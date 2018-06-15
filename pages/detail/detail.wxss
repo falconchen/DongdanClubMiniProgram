@@ -60,6 +60,7 @@
 .finish-loaded {
    justify-content:center;
    /* padding:12rpx */
+   border-bottom: none;
 }
 .notification {
   font-size:24rpx;

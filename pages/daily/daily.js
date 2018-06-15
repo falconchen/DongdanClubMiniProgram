@@ -23,13 +23,19 @@ Page({
     var that = this;
     app.loading();
     util.getUserBlogList(xxbianid, currentPage, blogPerPage, function (data) { //成功
+      
+      //console.log(data.projectlist);
+      //data = JSON.parse(data);
 
       if (data.projectlist) {
+        
         var pubDates = [];
         for (let i = 0; i < data.projectlist.length; i++) {
           //真机时 util.timeSince总是NAN....
 
           data.projectlist[i].pubDate = util.blogDateReplace(data.projectlist[i].pubDate).replace(/\d{2}\:\d{2}\:\d{2}/g,"")
+
+          
                               
         }
         that.setData({ projectlist: data.projectlist, pubDates: pubDates })
@@ -77,7 +83,9 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    wx.reLaunch({
+      url: 'daily',
+    });
   },
 
   /**

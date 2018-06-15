@@ -27,7 +27,7 @@
 
     <view class="reply-header">
       <label> 评论 </label>
-      <text>({{ commentCount }})</text>
+      <text>({{ finishLoadComments ? comments.length : commentCount }})</text>
     </view>
 
 
@@ -52,7 +52,7 @@
     
     <block wx:if="{{ finishLoadComments }}">
       <view class="reply-item finish-loaded">
-        <view class="notification ">评论加载完成</view>
+        <view class="notification ">评论全部加载完毕</view>
         
       </view>
     </block>

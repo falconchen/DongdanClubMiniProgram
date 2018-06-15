@@ -5,6 +5,7 @@ const commentPerPage = 20;
 var currentPage = 1;
 var app = getApp();
 var finishLoadComments =false;
+
 Page({
 
   /**
@@ -22,6 +23,17 @@ Page({
     commentPerPage: currentPage
   },
   clickLink: util.clickLink,
+
+
+  initTweet: function (tweet) {
+    var tweetBodyHtml = tweet.body2;
+    wx.setNavigationBarTitle({
+      title: tweet.author + ' 的动弹'
+    });
+    
+    this.setData({ tweet: tweet, tweetBodyHtml: tweetBodyHtml, commentCount: tweet.commentCount });
+
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -29,32 +41,44 @@ Page({
     var that = this;
     that.tweetId = options.id;
     
+    
 
 
     wx.getStorage({
+      
+      
       key: 'tweet_' + that.tweetId,
       success: function (res) {
-        currentPage = 1;
-                        
-        wx.setNavigationBarTitle({
-          title: res.data.author + ' 的动弹'
-        })
-        //var tweetBodyHtml = app.towxml.toJson(res.data.body, 'html');      
-        var tweetBodyHtml = res.data.body2;
-        that.setData({ tweet: res.data, tweetBodyHtml: tweetBodyHtml, commentCount: res.data.commentCount })
+                              
+        //var tweetBodyHtml = app.towxml.toJson(res.data.body, 'html');  
+        
+        that.initTweet(res.data)      
+      },
+      fail:function(){
+        
 
+        util.getTweetDetail(that.tweetId, function (data) { 
+                                    
+          that.initTweet(data)
+
+        }, function () { }, function () { });
+      },
+      complete:function(){
+              
+
+        //显示评论
+        currentPage = 1;
         util.getTweetCommentList(that.tweetId, currentPage, commentPerPage,
           function (resdata) {
-            finishLoadComments = Boolean(resdata.length == 0 )
+            finishLoadComments = Boolean(resdata.length <= commentPerPage)
             //finishLoadComments = Boolean(resdata.length < commentPerPage)
             that.setData({ comments: resdata, finishLoadComments: finishLoadComments })
             currentPage++
           },
           function () { }
         );
-
-
       }
+
     })
     //console.log(options);
   },
