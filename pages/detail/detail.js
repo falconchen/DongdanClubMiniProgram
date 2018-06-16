@@ -39,20 +39,25 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    that.tweetId = options.id;
-    
-    
+    that.tweetId = options.id;    
+    that.key = 'tweet_' + that.tweetId;
 
 
     wx.getStorage({
       
       
-      key: 'tweet_' + that.tweetId,
+      key: that.key,
       success: function (res) {
                               
         //var tweetBodyHtml = app.towxml.toJson(res.data.body, 'html');  
         
-        that.initTweet(res.data)      
+        that.initTweet(res.data);   
+        wx.removeStorage({
+          key: that.key,
+          success: function (res) {            
+          }
+        });
+
       },
       fail:function(){
         

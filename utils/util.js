@@ -1,8 +1,9 @@
 /**
  * 格式化时间 YYYY/MM/DD HH:II:SS
  */
-const api_host = 'https://www.cellmean.com'
+
 const app = getApp();
+const apiHost = 'https://www.cellmean.com'
 
 function formatTime(date) {
   date = typeof date === 'object' ? date : (new Date(date))
@@ -101,7 +102,7 @@ function getTweetList(userid, currentPage, tweetPerPage, successCallback, comple
 
     // 请求数据
     wx.request({
-      url: api_host,
+      url: apiHost,
 
       data: {
         osc_api: 'tweet_list',
@@ -151,7 +152,7 @@ function getTweetCommentList(id, currentPage, tweetPerPage, successCallback, com
 
     // 请求数据
     wx.request({
-      url: api_host,
+      url: apiHost,
 
       data: {
         osc_api: 'tweet_comment_list',
@@ -196,7 +197,7 @@ function getHotTweetList(successCallback, completeCallback, errorCallback) {
 
     // 请求数据
     wx.request({
-      url: api_host,
+      url: apiHost,
 
       data: {
         osc_api: 'hot_tweet_list'
@@ -233,7 +234,7 @@ function getUserBlogList(authorid, currentPage, blogPerPage, successCallback, co
 
     // 请求数据
     wx.request({
-      url: api_host,
+      url: apiHost,
 
       data: {
         osc_api: 'user_blog_list',
@@ -271,7 +272,7 @@ function getBlogDetail(id, successCallback, completeCallback, errorCallback) {
 
     // 请求数据
     wx.request({
-      url: api_host,
+      url: apiHost,
 
       data: {
         osc_api: 'blog_detail',
@@ -308,7 +309,7 @@ function getUserInfo(userid, currentPage, tweetPerPage, successCallback, complet
 
     // 请求数据
     wx.request({
-      url: api_host,
+      url: apiHost,
 
       data: {
         osc_api: 'user_info',
@@ -342,7 +343,7 @@ function getTweetDetail(id, successCallback, completeCallback, errorCallback) {
 
     // 请求数据
     wx.request({
-      url: api_host,
+      url: apiHost,
 
       data: {
         osc_api: 'tweet_detail',
