@@ -29,18 +29,22 @@
         
         
         <block wx:for="{{bookmarklist}}" wx:for-index="tid" wx:key="index" wx:for-item="tweet">
-
             
             <view  class="bookmark-tweet bookmark-{{tid%2}}">
 
-              <navigator class="tweet-info" hover-class="bookmark-{{tid%2}}" url="/pages/detail/detail?id={{tweet.id}}">
-                <image class='thumb thumb-80' src="{{tweet.portrait}}"></image>
-                <view class="tweet-content">{{tweet.body}} 
+              <view class="tweet-info">
+
+                <navigator class="author avatar-wrap" hover-class='bookmark-{{tid%2}}' hover-start-time='100' hover-stay-time='1000' url="/pages/author/author?id={{tweet.authorid}}">
+                  <image class='thumb thumb-80' src="{{tweet.portrait}}"></image>
+                </navigator>
+
+                <navigator class="tweet-content" hover-class="bookmark-{{tid%2}}" url="/pages/detail/detail?id={{tweet.id}}">{{tweet.body}} 
                 <view wx:if="{{tweet.thumbs.length}}" style="color:#333">
                 <image  src="../resources/ic_photo.png" style="width:20rpx;height:20rpx;"></image>  {{tweet.thumbs.length}}
                 </view>
-                </view>                
-              </navigator>
+                </navigator>                
+
+              </view>
               
               
               <view class="unbookmark" catchtap='unbookmark' data-tweet="{{tweet.tweetData}}">移除</view> 
@@ -63,10 +67,11 @@
     <view class="blocklist" wx:if="{{blocklist.length}}">
        <block wx:for="{{blocklist}}" wx:for-index="tid" wx:key="idx" wx:for-item="author">
           <view class="block-author">
-            <view class="author-info">
+
+            <navigator class="author-info" hover-class='hover-white-link' url="/pages/author/author?id={{author.authorid}}">
               <image class='thumb thumb-40' src="{{author.avatar}}"></image>
               <text class="author-name">{{author.author}}</text>
-            </view>
+            </navigator>
             
             <view class="unblock" bindtap='unblockUser' data-author="{{author.author}}" data-authorid="{{author.authorid}}">解除</view>
             
@@ -86,7 +91,7 @@
       <view class="empty">
       <image  src="../resources/qr.png" style="width:300rpx;height:300rpx;" ></image>
       
-      <view>动弹俱乐部 v1.2.5</view>
+      <view>动弹俱乐部 v1.2.6</view>
       <view>意见反馈: falconchen (微信号)</view>
       </view>
     </swiper-item>

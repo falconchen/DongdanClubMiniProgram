@@ -81,7 +81,7 @@ align-items: center;
 
 
 .tweet-info{
-  max-height: 100rpx;
+  max-height: 120rpx;
   display: flex;
   flex-direction: row;
   flex:10;
@@ -123,7 +123,7 @@ align-items: center;
   font-size:24rpx;
   overflow: hidden;
   margin-left:12rpx;
-
+  width:100%;
 }
 .bookmark-1 {
   background: #eee;

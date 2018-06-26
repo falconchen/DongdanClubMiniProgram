@@ -6,9 +6,9 @@
 
     <view class="user-avatar-wrap">    
       
-      <image wx:if="{{ !author.background }}" class="user-avatar" mode='aspectFit' src="{{author.portrait}}" bindtap='blockUser' data-authorid='{{author.authorid}}' data-author='{{author.author}}' data-avatar="{{author.portrait}}"></image>
+      <image wx:if="{{ !author.background }}" class="user-avatar" mode='aspectFit' src="{{author.portrait}}" catchtap="modalSubmit" bindlongpress='blockUser' data-authorid='{{author.authorid}}' data-author='{{author.author}}' data-avatar="{{author.portrait}}" data-src="{{author.portrait}}" ></image>
 
-      <view wx:else class="user-avatar" style="background:{{author.background}};display:flex;" bindtap='blockUser' data-authorid='{{author.authorid}}' data-author='{{author.author}}' data-avatar="{{author.portrait}}">
+      <view wx:else class="user-avatar" style="background:{{author.background}};display:flex;"  bindlongpress='blockUser' data-authorid='{{author.authorid}}' data-author='{{author.author}}' data-avatar="{{author.portrait}}">
         <!--垂直居中 ref: https://gist.github.com/ghostcode/16e05592da16ab088d21-->
         <view class="author-char" style="margin:auto;">{{author.char}}</view>
       </view>
@@ -25,11 +25,11 @@
     
   </view>
 
-  <view class="container">
+  <view class="tweets-container">
     
     <view wx:for="{{tweets}}" wx:key="index" class="item">
       <view class="author avatar-wrap" hover-class='hover-white-link' hover-start-time='100' hover-stay-time='1000' url="/pages/author/author?id={{item.authorid}}">
-        <image bindtap='blockUser' data-authorid='{{item.authorid}}' data-author='{{item.author}}' data-avatar="{{item.portrait}}" class='avatar' src="{{item.portrait}}" ></image>
+        <image bindlongpress='blockUser' data-authorid='{{item.authorid}}' data-author='{{item.author}}' data-avatar="{{item.portrait}}" class='avatar' src="{{item.portrait}}" ></image>
       </view>
       <navigator class="tweet-area" hover-class='hover-body-link' hover-start-time='10' hover-stay-time='1000'  url="/pages/detail/detail?id={{item.id}}" 
   data-index="{{ index }}"  data-id="{{item.id}}">
