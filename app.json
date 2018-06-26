@@ -1,10 +1,13 @@
 {
   "pages":[       
-    "pages/home/home",    
+    "pages/home/home",       
     "pages/hot/hot",
     "pages/daily/daily",
     "pages/daily/article",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/myself/myself",
+    "pages/author/author"    
+    
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -39,6 +42,12 @@
       "text": "乱弹",
       "iconPath": "pages/resources/ic_nav_news_normal.png",
       "selectedIconPath": "pages/resources/ic_nav_news_actived.png"      
+    },
+    {
+      "pagePath": "pages/myself/myself",
+      "text": "我的",
+      "iconPath": "pages/resources/ic_nav_my_normal.png",
+      "selectedIconPath": "pages/resources/ic_nav_my_actived.png"
     }
 
     ]

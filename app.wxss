@@ -44,6 +44,8 @@ text {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  margin-top:20rpx;
+
 }
 
 .tweet-meta .reply,.like {
@@ -87,6 +89,7 @@ text {
   display: inline-flex;
   flex-flow: row wrap;
   align-content: flex-start;
+  width:100%;
 }
 
 .thumb {
@@ -96,6 +99,14 @@ text {
   padding:5rpx;
   margin: 5rpx;
   flex-shrink: 0;
+}
+.thumb-80 {
+    width: 80rpx;
+  height: 80rpx;
+}
+.thumb-40 {
+    width: 40rpx;
+  height: 40rpx;
 }
 
 .tweet-header {

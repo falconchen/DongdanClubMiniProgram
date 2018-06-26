@@ -20,7 +20,9 @@ Page({
     tweetBodyHtml: '',
     comments: [],
     finishLoadComments: finishLoadComments,
-    commentPerPage: currentPage
+    commentPerPage: currentPage,
+    tweetData :'',
+    bookmarked : false
   },
   clickLink: util.clickLink,
 
@@ -31,7 +33,7 @@ Page({
       title: tweet.author + ' 的动弹'
     });
     
-    this.setData({ tweet: tweet, tweetBodyHtml: tweetBodyHtml, commentCount: tweet.commentCount });
+    this.setData({ tweet: tweet, tweetBodyHtml: tweetBodyHtml, commentCount: tweet.commentCount, tweetData: JSON.stringify(tweet),bookmarked:this.isBookmarked(tweet.id)});
 
   },
   /**
@@ -70,13 +72,15 @@ Page({
       },
       complete:function(){
               
-
+        
         //显示评论
         currentPage = 1;
         util.getTweetCommentList(that.tweetId, currentPage, commentPerPage,
           function (resdata) {
+            console.log(resdata)
             finishLoadComments = Boolean(resdata.length < commentPerPage)
             //finishLoadComments = Boolean(resdata.length < commentPerPage)
+            resdata = util.blockCommentFilter(resdata);
             that.setData({ comments: resdata, finishLoadComments: finishLoadComments })
             currentPage++
           },
@@ -157,8 +161,12 @@ Page({
       function (resdata) {
         finishLoadComments = Boolean(resdata.length < commentPerPage)
         //console.log(finishLoadComments)
+
         wx.hideLoading()
-        that.setData({ comments: that.data.comments.concat(resdata), finishLoadComments: finishLoadComments })
+
+        var commentData = that.data.comments.concat(resdata);
+        commentData = util.blockCommentFilter(commentData);
+        that.setData({ comments: commentData, finishLoadComments: finishLoadComments })
         currentPage++
         
 
@@ -176,6 +184,108 @@ Page({
   onShareAppMessage: function () {
 
   },
+
+  /**
+   * 点击收藏
+   */
+  bookmark: function(e) {
+    var that = this;
+
+    var tweet = JSON.parse(e.currentTarget.dataset.tweet);
+    var bookmarklist = wx.getStorageSync('bookmarklist') || [];
+    bookmarklist.unshift(tweet);
+    wx.setStorageSync('bookmarklist', bookmarklist);
+    this.setData({ bookmarked: this.isBookmarked(tweet.id) });
+
+  },
+
+  /**
+   * 检查是否被收藏
+   */
+  isBookmarked: function(tweetid) {
+    var bookmarklist = wx.getStorageSync('bookmarklist') || [];
+    if (bookmarklist.length == 0) {
+      return false;
+    }
+    for(var i=0;i<bookmarklist.length;i++) {
+      if(bookmarklist[i].id == tweetid) {
+        return true;
+      }
+    }
+    return false;
+  },
+
+  /**
+   * 取消收藏
+   */
+  unbookmark: function(e) {
+    var that = this;
+    
+    var tweet = JSON.parse(e.currentTarget.dataset.tweet);
+    var bookmarklist = wx.getStorageSync('bookmarklist') || [];
+    if( bookmarklist.length == 0 ) {
+      return;
+    }    
+    for(var i=0;i<bookmarklist.length;i++) {
+
+      if (tweet.id == bookmarklist[i].id) {
+        
+        bookmarklist.splice(i, 1);
+        wx.setStorageSync('bookmarklist', bookmarklist);
+        
+        that.setData({ bookmarked: that.isBookmarked(tweet.id) });
+        return;
+      }
+    }
+    return ;
+    
+
+  },
+  /**
+   * 屏蔽评论中的头像
+   */
+  blockUserComment: function(e){
+    var that = this;
+
+    var author = e.currentTarget.dataset.author;
+    var authorid = e.currentTarget.dataset.authorid;
+    var avatar = e.currentTarget.dataset.avatar;
+
+    wx.showModal({ //使用模态框提示用户进行操作
+
+      title: '警告',
+
+      content: '你确定要屏蔽 ' + author + ' 吗?',
+
+      success: function (res) {
+
+        if (res.confirm) { //判断用户是否点击了确定
+
+          //wx.clearStorageSync();
+          var blocklist = wx.getStorageSync('blocklist') || [];
+          var authorData = {
+            'author': author,
+            'authorid': authorid,
+            'avatar': avatar
+          };
+          blocklist.unshift(authorData);
+          wx.setStorageSync('blocklist', blocklist);
+          var commentData = that.data.comments;
+          commentData = util.blockCommentFilter(commentData);
+          that.setData({ comments: commentData, finishLoadComments: finishLoadComments })
+          return true;
+        }
+
+      }
+
+    })
+    return false;
+  },
+
+  blockCommentFilter: util.blockCommentFilter,
+
+  blockUser: util.blockUser,
+  blockFilter: util.blockFilter,
   modalSubmit: modalImg.modalSubmit,
   preventTouchMove: modalImg.preventTouchMove,
   closeImgModal: modalImg.closeImgModal,

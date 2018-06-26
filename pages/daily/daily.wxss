@@ -1,17 +1,37 @@
 /* pages/daily/daily.wxss */
 
+.item{
+  min-height: 150rpx;
+}
+
 .comment-count {
   width:96rpx;
   height:96rpx;
   flex-shrink:0;  
   border-radius:50%;
-  background:#FF6600;
+  background-color:#FF6600;
   color:#fff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size:28rpx;
+  background:url(https://staticosc.cellmean.com/uploads/user/714/1428332_100.jpg?t=1400110163000);
+  background-size:cover;
+  position: relative;
+  
+  
 }
+.comment-num{
+  position:absolute;
+  top:106rpx;  
+  color:#f60;  
+  background-color:#fff;
+  border-radius:12rpx;  
+  font-size:26rpx;
+    
+}
+
+
 .pubdate{
   color:#ccc;
 }

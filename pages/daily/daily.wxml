@@ -9,8 +9,8 @@
     
     <view class="comment-count">
       
-        <view class="comment-num">{{item.commentCount}}</view>
-        <label class="comment-text">评</label>
+        <view class="comment-num">{{item.commentCount}}评</view>
+        
       
     </view>
 

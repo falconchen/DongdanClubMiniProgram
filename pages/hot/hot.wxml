@@ -7,11 +7,13 @@
 
   <view wx:for="{{tweets}}" wx:key="index" class="item">
     
-    <image class='avatar' src="{{item.portrait}}"></image>
+    <navigator class="author avatar-wrap" hover-class='hover-white-link' hover-start-time='100' hover-stay-time='1000' url="/pages/author/author?id={{item.authorid}}">
+      <image bindlongpress='blockUser' data-authorid='{{item.authorid}}' data-author='{{item.author}}' data-avatar="{{item.portrait}}" class='avatar' src="{{item.portrait}}" ></image>
+    </navigator>
     
     
         <navigator class="tweet-area" hover-class='hover-body-link' hover-start-time='10' hover-stay-time='1000'  url="/pages/detail/detail?id={{item.id}}" 
- data-index="{{ index }}" bindtap="clickMe" data-id="{{item.id}}">
+ data-index="{{ index }}" data-id="{{item.id}}">
 
       <view class="tweet-header">
         <view class="author" hover-class='hover-author-link' hover-start-time='100' hover-stay-time='1000'  url="/pages/author/author?id={{item.authorid}}">{{item.author}}</view>        

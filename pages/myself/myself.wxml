@@ -1,0 +1,97 @@
+<!--pages/myself/myself.wxml-->
+<wxs src="../../utils/util.wxs" module="util"></wxs>
+
+<view class="container">
+<view class="header">
+
+  <view class="user-avatar-wrap">
+    <open-data class='user-avatar' mode='aspectFit' type='userAvatarUrl'></open-data>
+  </view>
+
+  <open-data class='author' type="userNickName"></open-data>
+</view>
+
+<view class="user-tabs swiper-tab">
+    <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">收藏列表</view>
+
+    <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">屏蔽列表</view>
+    
+
+    <view class="swiper-tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="clickTab">关于小程序</view>
+
+</view>
+
+<swiper current="{{currentTab}}" duration="300"  bindchange="swiperTab" style="height:{{ currentTab == 0 ? bookmarklistHeight : (currentTab == 1 ? blocklistHeight : swiperHeight)  }}rpx">
+
+    <swiper-item>
+    <view>
+        <view class="bookmarklist" wx:if="{{bookmarklist.length}}">
+        
+        
+        <block wx:for="{{bookmarklist}}" wx:for-index="tid" wx:key="index" wx:for-item="tweet">
+
+            
+            <view  class="bookmark-tweet bookmark-{{tid%2}}">
+
+              <navigator class="tweet-info" hover-class="bookmark-{{tid%2}}" url="/pages/detail/detail?id={{tweet.id}}">
+                <image class='thumb thumb-80' src="{{tweet.portrait}}"></image>
+                <view class="tweet-content">{{tweet.body}} 
+                <view wx:if="{{tweet.thumbs.length}}" style="color:#333">
+                <image  src="../resources/ic_photo.png" style="width:20rpx;height:20rpx;"></image>  {{tweet.thumbs.length}}
+                </view>
+                </view>                
+              </navigator>
+              
+              
+              <view class="unbookmark" catchtap='unbookmark' data-tweet="{{tweet.tweetData}}">移除</view> 
+
+            </view>
+
+          </block>
+
+        </view>
+
+        <view class="empty" wx:else>
+            <image  src="../resources/demo_bookmark.png" style="width:600rpx;height:360rpx;" ></image>        
+            <view>动弹详情页点击收藏即可出现在这里</view>
+        </view> 
+    </view>
+    </swiper-item>
+    <!-- 收藏列表结束 -->
+
+    <swiper-item >
+    <view class="blocklist" wx:if="{{blocklist.length}}">
+       <block wx:for="{{blocklist}}" wx:for-index="tid" wx:key="idx" wx:for-item="author">
+          <view class="block-author">
+            <view class="author-info">
+              <image class='thumb thumb-40' src="{{author.avatar}}"></image>
+              <text class="author-name">{{author.author}}</text>
+            </view>
+            
+            <view class="unblock" bindtap='unblockUser' data-author="{{author.author}}" data-authorid="{{author.authorid}}">解除</view>
+            
+          </view>
+        </block>      
+    </view>
+    <view class="empty" wx:else>
+        <image  src="../resources/demo_block.png" style="width:600rpx;height:360rpx;" ></image>        
+        <view>动弹列表长按用户头像即可屏蔽其发言</view>
+    </view>        
+    </swiper-item>
+    <!--屏蔽列表结束-->
+
+
+
+    <swiper-item>
+      <view class="empty">
+      <image  src="../resources/qr.png" style="width:300rpx;height:300rpx;" ></image>
+      
+      <view>动弹俱乐部 v1.2.5</view>
+      <view>意见反馈: falconchen (微信号)</view>
+      </view>
+    </swiper-item>
+    <!--关于结束  -->
+</swiper>
+
+
+</view>

@@ -1,0 +1,65 @@
+<!--pages/myself/myself.wxml-->
+<import src="/towxml/entry.wxml" />
+
+<view class="container">
+  <view class="header">
+
+    <view class="user-avatar-wrap">    
+      
+      <image wx:if="{{ !author.background }}" class="user-avatar" mode='aspectFit' src="{{author.portrait}}" bindtap='blockUser' data-authorid='{{author.authorid}}' data-author='{{author.author}}' data-avatar="{{author.portrait}}"></image>
+
+      <view wx:else class="user-avatar" style="background:{{author.background}};display:flex;" bindtap='blockUser' data-authorid='{{author.authorid}}' data-author='{{author.author}}' data-avatar="{{author.portrait}}">
+        <!--垂直居中 ref: https://gist.github.com/ghostcode/16e05592da16ab088d21-->
+        <view class="author-char" style="margin:auto;">{{author.char}}</view>
+      </view>
+    
+
+    </view>    
+
+    <view class='author'>{{author.author}}</view>
+    <view class='signature'>{{author.signature}}</view>
+  </view>
+
+  <view class="user-tabs swiper-tab">
+      <view class="swiper-tab-item active">{{author.gender == 'boy' ? '他' : ( author.gender =='girl' ? '她':'')}}最近的动弹</view>
+    
+  </view>
+
+  <view class="container">
+    
+    <view wx:for="{{tweets}}" wx:key="index" class="item">
+      <view class="author avatar-wrap" hover-class='hover-white-link' hover-start-time='100' hover-stay-time='1000' url="/pages/author/author?id={{item.authorid}}">
+        <image bindtap='blockUser' data-authorid='{{item.authorid}}' data-author='{{item.author}}' data-avatar="{{item.portrait}}" class='avatar' src="{{item.portrait}}" ></image>
+      </view>
+      <navigator class="tweet-area" hover-class='hover-body-link' hover-start-time='10' hover-stay-time='1000'  url="/pages/detail/detail?id={{item.id}}" 
+  data-index="{{ index }}"  data-id="{{item.id}}">
+        <view class="tweet-header">
+          <navigator class="author" hover-class='hover-white-link' hover-start-time='100' hover-stay-time='1000' bindtap='userTweetList' url="/pages/author/author?id={{item.authorid}}">{{item.author}}</navigator>
+          <text class="pubdate">{{ item.pubDateStr }}</text>
+        </view>
+
+        <view class="body2" data-id="{{item.id}}" data-index="{{ index }}" url="/pages/detail/detail?id={{item.id}}">
+          <template is="entry" data="{{...item.body2}}" />
+        </view>
+
+        <view wx:if="{{item.thumbs}}" class="thumb-container">
+          <block wx:for="{{tweets[index].thumbs}}" wx:for-index="tid" wx:key="idx" wx:for-item="thumb">
+            <image catchtap="modalSubmit" class='thumb' src="{{thumb}}" data-src="{{tweets[index].bigImgs[tid]}}"></image>
+          </block>
+        </view>
+        <view class="tweet-meta">
+          <view class="reply">
+            <text> {{item.commentCount}} </text>
+            <label>评 </label>
+          </view>
+        </view>
+      </navigator>
+    </view>
+    
+  </view>
+
+
+
+</view>
+
+<include src="../template/modal-img.wxml" />

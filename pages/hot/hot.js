@@ -12,11 +12,11 @@ var config = {
 
     //console.log(app.globalData.api_prefix)
     var that = this;
-    // var nodeId = options.nodeid;
+    
     app.loading();
     util.getHotTweetList(
       function (resdata) {
-        
+        resdata = that.blockFilter(resdata);
         that.setData({ tweets: resdata })
       },
       function () {
@@ -51,6 +51,10 @@ var config = {
 
     //console.log(that.data.tweets);
   },
+
+  blockUser: util.blockUser,
+  blockFilter: util.blockFilter,
+
   modalSubmit: modalImg.modalSubmit,
   preventTouchMove: modalImg.preventTouchMove,
   closeImgModal: modalImg.closeImgModal,

@@ -5,7 +5,10 @@
 <view class="container">
 
   <view class="item">
-    <image class='avatar' src="{{tweet.portrait}}"></image>
+    <navigator class="author avatar-wrap" hover-class='hover-white-link' hover-start-time='100' hover-stay-time='1000' url="/pages/author/author?id={{tweet.authorid}}">
+    <image bindlongpress='blockUser' data-authorid='{{tweet.authorid}}' data-author='{{tweet.author}}' data-avatar="{{tweet.portrait}}" class='avatar' src="{{tweet.portrait}}" ></image>
+    </navigator>
+
     <view class="tweet-area">
       <view class="tweet-header">
         <view class="author" url="/pages/author/author?id={{item.authorid}}">{{tweet.author}}</view>
@@ -18,27 +21,41 @@
       
         <block wx:for="{{tweet.thumbs}}"  wx:for-index="tid" wx:key="tidx" wx:for-item="thumb">
           <image catchtap="modalSubmit" class='thumb' src="{{thumb}}" data-src="{{tweet.bigImgs[tid]}}"></image>
+
         </block>
       </view>
+      
+      <view wx:if="{{ !bookmarked }}" class="bookmark" bindtap='bookmark' data-tweet='{{ tweetData }}' > 收藏</view>
+      <view wx:else class="bookmark bookmarked" bindtap='unbookmark' data-tweet='{{ tweetData }}' > 已收藏</view>
 
     </view>
   </view>
   <view class="reply-container">
 
     <view class="reply-header">
-      <label> 评论 </label>
-      <text>({{ finishLoadComments ? comments.length : commentCount }})</text>
+      <label> 评论 ({{ finishLoadComments ? comments.length : commentCount }})
+      </label>
+      
     </view>
 
 
     <view wx:for="{{comments}}" class="reply-item" wx:key="cidx" wx:for-item="comment">
 
 
-      <image class='avatar' src="{{comment.commentPortrait}}"></image>
+      <!-- <image class='avatar' src="{{comment.commentPortrait}}"></image> -->
+
+      <navigator class="author avatar-wrap" hover-class='hover-white-link' hover-start-time='100' hover-stay-time='1000' url="/pages/author/author?id={{comment.commentAuthorId}}">
+          <image bindlongpress='blockUserComment' data-authorid='{{comment.commentAuthorId}}' data-author='{{comment.commentAuthor}}' data-avatar="{{comment.commentPortrait}}" class='avatar' src="{{comment.commentPortrait}}" ></image>
+          </navigator>
+
 
       <view class="comment-area">
         <view class="comment-header">
-          <navigator class="author" url="#">{{comment.commentAuthor}}</navigator>
+            
+
+
+          <navigator class="author" url="/pages/author/author?id={{comment.commentAuthorId}}">{{comment.commentAuthor}}</navigator>
+
           <text  class="pubdate">{{ util.timeSince(comment.pubDate) }}</text>
         </view>
         <template is="entry" data="{{...comment.content2}}" />

@@ -1,0 +1,141 @@
+/* pages/myself/myself.wxss */
+.header{
+  margin-bottom:50rpx;
+
+}
+.user-avatar-wrap {
+  display: flex;
+  justify-content:center;
+  flex-direction: row;
+  margin:40rpx 0 10rpx 0;
+}
+
+.user-avatar-wrap .user-avatar {
+    height: 180rpx;
+    width: 180rpx;
+    border-radius: 50%;
+    display:block; 
+    overflow:hidden;
+}
+
+.header .author {
+  display:block; 
+  text-align: center;
+}
+
+.user-tabs{
+  background-color:#f6f6f6;
+  color:#ccc;
+  padding:0;
+  font-size:32rpx;
+  font-weight:400;
+  display:flex;
+  flex-direction:row;
+
+}
+
+.user-tabs >view {
+  flex:1;
+  text-align: center;
+  /* color:#ccc; */
+  padding:16rpx; 
+}
+
+.user-tabs view.active {
+  border-bottom: 4rpx solid #4eaa4c;
+  color:#4eaa4c;
+}
+
+.block-author {
+
+  display: flex;
+  flex-direction: row;
+  
+  justify-content:space-between; 
+align-items: center; 
+}
+.bookmark-tweet{
+  display: flex;
+  flex-direction: row;
+  justify-content:center; 
+  align-items: center; 
+}
+
+
+.block-author  {
+  flex:1;
+  height: 80rpx;
+}
+
+.author-info {
+  display: flex;
+  flex-direction: row;
+  font-size:32rpx;
+
+}
+
+.bookmark-tweet {
+    
+  padding: 5rpx 10rpx;
+}
+
+
+.tweet-info{
+  max-height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  flex:10;
+}
+.author-name{
+  margin-left:10rpx;
+  text-decoration:line-through;
+  padding:5rpx;
+  font-size:30rpx;
+}
+.unblock{
+  background-color:#fff;
+  border-radius:12rpx;
+  padding:4rpx 20rpx;
+  font-size:24rpx;
+  border:2rpx solid #eee;  
+  text-align:center;
+}
+
+.unbookmark{
+  background-color:#fff;
+  border-radius:12rpx;
+  padding:4rpx 20rpx;
+  font-size:24rpx;
+  border:2rpx solid #eee;  
+  text-align:center;
+
+}
+
+.blocklist{
+  padding:20rpx;
+}
+.bookmarklist {
+  margin-top: 20rpx;
+}
+
+.tweet-content {
+  padding-top:5rpx;
+  font-size:24rpx;
+  overflow: hidden;
+  margin-left:12rpx;
+
+}
+.bookmark-1 {
+  background: #eee;
+}
+
+.unbookmark{
+  flex:1;
+}
+
+.empty {
+  font-size:28rpx;
+  text-align: center;
+  padding-top :120rpx;
+  color:#ccc;
+}

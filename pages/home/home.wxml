@@ -3,16 +3,16 @@
 <import src="/towxml/entry.wxml" />
 
 
-<view class="container">
+<view class="tweet-container">
   
   <view wx:for="{{tweets}}" wx:key="index" class="item">
-    <view class="author avatar-wrap" hover-class='hover-white-link' hover-start-time='100' hover-stay-time='1000' bindtap='abc' url="/pages/author/author?id={{item.authorid}}">
-      <image class='avatar' src="{{item.portrait}}" ></image>
-    </view>
+    <navigator class="author avatar-wrap" hover-class='hover-white-link' hover-start-time='100' hover-stay-time='1000' url="/pages/author/author?id={{item.authorid}}">
+      <image bindlongpress='blockUser' data-authorid='{{item.authorid}}' data-author='{{item.author}}' data-avatar="{{item.portrait}}" class='avatar' src="{{item.portrait}}" ></image>
+    </navigator>
     <navigator class="tweet-area" hover-class='hover-body-link' hover-start-time='10' hover-stay-time='1000'  url="/pages/detail/detail?id={{item.id}}" 
  data-index="{{ index }}" bindtap="clickTweet" data-id="{{item.id}}">
       <view class="tweet-header">
-        <view class="author" hover-class='hover-white-link' hover-start-time='100' hover-stay-time='1000' bindtap='abc' url="/pages/author/author?id={{item.authorid}}">{{item.author}}</view>
+        <navigator class="author" hover-class='hover-white-link' hover-start-time='100' hover-stay-time='1000' bindtap='userTweetList' url="/pages/author/author?id={{item.authorid}}">{{item.author}}</navigator>
         <text class="pubdate">{{ util.timeSince(item.pubDate) }}</text>
       </view>
 

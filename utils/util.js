@@ -3,7 +3,7 @@
  */
 
 const app = getApp();
-const apiHost = 'https://www.cellmean.com'
+const apiHost = app.globalData.apiHost;
 
 function formatTime(date) {
   date = typeof date === 'object' ? date : (new Date(date))
@@ -300,42 +300,7 @@ function getBlogDetail(id, successCallback, completeCallback, errorCallback) {
 
 }
 
-/**
- * 获取用户信息 //@todo
- */
-function getUserInfo(userid, currentPage, tweetPerPage, successCallback, completeCallback, errorCallback) {
 
-  try {
-
-    // 请求数据
-    wx.request({
-      url: apiHost,
-
-      data: {
-        osc_api: 'user_info',
-        page_index: currentPage,
-        page_size: tweetPerPage
-      },
-      header: {
-        'cache-control': 'max-age=120'
-      },
-      success: function (res) {
-
-       //@todo
-        successCallback(res.data);
-
-      },
-      complete: function () {
-        completeCallback();
-
-      }
-    });
-  } catch (e) {
-    errorCallback(e)
-    // Do something when catch error
-  }
-
-}
 
 function getTweetDetail(id, successCallback, completeCallback, errorCallback) {
 
@@ -410,6 +375,214 @@ function prepare_tweet_item(tweet) {
 }
 
 
+function delHtmlTag(str) {
+  return str.replace(/<[^>]+>/g, "");//去掉所有的html标记
+}
+
+function subWords(str,limit){
+  var str = delHtmlTag(str);
+  if (str.length <= limit) {
+    return str;
+  }
+  return str.substr(0,limit) + '...';
+}
+
+function blockFilter(resdata) {
+  var blocklist = wx.getStorageSync('blocklist') || [];
+  if (blocklist.length > 0) {
+
+    for (var i = 0; i < resdata.length; i++) {
+
+      var authorid = resdata[i].authorid;
+      for (var j = 0; j < blocklist.length; j++) {
+        if (authorid == blocklist[j].authorid) {
+          resdata.splice(i, 1);
+          i--;
+          break;
+        }
+      }
+    }
+  }
+  return resdata;
+
+}
+
+function blockCommentFilter(resdata) {
+  var blocklist = wx.getStorageSync('blocklist') || [];
+  if (blocklist.length > 0) {
+
+    for (var i = 0; i < resdata.length; i++) {
+
+      var authorid = resdata[i].commentAuthorId;
+      for (var j = 0; j < blocklist.length; j++) {
+        if (authorid == blocklist[j].authorid) {
+          resdata.splice(i, 1);
+          i--;
+          break;
+        }
+      }
+    }
+  }
+  return resdata;
+}
+
+
+function blockUser(e) {
+
+  var that = this;
+
+  var author = e.currentTarget.dataset.author;
+  var authorid = e.currentTarget.dataset.authorid;
+  var avatar = e.currentTarget.dataset.avatar;
+
+  wx.showModal({ //使用模态框提示用户进行操作
+
+    title: '警告',
+
+    content: '你确定要屏蔽 ' + author + ' 吗?',
+
+    success: function (res) {
+
+      if (res.confirm) { //判断用户是否点击了确定
+
+        //wx.clearStorageSync();
+        var blocklist = wx.getStorageSync('blocklist') || [];
+        var authorData = {
+          'author': author,
+          'authorid': authorid,
+          'avatar': avatar
+        };
+        blocklist.unshift(authorData);
+        wx.setStorageSync('blocklist', blocklist);
+        
+        if(typeof that.data !=='undefined') {
+
+          var tweets = that.data.tweets;
+          if ( typeof tweets !=='undefined') {
+            tweets = that.blockFilter(tweets);
+            that.setData({
+              tweets: tweets
+            });
+          }else{          
+            wx.reLaunch( {url: '/pages/home/home'} );
+          }
+
+        }else{
+          wx.reLaunch({ url: '/pages/home/home' });
+        }
+        return true;
+      }
+
+    }
+
+  })
+  return false;
+
+}
+
+/**
+   * 取消收藏
+   */
+function unbookmark(e) {
+  var that = this;
+
+  var tweet = JSON.parse(e.currentTarget.dataset.tweet);
+  var bookmarklist = wx.getStorageSync('bookmarklist') || [];
+  if (bookmarklist.length == 0) {
+    return false;
+  }
+  for (var i = 0; i < bookmarklist.length; i++) {
+
+    if (tweet.id == bookmarklist[i].id) {
+      bookmarklist.splice(i, 1);
+      wx.setStorageSync('bookmarklist', bookmarklist);      
+      return true;
+    }
+  }
+  return false;
+
+}
+
+/**
+ * 用户信息，自定义接口
+ */
+function getAuthorInfo(authorid,successCallback, completeCallback, errorCallback) {
+
+  try {
+
+    // 请求数据
+    wx.request({
+      url: apiHost,
+
+      data: {
+        osc_api: 'author_info',
+        id: authorid
+      },
+      header: {
+        'cache-control': 'max-age=120'
+      },
+      success: function (res) {        
+        successCallback(res.data);
+
+      },
+      complete: function () {
+        completeCallback();
+
+      }
+    });
+  } catch (e) {
+    errorCallback(e)
+    // Do something when catch error
+  }
+
+}
+
+/**
+ * 用户动弹列表
+ */
+
+function getUserTweetList(userid, currentPage, successCallback, completeCallback, errorCallback) {
+
+  try {
+
+    // 请求数据
+    wx.request({
+      url: apiHost,
+
+      data: {
+        osc_api: 'user_tweet_list',
+        id: userid,
+        page_index: currentPage
+        
+      },
+      header: {
+        'cache-control': 'max-age=120'
+      },
+      success: function (res) {
+
+        
+        for (let i = 0; i < res.data.length; i++) {
+
+          res.data[i] = prepare_tweet_item(res.data[i]);
+
+        }
+
+        successCallback(res.data);
+
+      },
+      complete: function () {
+        completeCallback();
+
+      }
+
+    });
+  } catch (e) {
+    console.log(e)
+    errorCallback(e)
+    // Do something when catch error
+  }
+
+}
 
 module.exports = {
   formatTime: formatTime,
@@ -424,6 +597,13 @@ module.exports = {
   getHotTweetList: getHotTweetList,
   getUserBlogList: getUserBlogList,
   getBlogDetail: getBlogDetail,
-  getTweetDetail: getTweetDetail
-
+  getTweetDetail: getTweetDetail,
+  delHtmlTag: delHtmlTag,
+  subWords: subWords,
+  blockFilter: blockFilter,
+  blockUser: blockUser,
+  unbookmark: unbookmark,
+  getAuthorInfo: getAuthorInfo,
+  getUserTweetList: getUserTweetList,
+  blockCommentFilter: blockCommentFilter
 }
