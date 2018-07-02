@@ -12,14 +12,14 @@ Page({
     blocklistHeight:150,
     bookmarklistHeight:150,
     bookmarklist:[],
-    
+    version:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-  
+  onLoad: function (options) {    
+    this.setData({ version: getApp().globalData.version });
   },
 
 

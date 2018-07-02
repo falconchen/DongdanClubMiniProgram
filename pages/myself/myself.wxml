@@ -91,7 +91,7 @@
       <view class="empty">
       <image  src="../resources/qr.png" style="width:300rpx;height:300rpx;" ></image>
       
-      <view>动弹俱乐部 v1.2.8</view>
+      <view>动弹俱乐部 v{{version}}</view>
       <view>意见反馈: falconchen (微信号)</view>
       </view>
     </swiper-item>

@@ -4,7 +4,8 @@ const Towxml = require('/towxml/main');     //引入towxml库
 App({
 
   globalData: {
-    apiHost: 'https://www.cellmean.com'
+    apiHost: 'https://www.cellmean.com',
+    version:'1.3.4'
   },
 
   onLaunch: function () {
