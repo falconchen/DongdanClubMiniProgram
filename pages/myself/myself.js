@@ -107,8 +107,8 @@ Page({
         bookmarklist[i].tweetData = JSON.stringify(bookmarklist[i]);
       }
     }      
-    var bookmarklistHeight = bookmarklist.length * 120 > 0 ? bookmarklist.length * 120 : 550;
-    this.setData({ bookmarklist: bookmarklist, bookmarklistHeight: bookmarklistHeight + 20 });
+    var bookmarklistHeight = bookmarklist.length * 110 > 0 ? bookmarklist.length * 110 : 550;
+    this.setData({ bookmarklist: bookmarklist, bookmarklistHeight: bookmarklistHeight + 10 });
 
   },
 
