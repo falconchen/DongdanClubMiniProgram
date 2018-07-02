@@ -39,11 +39,12 @@ var config = {
 
   },
 
-  clickMe: function (event) {
+  clickTweet: function (event) {
     var that = this;
     var index = event.currentTarget.dataset.index;
     var id = event.currentTarget.dataset.id;
     //console.log(event.currentTarget.dataset)
+    //wx.setStorageSync('tweet_' + id,that.data.tweets[index]);
     wx.setStorage({
       key: 'tweet_' + id,
       data: that.data.tweets[index]
@@ -58,6 +59,7 @@ var config = {
   modalSubmit: modalImg.modalSubmit,
   preventTouchMove: modalImg.preventTouchMove,
   closeImgModal: modalImg.closeImgModal,
+  previewImg: modalImg.previewImg,
   bigImgLoaded: modalImg.bigImgLoaded
 
 

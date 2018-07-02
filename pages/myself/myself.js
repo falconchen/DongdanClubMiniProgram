@@ -120,6 +120,18 @@ Page({
     });
     that.displayTitle()
   },
+
+  clickTweet: function (e) {
+    var that = this;
+    var index = e.currentTarget.dataset.index;
+    var id = e.currentTarget.dataset.id;
+
+    wx.setStorage({
+      key: 'tweet_' + id,
+      data: that.data.bookmarklist[index]
+    });
+
+  },
   //点击切换
   clickTab: function (e) {
     var that = this;

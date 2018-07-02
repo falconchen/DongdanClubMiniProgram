@@ -18,12 +18,13 @@
       <view class="tweet-header">
         <view class="author" hover-class='hover-author-link' hover-start-time='100' hover-stay-time='1000'  url="/pages/author/author?id={{item.authorid}}">{{item.author}}</view>        
       </view>
-      <view class="body2" bindtap="clickMe" data-id="{{item.id}}" data-index="{{ index }}" url="/pages/detail/detail?id={{item.id}}">
+      <view class="body2" bindtap="clickTweet" data-id="{{item.id}}" data-index="{{ index }}" url="/pages/detail/detail?id={{item.id}}">
         <template is="entry" data="{{...item.body2}}" />
       </view>
       <view wx:if="{{item.thumbs}}" class="thumb-container">
         <block wx:for="{{tweets[index].thumbs}}" wx:for-index="tid" wx:key="idx" wx:for-item="thumb">
-          <image catchtap="modalSubmit" class='thumb' src="{{thumb}}" data-src="{{tweets[index].bigImgs[tid]}}"></image>
+          <!-- <image catchtap="modalSubmit" class='thumb' src="{{thumb}}" data-src="{{tweets[index].bigImgs[tid]}}"></image> -->
+          <image catchtap="previewImg" class='thumb' src="{{thumb}}" data-src="{{tweets[index].bigImgs[tid]}}" data-srcs="{{ util.joinArray(item.bigImgs) }}"></image>
         </block>
       </view>
       <view class="tweet-meta">

@@ -22,7 +22,7 @@
 
       <view wx:if="{{item.thumbs}}" class="thumb-container">
         <block wx:for="{{tweets[index].thumbs}}" wx:for-index="tid" wx:key="idx" wx:for-item="thumb">
-          <image catchtap="modalSubmit" class='thumb' src="{{thumb}}" data-src="{{tweets[index].bigImgs[tid]}}"></image>
+          <image catchtap="previewImg" class='thumb' src="{{thumb}}" data-src="{{tweets[index].bigImgs[tid]}}" data-srcs="{{ util.joinArray(item.bigImgs) }}"></image>
         </block>
       </view>
       <view class="tweet-meta">

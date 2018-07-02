@@ -584,6 +584,8 @@ function getUserTweetList(userid, currentPage, successCallback, completeCallback
 
 }
 
+
+
 module.exports = {
   formatTime: formatTime,
   jsTimeSince: timeSince, //替代方案，wxs版本在真机运行不成功，在乱弹页使用年月

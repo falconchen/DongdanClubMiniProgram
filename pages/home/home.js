@@ -101,6 +101,7 @@ var config = {
   modalSubmit: modalImg.modalSubmit,
   preTouchMove: modalImg.preTouchMove,
   closeImgModal: modalImg.closeImgModal,
+  previewImg: modalImg.previewImg,
   bigImgLoaded: modalImg.bigImgLoaded
 
 

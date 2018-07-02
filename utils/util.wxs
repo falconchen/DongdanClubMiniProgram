@@ -67,11 +67,14 @@ function parseDeviceName(num) {
 
 }
 
+var joinArray = function (array) {
+  return array.join(' ')
+}
 
 
 module.exports = {
   timeSince: timeSince,
   oscTimeSince: oscTimeSince, // 真机测试会显示为刚刚
   parseDeviceName: parseDeviceName,
-  
+  joinArray: joinArray,
 };

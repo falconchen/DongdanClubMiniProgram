@@ -1,5 +1,6 @@
 <view class="mask" catchtap="closeImgModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
 
- <image hidden="{{!imgLoaded}}" wx:if="{{showModal}}" catchtap="closeImgModal" class="modal-img" mode="widthFix" src="{{bigImg}}" bindload="bigImgLoaded" style="max-height:{{imgHeight}};top:{{imgTop}};"></image>
+ <image hidden="{{!imgLoaded}}" wx:if="{{showModal}}" catchtap="closeImgModal" class="modal-img" mode="widthFix" src="{{bigImg}}" data-src="{{bigImg}}" bindload="bigImgLoaded" style="max-height:{{imgHeight}};top:{{imgTop}};" bindlongpress='previewImg'></image>
 
+<view wx:if="{{showModal && imgLoaded}}" id="imgpress-tip">长按图片进入全屏</view>
 <image class="modal-img-loading" wx:if="{{showModal && !imgLoaded}}" src="../resources/post_loading.gif"/>

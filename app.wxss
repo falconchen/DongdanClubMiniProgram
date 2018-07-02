@@ -145,3 +145,20 @@ text {
   width:96rpx;
   height: 96rpx;
 }
+
+
+#imgpress-tip{
+  position:fixed;
+  z-index:9999;
+  top:92%;
+  background:#fff;
+  border-radius:10rpx;
+  font-size:30rpx;
+  display:block;
+  width:50%;
+  text-align:center;
+  left:25%;
+  color:#ccc;
+  padding:8rpx;
+  display: block;
+}

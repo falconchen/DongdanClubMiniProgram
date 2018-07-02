@@ -33,7 +33,7 @@ Page({
 
     //动弹信息
     util.getUserTweetList(authorid, 1, function (resData){
-      console.log(resData);
+      //console.log(resData);
       that.setData({tweets:resData});
     },function(){},function(){})
 
@@ -95,11 +95,25 @@ Page({
       wx.reLaunch({ url: '/pages/home/home' });
     }
   },
+
+
+  clickTweet: function(e) {
+    var that = this;
+    var index = e.currentTarget.dataset.index;
+    var id = e.currentTarget.dataset.id;
+
+    wx.setStorage({
+      key: 'tweet_' + id,
+      data: that.data.tweets[index]
+    });
+
+  },
   blockFilter: util.blockFilter,
 
   modalSubmit: modalImg.modalSubmit,
   preTouchMove: modalImg.preTouchMove,
   closeImgModal: modalImg.closeImgModal,
+  previewImg: modalImg.previewImg,
   bigImgLoaded: modalImg.bigImgLoaded
 
 })

@@ -38,7 +38,7 @@
                   <image class='thumb thumb-80' src="{{tweet.portrait}}"></image>
                 </navigator>
 
-                <navigator class="tweet-content" hover-class="bookmark-{{tid%2}}" url="/pages/detail/detail?id={{tweet.id}}">{{tweet.body}} 
+                <navigator class="tweet-content" hover-class="bookmark-{{tid%2}}" url="/pages/detail/detail?id={{tweet.id}}" bindtap="clickTweet" data-id="{{tweet.id}}" data-index="{{ tid }}">{{tweet.body}} 
                 <view wx:if="{{tweet.thumbs.length}}" style="color:#333">
                 <image  src="../resources/ic_photo.png" style="width:20rpx;height:20rpx;"></image>  {{tweet.thumbs.length}}
                 </view>
@@ -56,8 +56,8 @@
         </view>
 
         <view class="empty" wx:else>
-            <image  src="../resources/demo_bookmark.png" style="width:600rpx;height:360rpx;" ></image>        
-            <view>动弹详情页点击收藏即可出现在这里</view>
+            <!-- <image  src="../resources/demo_bookmark.png" style="width:600rpx;height:360rpx;" ></image>         -->
+            <view>详情页点击收藏即可出现在这里</view>
         </view> 
     </view>
     </swiper-item>
@@ -79,8 +79,8 @@
         </block>      
     </view>
     <view class="empty" wx:else>
-        <image  src="../resources/demo_block.png" style="width:600rpx;height:360rpx;" ></image>        
-        <view>动弹列表长按用户头像即可屏蔽其发言</view>
+        <!-- <image  src="../resources/demo_block.png" style="width:600rpx;height:360rpx;" ></image>         -->
+        <view>长按用户头像即可屏蔽其发言</view>
     </view>        
     </swiper-item>
     <!--屏蔽列表结束-->
@@ -91,7 +91,7 @@
       <view class="empty">
       <image  src="../resources/qr.png" style="width:300rpx;height:300rpx;" ></image>
       
-      <view>动弹俱乐部 v1.2.6</view>
+      <view>动弹俱乐部 v1.2.8</view>
       <view>意见反馈: falconchen (微信号)</view>
       </view>
     </swiper-item>

@@ -8,6 +8,8 @@ var finishLoadComments =false;
 
 Page({
 
+  // rawComments:[], //原始评论数据，不包含block
+
   /**
    * 页面的初始数据
    */
@@ -15,11 +17,11 @@ Page({
     tweet: {},
     replies: [],
     replyPage: 0,
-    tweetId: '',
+    tweetId: '',    
     commentCount: 0,
     tweetBodyHtml: '',
-    comments: [],
-    finishLoadComments: finishLoadComments,
+    comments: [],    
+    finishLoadComments: false,
     commentPerPage: currentPage,
     tweetData :'',
     bookmarked : false
@@ -77,11 +79,13 @@ Page({
         currentPage = 1;
         util.getTweetCommentList(that.tweetId, currentPage, commentPerPage,
           function (resdata) {
-            console.log(resdata)
             finishLoadComments = Boolean(resdata.length < commentPerPage)
-            //finishLoadComments = Boolean(resdata.length < commentPerPage)
+                                  
+            //that.rawComments = resdata;
+            //that.rawComments = JSON.parse(JSON.stringify(resdata)); //深层复制
             resdata = util.blockCommentFilter(resdata);
-            that.setData({ comments: resdata, finishLoadComments: finishLoadComments })
+                        
+            that.setData({ comments: resdata,  finishLoadComments: finishLoadComments })
             currentPage++
           },
           function () { }
@@ -150,7 +154,8 @@ Page({
     var that = this;
     //console.log(that.data.finishLoadComments);return;
     
-    if (finishLoadComments || that.data.comments.length < commentPerPage) {
+    if (finishLoadComments) {
+      
       that.setData({  finishLoadComments: true })
       return;
     }
@@ -160,7 +165,7 @@ Page({
     util.getTweetCommentList(that.tweetId, currentPage, commentPerPage,
       function (resdata) {
         finishLoadComments = Boolean(resdata.length < commentPerPage)
-        //console.log(finishLoadComments)
+        
 
         wx.hideLoading()
 
@@ -289,6 +294,7 @@ Page({
   modalSubmit: modalImg.modalSubmit,
   preventTouchMove: modalImg.preventTouchMove,
   closeImgModal: modalImg.closeImgModal,
-  bigImgLoaded: modalImg.bigImgLoaded
+  bigImgLoaded: modalImg.bigImgLoaded,
+  previewImg: modalImg.previewImg
 
 })
