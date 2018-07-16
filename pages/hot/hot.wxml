@@ -16,7 +16,7 @@
  data-index="{{ index }}" data-id="{{item.id}}">
 
       <view class="tweet-header">
-        <view class="author" hover-class='hover-author-link' hover-start-time='100' hover-stay-time='1000'  url="/pages/author/author?id={{item.authorid}}">{{item.author}}</view>        
+        <view class="author" hover-class='hover-author-link' hover-start-time='100' hover-stay-time='1000'  url="/pages/author/author?id={{item.authorid}}">{{item.author}}</view>            <text  wx:if="{{ item.pubDateStr }}" class="pubdate">{{ item.pubDateStr }}</text>
       </view>
       <view class="body2" bindtap="clickTweet" data-id="{{item.id}}" data-index="{{ index }}" url="/pages/detail/detail?id={{item.id}}">
         <template is="entry" data="{{...item.body2}}" />
