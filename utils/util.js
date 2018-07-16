@@ -362,8 +362,10 @@ function prepare_tweet_item(tweet) {
     if (thumbs.length > 1) {
 
       for (let j = 1; j < thumbs.length; j++) {
-        thumbs[j] = imgPreUrl + thumbs[j];
-        bigImgs[j] = imgPreUrl + bigImgs[j];
+        thumbs[j] = (thumbs[j].indexOf('https://') === 0) ? thumbs[j] : imgPreUrl + thumbs[j];
+        bigImgs[j] = (bigImgs[j].indexOf('https://') === 0) ? bigImgs[j] : imgPreUrl + bigImgs[j];
+        //thumbs[j] = imgPreUrl + thumbs[j];
+        //bigImgs[j] = imgPreUrl + bigImgs[j];
 
       }
 
