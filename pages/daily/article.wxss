@@ -9,3 +9,7 @@
 .pubdate{
   color:#ccc;
 }
+
+.reply-header label{
+  display: inline-block;
+}

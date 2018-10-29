@@ -586,6 +586,51 @@ function getUserTweetList(userid, currentPage, successCallback, completeCallback
 
 }
 
+/**
+ * 博客评论列表
+ */
+function getBlogCommentList(id, currentPage, commentsPerPage, successCallback, completeCallback, errorCallback) {
+
+  try {
+
+    // 请求数据
+    wx.request({
+      url: apiHost,
+
+      data: {
+        osc_api: 'blog_comment_list',
+        id: id,
+        page_index: currentPage,
+        page_size: commentsPerPage
+      },
+      header: {
+        'cache-control': 'max-age=120'
+      },
+      success: function (res) {
+
+
+
+        for (let i = 0; i < res.data.length; i++) {
+
+          res.data[i].content2 = app.towxml.toJson(res.data[i].content, 'html');
+          var date = new Date(res.data[i].pubDate.replace(/-/g, '/'));
+          res.data[i].pubDate = (Date.parse(date)) / 1000;
+
+        }
+        successCallback(res.data);
+
+      },
+      complete: function () {
+        completeCallback();
+
+      }
+    });
+  } catch (e) {
+    errorCallback()
+    // Do something when catch error
+  }
+
+}
 
 
 module.exports = {
@@ -598,6 +643,7 @@ module.exports = {
   
   getTweetList: getTweetList,
   getTweetCommentList: getTweetCommentList,
+  getBlogCommentList: getBlogCommentList,
   getHotTweetList: getHotTweetList,
   getUserBlogList: getUserBlogList,
   getBlogDetail: getBlogDetail,

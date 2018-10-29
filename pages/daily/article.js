@@ -15,7 +15,8 @@ Page({
     articleId: articleId,
     bodyHtml: '',
     article:{'author':'小小编辑'},
-    comments:[]
+    comments:[],
+    finishLoadComments:false
   },
 
   /**
@@ -45,9 +46,10 @@ Page({
         })
 
         //var bodyHtml = app.towxml.toJson(data.body, 'html');      
-        that.setData({ articleId:articleId, article: data, bodyHtml: bodyHtml})
+        that.setData({ articleId: articleId, article: data, bodyHtml: bodyHtml, commentCount:data.commentCount})
 
-        
+        that.loadAllComments();
+
       }
       
 
@@ -100,13 +102,46 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    
+    
+
   },
+
+
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
   
+  },
+
+  /**
+   * 加载全部评论
+   */
+  loadAllComments: function(){
+    var that = this;
+    var commentsPerPage = 20;
+    var maxPages = Math.ceil(that.data.commentCount / commentsPerPage)
+
+
+    if (that.data.finishLoadComments) {
+      return;
+    }
+    for (var i = 1; i <= maxPages; i++) {
+      util.getBlogCommentList(
+        articleId, i, commentsPerPage,
+        function (resdata) {
+          var commentData = that.data.comments.concat(resdata);
+          resdata = util.blockCommentFilter(resdata);
+          that.setData({ comments: commentData })
+          if (i >= maxPages) {
+            that.setData({ finishLoadComments: true });
+          }
+
+        }, function () { }, function () { }
+      );
+    }
   }
+
 })
