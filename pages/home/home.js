@@ -50,7 +50,7 @@ var config = {
 
   },
   onReachBottom: function() {
-    app.loading();
+    //app.loading();
 
     var that = this;
 
@@ -72,7 +72,7 @@ var config = {
         that.setData({
           tweets: that.data.tweets.concat(resdata)
         })
-        wx.hideLoading()
+        //wx.hideLoading()
       },
       function() {
         that.setData({

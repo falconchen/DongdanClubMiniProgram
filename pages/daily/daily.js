@@ -3,7 +3,7 @@
 var util = require('../../utils/util.js');
 const xxbianid = 1428332;
 const blogPerPage = 20;
-var currentPage = 1;
+var currentPage ;
 var app = getApp();
 
 Page({
@@ -12,7 +12,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    projectlist: []
+    projectlist: [],
+    finishLoadList:false
   },
   clickLink: util.clickLink,
   /**
@@ -36,6 +37,7 @@ Page({
           
                               
         }
+        currentPage++;
         that.setData({ projectlist: data.projectlist, pubDates: pubDates })
       }
 
@@ -90,6 +92,46 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+
+    var that = this;
+    if (that.data.finishLoadList) {
+      return;
+    }
+
+    util.getUserBlogList(xxbianid, currentPage, blogPerPage, function (data) { //成功
+
+
+      if (data.projectlist) {
+
+        var pubDates = [];
+        for (let i = 0; i < data.projectlist.length; i++) {
+          //真机时 util.timeSince总是NAN....
+
+          data.projectlist[i].pubDate = util.blogDateReplace(data.projectlist[i].pubDate).replace(/\d{2}\:\d{2}\:\d{2}/g, "")
+
+
+
+        }
+                
+        var blogsData = that.data.projectlist.concat(data.projectlist);        
+        that.setData({ projectlist: blogsData})
+
+        if (data.projectlist.length < blogPerPage) {
+          that.setData({ finishLoadList: true })          
+
+        }else{
+          currentPage++;
+        }
+
+      }
+
+
+
+    }, function (event) {//完成
+      wx.hideLoading()
+    }, function (error) {//失败
+
+    });
 
   },
 
