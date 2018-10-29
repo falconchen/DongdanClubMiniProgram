@@ -1,6 +1,8 @@
 // pages/myself/myself.js
 var util = require('../../utils/util.js');
 var modalImg = require('../template/modal-img.js');
+var authorid;
+var currentPage ;
 Page({
 
   /**
@@ -8,7 +10,8 @@ Page({
    */
   data: {
     author:[],
-    tweets: []
+    tweets: [],
+    finishLoadList:false
   },
 
   /**
@@ -16,8 +19,8 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    var authorid = options.id; 
-
+    authorid = options.id; 
+    currentPage = 1;
     //个人信息
     util.getAuthorInfo(authorid,function(resData){
       if(resData.background) {
@@ -32,9 +35,10 @@ Page({
     },function(){},function(){})
 
     //动弹信息
-    util.getUserTweetList(authorid, 1, function (resData){
+    util.getUserTweetList(authorid, currentPage, function (resData){
       //console.log(resData);
       that.setData({tweets:resData});
+      currentPage++
     },function(){},function(){})
 
   },
@@ -106,6 +110,30 @@ Page({
       key: 'tweet_' + id,
       data: that.data.tweets[index]
     });
+
+  },
+
+  onReachBottom: function () {
+    //app.loading();
+
+    var that = this;
+
+    if (that.data.finishLoadList) {
+      return;
+    }
+    //动弹信息
+    util.getUserTweetList(authorid, currentPage, function (resData) {
+      //console.log(resData);
+      var tweetsData = that.data.tweets.concat(resData);
+      that.setData({ tweets: tweetsData });
+      
+      if ( resData.length < 20){
+        that.setData({ finishLoadList: true });
+      }else{
+        currentPage++
+      }
+    }, function () { }, function () { })
+
 
   },
   blockFilter: util.blockFilter,

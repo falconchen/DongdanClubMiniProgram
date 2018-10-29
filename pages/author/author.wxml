@@ -61,6 +61,12 @@
   </view>
 
 
+  <block wx:if="{{ finishLoadList }}">
+      <view class="reply-item finish-loaded">
+        <view class="notification ">动弹已全部加载</view>
+        
+      </view>
+    </block>
 
 </view>
 
