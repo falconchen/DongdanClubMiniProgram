@@ -24,7 +24,8 @@ Page({
     finishLoadComments: false,
     commentPerPage: currentPage,
     tweetData :'',
-    bookmarked : false
+    bookmarked : false,
+    finishLoadList:true //第一页评论不加载loading icon
   },
   clickLink: util.clickLink,
 
@@ -85,7 +86,7 @@ Page({
             //that.rawComments = JSON.parse(JSON.stringify(resdata)); //深层复制
             resdata = util.blockCommentFilter(resdata);
                         
-            that.setData({ comments: resdata,  finishLoadComments: finishLoadComments })
+            that.setData({ comments: resdata, finishLoadComments: finishLoadComments ,finishLoadList: finishLoadComments})
             currentPage++
           },
           function () { }
