@@ -231,7 +231,7 @@ text {
 }
 .loading-list{
   width:100%;
-height:100rpx;
+height:120rpx;
 display:flex;
 flex-direction:row;
 align-items:center;
