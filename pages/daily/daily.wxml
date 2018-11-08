@@ -1,4 +1,4 @@
-<!--home.wxml-->
+<!--daily.wxml-->
 <wxs src="../../utils/util.wxs" module="util"></wxs>
 
 
@@ -35,3 +35,4 @@
     
   </view>
 </view>
+<include src="../template/loadmore.wxml" />

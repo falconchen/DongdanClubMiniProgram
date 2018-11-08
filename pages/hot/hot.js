@@ -13,14 +13,15 @@ var config = {
     //console.log(app.globalData.api_prefix)
     var that = this;
     
-    app.loading();
+    //app.loading();
     util.getHotTweetList(
       function (resdata) {
         resdata = that.blockFilter(resdata);
         that.setData({ tweets: resdata })
       },
       function () {
-        wx.hideLoading()
+        //wx.hideLoading()
+        that.setData({ finishLoadList: true })
         //wx.stopPullDownRefresh()
       }
     );

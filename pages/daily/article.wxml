@@ -56,3 +56,4 @@
   </view>
 
 </view>
+<include src="../template/loadmore.wxml" />

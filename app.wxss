@@ -229,3 +229,15 @@ text {
   color:#000;
 
 }
+.loading-list{
+  width:100%;
+height:100rpx;
+display:flex;
+flex-direction:row;
+align-items:center;
+justify-content:center;
+}
+
+.loading-list image {
+  width:50rpx;
+}

@@ -16,7 +16,7 @@ var config = {
   onLoad: function(options) {
     currentPage = 1;
     var that = this;
-    app.loading();
+    //app.loading();
     util.getTweetList(0, currentPage, tweetPerPage,
       function(resdata) {
 
@@ -29,7 +29,7 @@ var config = {
         })
       },
       function() {
-        wx.hideLoading()
+        //wx.hideLoading()
         //wx.stopPullDownRefresh()
       }
     );
@@ -50,6 +50,7 @@ var config = {
 
   },
   onReachBottom: function() {
+    
     //app.loading();
 
     var that = this;

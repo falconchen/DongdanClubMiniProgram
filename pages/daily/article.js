@@ -30,7 +30,7 @@ Page({
     //请求文章api
     currentCommentPage = 1;
     var that = this;
-    app.loading();
+    //app.loading();
 
     util.getBlogDetail( articleId, function (data) { //成功
       
@@ -55,7 +55,7 @@ Page({
 
 
     }, function (event) {//完成
-      wx.hideLoading()
+      that.setData({ finishLoadList: true })
     }, function (error) {//失败
 
     });

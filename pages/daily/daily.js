@@ -22,7 +22,7 @@ Page({
   onLoad: function (options) {
     currentPage = 1;
     var that = this;
-    app.loading();
+    //app.loading();
     util.getUserBlogList(xxbianid, currentPage, blogPerPage, function (data) { //成功
       
 
@@ -44,7 +44,7 @@ Page({
 
 
     }, function (event) {//完成
-      wx.hideLoading()
+      //wx.hideLoading()
     }, function (error) {//失败
 
     });

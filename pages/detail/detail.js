@@ -161,13 +161,13 @@ Page({
     }
 
     //console.log(currentPage)
-    app.loading('评论加载中');
+    //app.loading('评论加载中');
     util.getTweetCommentList(that.tweetId, currentPage, commentPerPage,
       function (resdata) {
         finishLoadComments = Boolean(resdata.length < commentPerPage)
         
 
-        wx.hideLoading()
+        //wx.hideLoading()
 
         var commentData = that.data.comments.concat(resdata);
         commentData = util.blockCommentFilter(commentData);

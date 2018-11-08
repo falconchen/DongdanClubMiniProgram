@@ -36,4 +36,5 @@
   
 </view>
 
-<include src="../template/modal-img.wxml" />
+<include src="../template/loadmore.wxml" />
+
