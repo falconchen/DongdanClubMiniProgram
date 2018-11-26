@@ -27,9 +27,8 @@
     </view>
 
     <block wx:if="{{ finishLoadList }}">
-        <view class="reply-item finish-loaded">
-          <view class="notification ">乱弹已全部加载</view>
-          
+        <view class="reply-item finish-loaded">          
+          <view class="notification ">--- EOF ---</view>          
         </view>
     </block>
     

@@ -69,8 +69,8 @@
     </view>
     
     <block wx:if="{{ finishLoadComments }}">
-      <view class="reply-item finish-loaded">
-        <view class="notification ">评论全部加载完毕</view>
+      <view class="reply-item finish-loaded">        
+        <view class="notification ">--- EOF ---</view>
         
       </view>
     </block>

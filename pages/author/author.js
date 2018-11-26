@@ -37,7 +37,8 @@ Page({
     //动弹信息
     util.getUserTweetList(authorid, currentPage, function (resData){
       //console.log(resData);
-      that.setData({tweets:resData});
+     
+      that.setData({ tweets: resData, finishLoadList:(resData.length < 20)});
       currentPage++
     },function(){},function(){})
 
