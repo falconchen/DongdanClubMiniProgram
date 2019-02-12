@@ -5,7 +5,7 @@ App({
 
   globalData: {
     apiHost: 'https://www.cellmean.com',
-    version:'1.4.2'
+    version:'1.4.3'
   },
 
   onLaunch: function () {
