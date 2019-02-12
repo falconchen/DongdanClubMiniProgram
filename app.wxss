@@ -226,7 +226,7 @@ text {
 }
 .notification {
   font-size:23rpx;
-  color:#aaa;
+  color:#000;
   font-weight:400;
 
 }
