@@ -1,3 +1,3 @@
 <view class='loading-list' hidden='{{finishLoadList || finishLoadComments}}'>
-  <image mode='widthFix' src='../resources/loading.svg'></image>
+  <image mode='widthFix' src='../resources/loadingGreen.svg'></image>
 </view>
