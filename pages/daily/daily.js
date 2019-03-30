@@ -66,7 +66,7 @@ Page({
     util.getTweetGirlsList(currentGirlPage, girlPerPage, function (data) { 
       currentGirlPage++;
       that.setData({ mmlist: data })
-        console.log(data)
+        //console.log(data)
     }, 
     
     function (event){
