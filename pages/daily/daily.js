@@ -20,7 +20,7 @@ Page({
     finishLoadGirlList:false,
     currentTab:1,
     scrollTop:[0,0],
-    tabTitles:['乱弹', '妹子图'],
+    tabTitles:['乱弹', '每日美图'],
     mmlist: []
   },
   clickLink: util.clickLink,
