@@ -18,9 +18,9 @@ Page({
     projectlist: [],
     finishLoadBlogList:false,
     finishLoadGirlList:false,
-    currentTab:1,
+    currentTab:0,
     scrollTop:[0,0],
-    tabTitles:['乱弹', '每日美图'],
+    tabTitles:['乱弹', '美图'],
     mmlist: []
   },
   clickLink: util.clickLink,
