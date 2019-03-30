@@ -1,0 +1,11 @@
+<template name='stars'>
+  <view class='stars-container'>
+    <view class='stars'>
+      <block wx:for="{{stars}}" wx:key="{{index}}">
+        <image wx:if="{{item == 1}}" src='../resources/start-all.png'></image>
+        <image wx:elif="{{item == 2}}" src='../resources/start-half.png'></image>
+        <image wx:else src='../resources/start-none.png'></image>
+      </block>
+    </view>
+  </view>
+</template>

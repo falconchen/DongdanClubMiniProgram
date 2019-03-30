@@ -242,3 +242,28 @@ justify-content:center;
 .loading-list image {
   width:50rpx;
 }
+
+
+.user-tabs,.title-tabs{
+  background-color:#f6f6f6;
+  color:#ccc;
+  padding:0;
+  font-size:32rpx;
+  font-weight:400;
+  display:flex;
+  flex-direction:row;
+
+}
+
+.user-tabs >view,.title-tabs >view {
+  flex:1;
+  text-align: center;
+  /* color:#ccc; */
+  padding:16rpx; 
+}
+
+.user-tabs >view.active,.title-tabs >view.active {
+  border-bottom: 4rpx solid #4eaa4c;
+  color:#4eaa4c;
+}
+

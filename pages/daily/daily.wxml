@@ -1,37 +1,72 @@
 <!--daily.wxml-->
+<import src='../template/stars.wxml' />
 <wxs src="../../utils/util.wxs" module="util"></wxs>
 
 
 <view class="container">
+  <view class="title-tabs">
 
-  <view wx:for="{{projectlist}}" wx:key="index" class="item">
+    <!--乱弹-->
+    <view bindtap="clickTab" class="swiper-tab-item {{ currentTab == 0 ? 'active':'' }}" data-current="0" role="" aria-label="">{{tabTitles[0]}}</view>
+    <!--妹子图-->
+    <view bindtap="clickTab" class="swiper-tab-item {{ currentTab == 1 ? 'active':'' }}" data-current="1" role="" aria-label="">{{tabTitles[1]}}</view>
 
-    
-    <view class="comment-count">
-      
-        <view class="comment-num">{{item.commentCount}}评</view>
-        
-      
-    </view>
-
-    <view class="tweet-area">
-      <view class="tweet-header">
-        <view class="author" hover-class='hover-author-link' hover-start-time='100' hover-stay-time='1000' url="/pages/author/author?id={{item.authorid}}">{{item.author}}</view>
-        <text class="pubdate">{{ item.pubDate }}</text>
-      </view>
-      <navigator class="blog-title" hover-class='hover-body-link' hover-start-time='10' hover-stay-time='1000' data-id="{{item.id}}" data-index="{{ index }}" url="article?id={{item.id}}">
-        {{ item.title }}
-      </navigator>
-
-
-    </view>
-
-    <block wx:if="{{ finishLoadList }}">
-        <view class="reply-item finish-loaded">          
-          <view class="notification ">全部载入完成</view>          
-        </view>
-    </block>
-    
   </view>
+
+  
+    <view  class="articles-container" hidden="{{currentTab == 1}}">
+
+    <view wx:for="{{projectlist}}" wx:key="index" class="item">
+
+
+      <view class="comment-count">
+
+        <view class="comment-num">{{item.commentCount}}评</view>
+
+
+      </view>
+
+      <view class="tweet-area">
+        <view class="tweet-header">
+          <view class="author" hover-class='hover-author-link' hover-start-time='100' hover-stay-time='1000' url="/pages/author/author?id={{item.authorid}}">{{item.author}}</view>
+          <text class="pubdate">{{ item.pubDate }}</text>
+        </view>
+        <navigator class="blog-title" hover-class='hover-body-link' hover-start-time='10' hover-stay-time='1000' data-id="{{item.id}}" data-index="{{ index }}" url="article?id={{item.id}}">
+          {{ item.title }}
+        </navigator>
+
+
+      </view>
+
+      <block wx:if="{{ finishLoadList }}">
+        <view class="reply-item finish-loaded">
+          <view class="notification ">全部载入完成</view>
+        </view>
+      </block>
+
+    </view>
+  </view >
+
+  <!--妹子图开始-->
+      
+
+  <view class="images-container" hidden="{{currentTab == 0}}">
+  
+
+    <view class='mm-item' wx:for='{{mmlist}}' wx:key='index' bindtap='toDetail' data-id='{{item.id}}'>
+      <image lazy-load='true' src='{{item.images.small}}' mode='aspectFill'></image>
+      <view class='title'>{{item.title}}</view>
+      <view class='score-content'>
+        <template is="stars" data="{{stars:item.stars}}" />
+        
+        <view class='score' wx:if='{{item.rating.average == 0}}'>暂无</view>
+        <view class='score' wx:else>{{item.rating.average}}</view>
+      </view>
+    </view>
+
+  </view>
+  <!--妹子图结束-->
+
 </view>
+
 <include src="../template/loadmore.wxml" />

@@ -1,5 +1,6 @@
 /* pages/daily/daily.wxss */
 
+@import "../template/stars.wxss";
 .item{
   min-height: 150rpx;
 }
@@ -34,4 +35,64 @@
 
 .pubdate{
   color:#ccc;
+}
+
+.title-tabs {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  height: 40px;
+}
+
+.articles-container,.images-container {
+  margin-top: 40px;
+  position: relative;
+  display: block;
+}
+.images-container{
+  display:flex;
+  flex-direction:row;
+  flex:auto;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+
+}
+
+.mm-item{
+  display:flex;
+  width:33%;
+  
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  padding-bottom:20rpx;
+
+}
+.mm-item image{
+  width:200rpx;
+  height:300rpx;
+
+}
+
+.mm-item .title {
+  padding-top:20rpx;
+  font-size:22rpx;
+  line-height:28rpx;
+  opacity:0.8;
+
+}
+.stars-container {
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  height:20rpx;
+
+}
+.score {
+  font-size:24rpx;
+  color:#ffd33b;
+  text-align: center;
 }
