@@ -1,5 +1,7 @@
 <!--daily.wxml-->
 <import src='../template/stars.wxml' />
+<import src='../template/loading-or-end.wxml' />
+
 <wxs src="../../utils/util.wxs" module="util"></wxs>
 
 
@@ -38,24 +40,20 @@
 
       </view>
 
-      <block wx:if="{{ finishLoadList }}">
-        <view class="reply-item finish-loaded">
-          <view class="notification ">全部载入完成</view>
-        </view>
-      </block>
-
-    </view>
-  </view >
-
-  <!--妹子图开始-->
       
 
+    </view>
+
+    <template is="loading-status" data="{{finishLoadList:finishLoadBlogList}}" />
+  </view >
+
+  <!--妹子图开始-->      
   <view class="images-container" hidden="{{currentTab == 0}}">
   
 
     <view class='mm-item' wx:for='{{mmlist}}' wx:key='index' bindtap='toDetail' data-id='{{item.id}}'>
-      <image lazy-load='true' src='{{item.images.small}}' mode='aspectFill'></image>
-      <view class='title'>{{item.title}}</view>
+      <image catchtap="previewImg" lazy-load='true' src='{{item.images.small}}' data-src="{{item.images.large}}" mode='aspectFill'></image>
+      <view class='title'>{{item.pubdate}}</view>
       <view class='score-content'>
         <template is="stars" data="{{stars:item.stars}}" />
         
@@ -63,10 +61,11 @@
         <view class='score' wx:else>{{item.rating.average}}</view>
       </view>
     </view>
-
+    <template is="loading-status" data="{{finishLoadList:finishLoadGirlList}}" />
   </view>
+  
   <!--妹子图结束-->
 
 </view>
 
-<include src="../template/loadmore.wxml" />
+<!-- <include src="../template/loadmore.wxml" /> -->

@@ -1,0 +1,5 @@
+<template name='loading-status'>
+  <view class='loading-list' hidden='{{finishLoadList}}'>
+    <image mode='widthFix' src='../resources/loadingGreen.svg'></image>
+  </view>
+</template>

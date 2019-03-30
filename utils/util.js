@@ -633,6 +633,78 @@ function getBlogCommentList(id, currentPage, commentsPerPage, successCallback, c
 }
 
 
+function getUserBlogList(authorid, currentPage, blogPerPage, successCallback, completeCallback, errorCallback) {
+
+  
+
+  try {
+
+    // 请求数据
+    wx.request({
+      url: apiHost,
+
+      data: {
+        osc_api: 'user_blog_list',
+        authorid: authorid,
+        page_index: currentPage,
+        pgge_size: blogPerPage
+      },
+      header: {
+        'cache-control': 'max-age=120'
+      },
+      success: function (res) {
+                
+        successCallback(res.data);
+
+      },
+      complete: function () {
+        completeCallback();
+
+      }
+    });
+  } catch (e) {
+    errorCallback(e)
+    // Do something when catch error
+  }
+
+}
+
+
+/**
+ * 妹子图列表
+ */
+function getTweetGirlsList(currentPage, perPage, successCallback, completeCallback, errorCallback) {
+
+  try {
+
+    // 请求数据
+    wx.request({
+      url: apiHost,
+
+      data: {
+        osc_api: 'tweet_girls_list',
+        page_index: currentPage,
+        page_size: perPage
+      },
+      header: {
+        'cache-control': 'max-age=120'
+      },
+      success: function (res) {
+        successCallback(res.data);
+
+      },
+      complete: function () {
+        completeCallback();
+
+      }
+    });
+  } catch (e) {
+    errorCallback()
+    // Do something when catch error
+  }
+
+}
+
 module.exports = {
   formatTime: formatTime,
   jsTimeSince: timeSince, //替代方案，wxs版本在真机运行不成功，在乱弹页使用年月
@@ -655,5 +727,6 @@ module.exports = {
   unbookmark: unbookmark,
   getAuthorInfo: getAuthorInfo,
   getUserTweetList: getUserTweetList,
-  blockCommentFilter: blockCommentFilter
+  blockCommentFilter: blockCommentFilter,
+  getTweetGirlsList: getTweetGirlsList
 }
