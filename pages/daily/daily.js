@@ -29,6 +29,10 @@ Page({
    */
   onLoad: function (options) {
 
+    if (options.currentTab != undefined) {
+      this.setData({ currentTab: options.currentTab })
+    }
+
     currentBlogPage = 1;
     var that = this;
     //app.loading();
@@ -113,7 +117,7 @@ Page({
   onPullDownRefresh: function () {
     //return false;
     wx.reLaunch({
-      url: 'daily',
+      url: 'daily?currentTab=' + this.data.currentTab,
     });
 
 
@@ -125,17 +129,22 @@ Page({
   onReachBottom: function () {
 
     var that = this;
-    if (that.data.finishLoadBlogList || that.data.finishLoadGirlList) {
-      return;
-    }
+    
     
     if(that.data.currentTab == 1) {
       //console.log('加载妹子图')
+      if (that.data.finishLoadGirlList) {
+        return false;
+      }
       that.loadMoreGirl();
       return;
     }else{
+      if (that.data.finishLoadBlogList) {
+        return false;
+      }
       //console.log('加载BLOG')
       that.loadMoreBlog();
+      return;
     }
 
 
