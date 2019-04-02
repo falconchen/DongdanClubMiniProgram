@@ -6,10 +6,12 @@
   min-height: 50rpx;
   width:100%;
 }
-.pubdate{
-  color:#ccc;
-}
+
 
 .reply-header label{
   display: inline-block;
+}
+
+.content {
+  margin: 10rpx;
 }

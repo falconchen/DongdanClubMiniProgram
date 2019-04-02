@@ -33,9 +33,6 @@
 }
 
 
-.pubdate{
-  color:#ccc;
-}
 
 .title-tabs {
   position: fixed;
@@ -73,7 +70,8 @@
 .mm-item image{
   width:200rpx;
   height:300rpx;
-
+  box-shadow:0 0 16rpx #585439;
+  /* box-shadow:0 0 16rpx #555; */
 }
 
 .mm-item .title {

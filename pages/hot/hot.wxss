@@ -6,3 +6,13 @@
 .container .item:last-child {
   border-bottom: none;
 }
+
+.item {
+  margin:15rpx 30rpx;
+}
+.item:first-child{
+  margin-top:30rpx;
+}
+.item:last-child{
+  margin-bottom:30rpx;
+}
