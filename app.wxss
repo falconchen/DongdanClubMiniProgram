@@ -124,9 +124,10 @@ text {
 }
 
 .pubdate {
-  font-size: 28rpx;
+  font-size:28rpx;
+  min-width:130rpx;
+  text-align:right;
   color:#333;
-
 }
 
 .loading {
