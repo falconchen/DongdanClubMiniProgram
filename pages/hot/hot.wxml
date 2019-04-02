@@ -39,7 +39,7 @@
       </view>
     </navigator>
   </view>
-  
+  <include src="../template/loadmore.wxml" />  
+  <include src="../template/modal-img.wxml" />
 </view>
-<include src="../template/loadmore.wxml" />
-<include src="../template/modal-img.wxml" />
+

@@ -13,6 +13,3 @@
 .item:first-child{
   margin-top:30rpx;
 }
-.item:last-child{
-  margin-bottom:30rpx;
-}

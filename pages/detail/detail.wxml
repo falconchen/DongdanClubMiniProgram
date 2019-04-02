@@ -2,7 +2,7 @@
 <import src="/towxml/entry.wxml" />
 
 
-<view class="container">
+<view class="container {{ finishLoadComments? 'container-loaded':'' }}">
 
   <view class="item">
     <navigator class="author avatar-wrap" hover-class='hover-white-link' hover-start-time='100' hover-stay-time='1000' url="/pages/author/author?id={{tweet.authorid}}">
