@@ -167,8 +167,8 @@ text {
 .reply-container {
   display:flex;
   flex-direction:column;
-  justify-content:flex-start;
-  margin:30rpx;
+  justify-content:flex-start;  
+  margin:10rpx 30rpx 40rpx;
   box-shadow:0 0 16rpx 0 #ccc;
 
 }
