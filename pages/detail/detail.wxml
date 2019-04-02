@@ -31,7 +31,7 @@
 
     </view>
   </view>
-  <view class="reply-container">
+  <view class="reply-container" hidden="{{comments.length==0 && !finishLoadComments}}">
 
     <view class="reply-header">
       <label> 评论 ({{ finishLoadComments ? comments.length : commentCount }})
@@ -52,9 +52,6 @@
 
       <view class="comment-area">
         <view class="comment-header">
-            
-
-
           <navigator class="author" url="/pages/author/author?id={{comment.commentAuthorId}}">{{comment.commentAuthor}}</navigator>
 
           <text  class="pubdate">{{ util.timeSince(comment.pubDate) }}</text>
