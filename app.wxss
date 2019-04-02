@@ -9,15 +9,13 @@ text {
 }
 
 .item {
-  display: flex;
-  flex-direction: row;
-  padding: 20rpx 16rpx 20rpx 16rpx;
-  border-bottom: 2rpx solid #ccc;
-  /*
-   padding:.3rem;
-   border: .1rem solid #ccc;
-  */
-  background: #fff;
+  display:flex;
+  flex-direction:row;
+  padding:20rpx 16rpx 20rpx 16rpx;
+  background:#fff;
+  margin:30rpx;
+  /* box-shadow:0 0 8px 0 #585439; */
+  box-shadow:0 0 8px 0 #ccc;
   
 }
 
@@ -127,6 +125,8 @@ text {
 
 .pubdate {
   font-size: 28rpx;
+  color:#333;
+
 }
 
 .loading {
@@ -167,7 +167,10 @@ text {
 .reply-container {
   display:flex;
   flex-direction:column;
-  justify-content:flex-start;  
+  justify-content:flex-start;
+  margin:30rpx;
+  box-shadow:0 0 16rpx 0 #ccc;
+
 }
 .reply-header {
    background-color:#f6f6f6; 
