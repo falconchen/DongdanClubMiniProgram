@@ -63,5 +63,7 @@
   color:#fff;
  
 }
-
+.item:last-child{
+  margin-bottom: 30rpx;
+}
 @import '../template/modal-img.wxss';

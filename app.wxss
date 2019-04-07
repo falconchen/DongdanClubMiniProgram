@@ -91,8 +91,8 @@ text {
 }
 
 .thumb {
-  width: 160rpx;
-  height: 160rpx;
+  width: 155rpx;
+  height: 155rpx;
   border: 2rpx solid #ccc;
   padding:5rpx;
   margin: 5rpx;

@@ -35,10 +35,13 @@
 
     <view class="reply-header">
       <label> 评论 ({{ finishLoadComments ? comments.length : commentCount }})
-      </label>
+      
+      </label>      
       
     </view>
-
+    <view class='loading-list' hidden='{{comments.length>0 || finishLoadComments}}'>
+    <image mode='widthFix' src='../resources/loadingGreen.svg'></image>
+      </view>
 
     <view wx:for="{{comments}}" class="reply-item" wx:key="cidx" wx:for-item="comment">
 
