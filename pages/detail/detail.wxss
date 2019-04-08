@@ -6,6 +6,7 @@
   border:none;
   padding-bottom: 30rpx;
   background: #fff;
+  margin:30rpx;
 }
 
 
@@ -27,3 +28,11 @@
   border-color: #eee;
   
 }
+
+.container {
+  padding-bottom: 0;
+}
+
+.container-loaded{
+  padding-bottom: 30rpx;
+ }
