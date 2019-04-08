@@ -46,6 +46,7 @@ var previewImg = function (e) {
 
   var current = e.target.dataset;  
   var urls = (typeof current.srcs != 'undefined') ? current.srcs.split(' ') : [current.src]
+  
   wx.previewImage({
     current: current.src,
     urls: urls

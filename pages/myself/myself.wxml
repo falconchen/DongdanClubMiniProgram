@@ -79,7 +79,7 @@
         </block>      
     </view>
     <view class="empty" wx:else>
-        <image  src="../resources/demo_block.png" style="width:600rpx;height:360rpx;" catchtap="previewImg"></image>         
+        <image  src="../resources/demo_block.png" style="width:600rpx;height:360rpx;"></image>         
         <view>长按用户头像即可屏蔽其发言</view>
     </view>        
     </swiper-item>
@@ -89,10 +89,10 @@
 
     <swiper-item>
       <view class="empty">
-      <image  src="../resources/qr.png" style="width:300rpx;height:300rpx;" ></image>
+      <image  catchtap="previewImg" src="../resources/qr.png" style="width:300rpx;height:300rpx;" data-src="https://oscimg.oschina.net/oscnet/up-e665420284e24af3eb189ad8df953b75.jpg" ></image>
       
       <view>动弹俱乐部 v{{version}}</view>
-      <view style="margin-top:20rpx;"
+      <view style="margin-top:30rpx;"
 >
     
       <button 
