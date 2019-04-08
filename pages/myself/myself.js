@@ -1,5 +1,6 @@
 // pages/myself/myself.js
 var util = require('../../utils/util.js');
+var modalImg = require('../template/modal-img.js');
 Page({
 
   /**
@@ -223,6 +224,7 @@ Page({
       }
 
     })
-  }
+  },
+  previewImg: modalImg.previewImg
 
 })
