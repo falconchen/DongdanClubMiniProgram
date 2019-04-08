@@ -31,7 +31,7 @@
 
     </view>
   </view>
-  <view class="reply-container" hidden="{{comments.length==0 && !finishLoadComments}}">
+  <view class="reply-container">
 
     <view class="reply-header">
       <label> 评论 ({{ finishLoadComments ? comments.length : commentCount }})
