@@ -38,7 +38,7 @@
 			]
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -59,6 +59,13 @@
 					"name": "myself",
 					"pathName": "pages/myself/myself",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "笑话",
+					"pathName": "pages/daily/daily",
+					"query": "currentTab=2",
 					"scene": null
 				}
 			]

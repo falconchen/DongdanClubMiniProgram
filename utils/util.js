@@ -705,6 +705,39 @@ function getTweetGirlsList(currentPage, perPage, successCallback, completeCallba
 
 }
 
+
+/**
+ * 妹子图列表
+ */
+function getOneJoke(currentId,successCallback,errorCallback) {
+
+  try {
+
+    // 请求数据
+    wx.request({
+      url: apiHost,
+      data: {
+        osc_api: 'get_one_joke',
+        current_id: currentId,        
+      },
+      header: {
+        'cache-control': 'max-age=120'
+      },      
+      success: function (res) {
+                        
+        
+        successCallback(res.data);
+        
+      },
+    });
+  } catch (e) {
+    errorCallback();
+    // Do something when catch error
+  }
+
+}
+
+
 module.exports = {
   formatTime: formatTime,
   jsTimeSince: timeSince, //替代方案，wxs版本在真机运行不成功，在乱弹页使用年月
@@ -728,5 +761,6 @@ module.exports = {
   getAuthorInfo: getAuthorInfo,
   getUserTweetList: getUserTweetList,
   blockCommentFilter: blockCommentFilter,
-  getTweetGirlsList: getTweetGirlsList
+  getTweetGirlsList: getTweetGirlsList,
+  getOneJoke:getOneJoke
 }

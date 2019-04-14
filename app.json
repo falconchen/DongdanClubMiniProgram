@@ -39,7 +39,7 @@
     },
     {
       "pagePath": "pages/daily/daily",
-      "text": "乱弹",
+      "text": "休闲",
       "iconPath": "pages/resources/ic_nav_news_normal.png",
       "selectedIconPath": "pages/resources/ic_nav_news_actived.png"      
     },

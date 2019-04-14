@@ -4,7 +4,9 @@
 .item{
   min-height: 150rpx;
 }
-
+page,.container{
+  height: 100%;
+}
 .comment-count {
   width:96rpx;
   height:96rpx;
@@ -41,7 +43,7 @@
   height: 80rpx;
 }
 
-.articles-container,.images-container {
+.articles-container,.images-container,.joke-container {
   margin-top: 90rpx;
   position: relative;
   display: block;
@@ -94,4 +96,45 @@
   font-size:24rpx;
   color:#ffd33b;
   text-align: center;
+}
+.joke-item{
+  font-size:30rpx;
+  line-height:1.8;
+  padding:32rpx 32rpx 64rpx;
+  display:flex;
+  flex-direction:column;
+  width:660rpx;
+}
+
+.joke-item > view,.joke-item > text{
+  display:flex; 
+  
+}
+.joke-container{
+  display:flex;
+  flex-direction:column;
+  /* align-items:center;
+  justify-content:center;   */
+  height: 100%;
+}
+.joke-next {
+
+  position:absolute;
+  bottom:50rpx;
+  right:50rpx;
+
+  width: 150rpx;
+  height: 150rpx;
+  border: 0 solid #ff0000;
+  border-radius: 300rpx;
+  background-color: #f10b2e;
+  line-height:1.2;
+  padding:30rpx;
+  color:#000;
+  font-weight:800;
+
+
+}
+.joke-item  .h2w__main {
+  font-size: 28rpx;
 }

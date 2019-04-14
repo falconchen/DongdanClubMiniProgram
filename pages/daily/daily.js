@@ -20,8 +20,9 @@ Page({
     finishLoadGirlList:false,
     currentTab:0,
     scrollTop:[0,0],
-    tabTitles:['乱弹', '美图'],
-    mmlist: []
+    tabTitles:['乱弹', '美图','笑话'],
+    mmlist: [],
+    jokeItem:{id:0,content:''}
   },
   clickLink: util.clickLink,
   /**
@@ -79,7 +80,10 @@ Page({
     function(error){
 
 
-    },)
+    });
+
+    //载入笑话
+    that.getOneJoke();
 
   },
 
@@ -130,22 +134,21 @@ Page({
 
     var that = this;
     
-    
-    if(that.data.currentTab == 1) {
-      //console.log('加载妹子图')
-      if (that.data.finishLoadGirlList) {
-        return false;
-      }
-      that.loadMoreGirl();
-      return;
-    }else{
+    if(that.data.currentTab == 0){
       if (that.data.finishLoadBlogList) {
         return false;
       }
       //console.log('加载BLOG')
       that.loadMoreBlog();
       return;
-    }
+    }else if(that.data.currentTab == 1) {
+      //console.log('加载妹子图')
+      if (that.data.finishLoadGirlList) {
+        return false;
+      }
+      that.loadMoreGirl();
+      return;
+    } 
 
 
     
@@ -234,7 +237,7 @@ Page({
     } else {
       that.setData({
         currentTab: e.target.dataset.current
-      })
+      });
 
 
     }
@@ -276,6 +279,34 @@ Page({
     }
 
 
+  },
+
+  /**
+   * jokeDetail @todo
+   */
+  toJokeDetail:function(e){
+
+  },
+
+  /**
+   * 获取一个笑话
+   */
+  getOneJoke:function(){
+      var that = this;      
+      util.getOneJoke(that.data.jokeItem.id,function(result){
+          
+          if(result.success) {
+            result.data.content =  app.towxml.toJson(result.data.content, 'html');
+             that.setData({
+                jokeItem: result.data
+             });              
+          }else{
+            that.setData({
+              jokeItem: {id:that.data.jokeItem.id,content:result.data.info}
+            });
+          }
+
+      });
   },
   
   /**

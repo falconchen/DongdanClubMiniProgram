@@ -3,7 +3,7 @@
 <import src='../template/loading-or-end.wxml' />
 
 <wxs src="../../utils/util.wxs" module="util"></wxs>
-
+<import src="/towxml/entry.wxml" />
 
 <view class="container">
   <view class="title-tabs">
@@ -12,11 +12,12 @@
     <view bindtap="clickTab" class="swiper-tab-item {{ currentTab == 0 ? 'active':'' }}" data-current="0" role="" aria-label="">{{tabTitles[0]}}</view>
     <!--妹子图-->
     <view bindtap="clickTab" class="swiper-tab-item {{ currentTab == 1 ? 'active':'' }}" data-current="1" role="" aria-label="">{{tabTitles[1]}}</view>
-
+    <!--笑话-->
+    <view bindtap="clickTab" class="swiper-tab-item {{ currentTab == 2 ? 'active':'' }}" data-current="2" role="" aria-label="">{{tabTitles[2]}}</view>
   </view>
 
   
-    <view  class="articles-container" hidden="{{currentTab == 1}}">
+    <view  class="articles-container" hidden="{{currentTab != 0}}">
 
     <view wx:for="{{projectlist}}" wx:key="index" class="item">
 
@@ -48,7 +49,7 @@
   </view >
 
   <!--妹子图开始-->      
-  <view class="images-container" hidden="{{currentTab == 0}}">
+  <view class="images-container" hidden="{{currentTab != 1}}">
   
 
     <view class='mm-item' wx:for='{{mmlist}}' wx:key='index' bindtap='toDetail' data-id='{{item.id}}'>
@@ -65,6 +66,27 @@
   </view>
   
   <!--妹子图结束-->
+
+  <!--笑话开始-->      
+  <view class="joke-container" hidden="{{currentTab != 2}}">
+  
+
+    <view class='joke-item item' bindtap='toJokeDetail' data-id='{{jokeItem.id}}'>       
+      <template is="entry" data="{{...jokeItem.content}}" />         
+
+        <view class="joke-buttons">          
+        </view>
+
+    </view>
+    <button class='btn joke-next'  bindtap='getOneJoke' type='primary'>
+      再来
+      一个
+      </button>
+  </view>
+  
+  <!--笑话开始-->
+
+  
 
 </view>
 
