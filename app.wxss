@@ -169,7 +169,7 @@
   flex-direction:column;
   justify-content:flex-start;  
   margin:10rpx 16rpx 0rpx;
-  box-shadow:0 0 16rpx 0 #ccc;
+  box-shadow:0 0 16rpx 0 #eee;
 
 }
 .reply-header {
