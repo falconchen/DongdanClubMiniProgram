@@ -118,11 +118,9 @@ page,.container{
   height: 100%;
 }
 .joke-next {
-
   position:fixed;
   bottom:50rpx;
-  right:285rpx;
-
+  right:300rpx;
   width: 150rpx;
   height: 150rpx;
   border: 0 solid #ff0000;
@@ -132,8 +130,7 @@ page,.container{
   padding:30rpx;
   color:#000;
   font-weight:800;
-
-
+  box-shadow: 0 0 8px 0 #666;
 }
 .joke-item  .h2w__main {
   font-size: 28rpx;
