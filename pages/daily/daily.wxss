@@ -121,7 +121,7 @@ page,.container{
 
   position:absolute;
   bottom:50rpx;
-  right:50rpx;
+  right:285rpx;
 
   width: 150rpx;
   height: 150rpx;
