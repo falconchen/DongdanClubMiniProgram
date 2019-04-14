@@ -192,7 +192,7 @@
   flex-direction:row;
   background: #fff;
   padding:40rpx 16rpx 40rpx 16rpx;
-  border-bottom: 1rpx solid #f6f6f6;  
+  border-bottom: 1rpx solid #eee;  
   
 }
 .comment-area{
