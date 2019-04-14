@@ -90,8 +90,8 @@
 }
 
 .thumb {
-  width: 155rpx;
-  height: 155rpx;
+  width: 163rpx;
+  height: 163rpx;
   border: 2rpx solid #ccc;
   padding:5rpx;
   margin: 5rpx;
