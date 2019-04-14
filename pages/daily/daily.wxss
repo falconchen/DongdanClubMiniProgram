@@ -119,7 +119,7 @@ page,.container{
 }
 .joke-next {
 
-  position:absolute;
+  position:fixed;
   bottom:50rpx;
   right:285rpx;
 
