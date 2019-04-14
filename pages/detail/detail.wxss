@@ -4,9 +4,10 @@
 .item {
 
   border:none;
-  padding-bottom: 30rpx;
+  padding-bottom: 16rpx;
   background: #fff;
-  margin:30rpx;
+  margin:16rpx;
+  margin-bottom: 10rpx;
 }
 
 

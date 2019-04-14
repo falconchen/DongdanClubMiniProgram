@@ -8,8 +8,8 @@
 }
 
 .item {
-  margin:15rpx 30rpx;
+  margin:8rpx 16rpx;
 }
 .item:first-child{
-  margin-top:30rpx;
+  margin-top:16rpx;
 }
