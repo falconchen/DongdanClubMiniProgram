@@ -383,7 +383,7 @@ Page({
   copyText: function(e) {
     var data = this.data.jokeItem;
     
-    util.copyText(data.raw);
+    util.copyText(data.raw.replace(/<[^>]+>/g, ""));
 
   }
 
