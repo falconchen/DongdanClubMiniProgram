@@ -118,9 +118,9 @@ page,.container{
   height: 100%;
 }
 .joke-next {
-  position:fixed;
-  bottom:50rpx;
+  position:fixed;  
   right:300rpx;
+  bottom:50rpx;
   width: 150rpx;
   height: 150rpx;  
   border-radius: 300rpx;  
@@ -147,4 +147,30 @@ page,.container{
 .joke-buttons .btn {
   margin-left:20rpx;
   margin-right:0;
+}
+
+
+.press-move-in {
+  -webkit-animation: press-move-in 0.3s forwards;
+  animation: press-move-in 0.3s forwards;
+}
+
+@-webkit-keyframes press-move-in {
+  0% {
+    bottom:-150rpx;
+  }
+
+  100% {
+    bottom:50rpx;
+  }
+}
+
+@keyframes press-move-in {
+  0% {
+    bottom:-150rpx;
+  }
+
+  100% {
+    bottom:50rpx;
+  }
 }

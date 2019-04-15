@@ -81,7 +81,7 @@
         </view>
         
     </view>
-    <button class='btn joke-next'  bindtap='getOneJoke' type='primary'>
+    <button class='btn joke-next press-move-in'  bindtap='getOneJoke' type='primary'>
       再来
       一个
       </button>
