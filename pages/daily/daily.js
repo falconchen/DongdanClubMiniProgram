@@ -22,7 +22,7 @@ Page({
     scrollTop:[0,0],
     tabTitles:['乱弹', '美图','笑话'],
     mmlist: [],
-    jokeItem:{id:0,content:''}
+    jokeItem:{id:0,content:'',raw:''}
   },
   clickLink: util.clickLink,
   /**
@@ -82,8 +82,20 @@ Page({
 
     });
 
+
+    
     //载入笑话
-    that.getOneJoke();
+    if(options.joke_id != undefined){
+      
+      that.setData({ jokeItem: {id:options.joke_id,content:'',raw:''} });
+      that.getOneJoke(options.joke_id);
+      
+
+    }else{
+      //取一个随机
+      that.getOneJoke();
+    }
+    
 
   },
 
@@ -291,18 +303,24 @@ Page({
   /**
    * 获取一个笑话
    */
-  getOneJoke:function(){
-      var that = this;      
-      util.getOneJoke(that.data.jokeItem.id,function(result){
+  getOneJoke:function(e){
+      
+      var that = this;     
+      var type = (typeof e == 'object') ? 'exclude' :'include';     
+            
+      util.getOneJoke(that.data.jokeItem.id, type, function(result){
           
           if(result.success) {
+            result.data.raw = result.data.content;
             result.data.content =  app.towxml.toJson(result.data.content, 'html');
+            
              that.setData({
                 jokeItem: result.data
              });              
           }else{
-            that.setData({
-              jokeItem: {id:that.data.jokeItem.id,content:result.data.info}
+            
+            that.setData({              
+              jokeItem: {id:that.data.jokeItem.id,content:app.towxml.toJson(result.data.info, 'html'),raw:result.data.info}
             });
           }
 
@@ -312,9 +330,41 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-    
+  onShareAppMessage: function (options) {
+    var that = this;
+　　// 设置菜单中的转发按钮触发转发事件时的转发内容 
+    var shareObj = {
+　　　　title: "转发的标题",        // 默认是小程序的名称(可以写slogan等)
+　　　　path: '/pages/share/share',        // 默认是当前页面，必须是以‘/’开头的完整路径
+　　　　imgUrl: '',     //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
+　　　　success: function(res){
+　　　　　　// 转发成功之后的回调 
+          if(res.errMsg == 'shareAppMessage:ok'){
+　　　　　　}
+　　　　},
+　　　　fail: function(){
+　　　　　　// 转发失败之后的回调 
+          if(res.errMsg == 'shareAppMessage:fail cancel'){
+　　　　　　　　// 用户取消转发
+　　　　　　}else if(res.errMsg == 'shareAppMessage:fail'){
+　　　　　　　　// 转发失败，其中 detail message 为详细失败信息
+　　　　　　}
+　　　　},
+　　　　complete: function(){
+　　　　　　// 转发结束之后的回调（转发成不成功都会执行）
+　　　　}
+　　};
+　　// 来自页面内的按钮的转发 
+  if( options.from == 'button'){
+　　　　var eData = options.target.dataset;
+
+　　　　shareObj.path = eData.path;
+　　}
+　　// 返回shareObj 
+    return shareObj;
   },
+
+
   previewImg: function (e) {
 
     var current = e.target.dataset;
@@ -326,6 +376,15 @@ Page({
       current: current.src,
       urls: urls      
     })
-  }  
+  },
+  /**
+   * copy text
+   */
+  copyText: function(e) {
+    var data = this.data.jokeItem;
+    
+    util.copyText(data.raw);
+
+  }
 
 })

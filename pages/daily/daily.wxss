@@ -100,7 +100,7 @@ page,.container{
 .joke-item{
   font-size:30rpx;
   line-height:1.8;
-  padding:32rpx 32rpx 64rpx;
+  padding:32rpx;
   display:flex;
   flex-direction:column;
   width:660rpx;
@@ -122,10 +122,8 @@ page,.container{
   bottom:50rpx;
   right:300rpx;
   width: 150rpx;
-  height: 150rpx;
-  border: 0 solid #ff0000;
-  border-radius: 300rpx;
-  background-color: #f10b2e;
+  height: 150rpx;  
+  border-radius: 300rpx;  
   line-height:1.2;
   padding:30rpx;
   color:#000;
@@ -134,4 +132,19 @@ page,.container{
 }
 .joke-item  .h2w__main {
   font-size: 28rpx;
+}
+
+.joke-buttons {
+  display:flex;
+  
+  align-items:center;
+  justify-content:flex-end;   
+  margin-top:32rpx;
+  padding-top:32rpx;
+  border-top:1px solid #eee;
+  
+}
+.joke-buttons .btn {
+  margin-left:20rpx;
+  margin-right:0;
 }

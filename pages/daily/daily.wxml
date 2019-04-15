@@ -71,12 +71,15 @@
   <view class="joke-container" hidden="{{currentTab != 2}}">
   
 
-    <view class='joke-item item' bindtap='toJokeDetail' data-id='{{jokeItem.id}}'>       
+    <view class='joke-item item' bindtap='toJokeDetail' data-id='{{jokeItem.id}}' data-text='{{jokeItem.raw}}'>       
       <template is="entry" data="{{...jokeItem.content}}" />         
 
-        <view class="joke-buttons">          
+        
+        <view class="joke-buttons" hidden="{{jokeItem == 0}}">          
+          <button class='btn'   data-name="shareBtn" open-type="share" size='mini' data-path="/pages/daily/daily?currentTab=2&joke_id={{jokeItem.id}}" >分享</button>
+          <button class='btn'  bindtap='copyText' size='mini'>复制文字</button>
         </view>
-
+        
     </view>
     <button class='btn joke-next'  bindtap='getOneJoke' type='primary'>
       再来
@@ -84,7 +87,7 @@
       </button>
   </view>
   
-  <!--笑话开始-->
+  <!--笑话结束-->
 
   
 

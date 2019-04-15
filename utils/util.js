@@ -707,9 +707,9 @@ function getTweetGirlsList(currentPage, perPage, successCallback, completeCallba
 
 
 /**
- * 妹子图列表
+ * 取一个笑话，排除
  */
-function getOneJoke(currentId,successCallback,errorCallback) {
+function getOneJoke(currentId, type, successCallback,errorCallback) {
 
   try {
 
@@ -719,6 +719,7 @@ function getOneJoke(currentId,successCallback,errorCallback) {
       data: {
         osc_api: 'get_one_joke',
         current_id: currentId,        
+        type:type
       },
       header: {
         'cache-control': 'max-age=120'
@@ -737,6 +738,23 @@ function getOneJoke(currentId,successCallback,errorCallback) {
 
 }
 
+function copyText(text) {
+  //this.ShowHideMenu();
+  wx.setClipboardData({
+      data: text,
+      success: function (res) {
+          wx.getClipboardData({
+              success: function (res) {
+                  wx.showToast({
+                      title: '文字已复制',
+                      //image: '../../images/link.png',
+                      duration: 2000
+                  })
+              }
+          })
+      }
+  })
+}
 
 module.exports = {
   formatTime: formatTime,
@@ -762,5 +780,6 @@ module.exports = {
   getUserTweetList: getUserTweetList,
   blockCommentFilter: blockCommentFilter,
   getTweetGirlsList: getTweetGirlsList,
-  getOneJoke:getOneJoke
+  getOneJoke:getOneJoke,
+  copyText:copyText
 }

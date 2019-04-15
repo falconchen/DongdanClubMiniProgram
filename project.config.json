@@ -38,7 +38,7 @@
 			]
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
@@ -66,6 +66,13 @@
 					"name": "笑话",
 					"pathName": "pages/daily/daily",
 					"query": "currentTab=2",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "笑话分享页",
+					"pathName": "pages/daily/daily",
+					"query": "currentTab=2&joke_id=2511",
 					"scene": null
 				}
 			]
