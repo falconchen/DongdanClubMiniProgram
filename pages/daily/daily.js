@@ -306,7 +306,7 @@ Page({
   getOneJoke:function(e){
       
       var that = this;     
-      var type = (typeof e == 'object') ? 'exclude' :'include';     
+      var type = (typeof e == 'object' || typeof e == 'undefined') ? 'exclude' :'include';     
             
       util.getOneJoke(that.data.jokeItem.id, type, function(result){
           
