@@ -263,10 +263,23 @@ justify-content:center;
   text-align: center;
   /* color:#ccc; */
   padding:16rpx; 
+  position: relative;
+}
+.user-tabs >view.active,.title-tabs >view.active{
+  color:#49ab4f;
 }
 
-.user-tabs >view.active,.title-tabs >view.active {
-  border-bottom: 4rpx solid #4eaa4c;
-  color:#4eaa4c;
+.user-tabs >view.active:before, .title-tabs >view.active:before {
+  content: '';
+  position: absolute;
+  right: 30%;  
+  bottom: 0;  
+  height: 6rpx;
+  width: 40%;
+  /* background-color: #8796a9; */
+  background-color:#4eaa4c;
 }
-
+.user-tabs >view.active:before {
+  width: 60%;
+  right: 20%;
+}
