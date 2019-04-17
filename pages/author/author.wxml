@@ -2,7 +2,7 @@
 <wxs src="../../utils/util.wxs" module="util"></wxs>
 <import src="/towxml/entry.wxml" />
 
-<view class="container">
+<view class="container  {{skinStyle}}-box">
   <view class="header">
 
     <view class="user-avatar-wrap">    

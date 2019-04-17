@@ -3,6 +3,7 @@ var util = require('../../utils/util.js');
 var modalImg = require('../template/modal-img.js');
 var authorid;
 var currentPage ;
+var app = getApp();
 Page({
 
   /**
@@ -18,7 +19,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
+    var that = this;    
+    util.changeBarTabStyle();
+    that.setData({
+      skinStyle: app.globalData.skin
+    });
+    
     authorid = options.id; 
     currentPage = 1;
     //个人信息
@@ -57,7 +63,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var that = this;
+    util.changeBarTabStyle();
+    that.setData({
+      skinStyle: app.globalData.skin
+    });
   },
 
   /**

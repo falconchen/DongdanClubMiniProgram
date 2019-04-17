@@ -16,7 +16,8 @@ Page({
     bodyHtml: '',
     article:{'author':'小小编辑'},
     comments:[],
-    finishLoadComments:false
+    finishLoadComments:false,
+    skinStyle:''
   },
 
   /**
