@@ -51,6 +51,6 @@
   background:#222A36; 
 }
 
-.dark-box .unbookmark,.dark-box .unblock{
+.dark-box .unbookmark,.dark-box .unblock,.dark-box .hover-white-link{
   background: none;
 }
