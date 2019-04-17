@@ -5,10 +5,14 @@ App({
 
   globalData: {
     apiHost: 'https://www.cellmean.com',
-    version:'1.5.5'
+    version:'1.5.6',
+    skin:"light",
   },
 
   onLaunch: function () {
+    //设定皮肤
+    this.getSkin();
+
     //调用API从本地缓存中获取数据
     // var logs = wx.getStorageSync('logs') || []
     // logs.unshift(Date.now())
@@ -62,7 +66,16 @@ App({
       title: tlt,
       mask: true
     })
+  },
+  getSkin: function () {
+    var that = this
+    wx.getStorage({
+      key: 'skin',
+      success: function (res) {
+        that.globalData.skin = res.data
+        
+      }
+    })
   }
-  
 
 })

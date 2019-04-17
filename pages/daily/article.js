@@ -24,12 +24,16 @@ Page({
    */
   onLoad: function (options) {
 
-    
+    var that = this;
+    util.changeBarTabStyle();
+    that.setData({
+      skinStyle:app.globalData.skin
+    });
     articleId = options.id
     
     //请求文章api
     currentCommentPage = 1;
-    var that = this;
+    
     //app.loading();
 
     util.getBlogDetail( articleId, function (data) { //成功
@@ -74,7 +78,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var that = this;
+    util.changeBarTabStyle();
+    that.setData({
+      skinStyle:app.globalData.skin
+    });
   },
 
   /**

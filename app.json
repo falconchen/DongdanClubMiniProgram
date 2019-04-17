@@ -10,18 +10,14 @@
     
   ],
   "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor":"#45B05D",
+    
     "navigationBarTitleText":"开源中国动弹俱乐部",
     "navigationBarTextStyle":"white"
     
 
   },
   "tabBar": {
-    "color":"#707070",
-    "selectedColor":"#45B05D",
-    "backgroundColor":"#fff",
-    "borderStyle":"black",
+
     "list": [{
       
       "pagePath": "pages/home/home",

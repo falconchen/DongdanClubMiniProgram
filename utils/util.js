@@ -756,6 +756,52 @@ function copyText(text) {
   })
 }
 
+/**
+ * 修改黑暗模式下的导航栏和tab栏样式
+ */
+function changeBarTabStyle() {
+
+  //app.globalData.skin = res.data
+
+  if(app.globalData.skin == 'dark') {        
+    wx.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: '#222A36',
+      animation: {
+        duration: 0,
+        timingFunc: 'easeIn'
+      }
+    });
+    wx.setTabBarStyle({
+      color: '#C9C9C9',
+      selectedColor: '#C9C9C9',
+      backgroundColor: '#222A36',
+      borderStyle: 'black'
+    });
+    
+  }else{ //正常模式
+    console.log(app.globalData.skin)
+    wx.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: "#45B05D",
+      animation: {
+        duration: 0,
+        timingFunc: 'easeIn'
+      }
+    });
+    wx.setTabBarStyle({
+      color: '#707070',
+      selectedColor: '#45B05D',
+      backgroundColor: '#fff',
+      borderStyle: 'white'
+    });
+
+
+  }
+  
+  
+}
+
 module.exports = {
   formatTime: formatTime,
   jsTimeSince: timeSince, //替代方案，wxs版本在真机运行不成功，在乱弹页使用年月
@@ -781,5 +827,6 @@ module.exports = {
   blockCommentFilter: blockCommentFilter,
   getTweetGirlsList: getTweetGirlsList,
   getOneJoke:getOneJoke,
-  copyText:copyText
+  copyText:copyText,
+  changeBarTabStyle: changeBarTabStyle
 }

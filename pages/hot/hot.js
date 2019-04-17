@@ -6,12 +6,18 @@ var modalImg = require('../template/modal-img.js');
 var config = {
   data: {
     tweets: [],
-    loadingMore: false
+    loadingMore: false,
+    skinStyle:''
   },
   onLoad: function (options) {
 
     //console.log(app.globalData.api_prefix)
     var that = this;
+    
+    util.changeBarTabStyle();
+    that.setData({
+      skinStyle:app.globalData.skin
+    });
     
     //app.loading();
     util.getHotTweetList(
@@ -27,6 +33,13 @@ var config = {
     );
 
 
+  },
+  onShow:function(){
+    var that = this;
+    util.changeBarTabStyle();
+    that.setData({
+      skinStyle:app.globalData.skin
+    });
   },
   /**
    * 下拉刷新

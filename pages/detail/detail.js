@@ -25,7 +25,8 @@ Page({
     commentPerPage: currentPage,
     tweetData :'',
     bookmarked : false,
-    finishLoadList:true //第一页评论不加载loading icon
+    finishLoadList:true, //第一页评论不加载loading icon
+    skinStyle:''
   },
   clickLink: util.clickLink,
 
@@ -44,6 +45,11 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    util.changeBarTabStyle();
+    that.setData({
+      skinStyle:app.globalData.skin
+    });
+
     that.tweetId = options.id;    
     that.key = 'tweet_' + that.tweetId;
 
@@ -109,7 +115,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    util.changeBarTabStyle();
+    that.setData({
+      skinStyle:app.globalData.skin
+    });
   },
 
   /**

@@ -1,0 +1,56 @@
+.dark-box,.dark-box .loading-list, .dark-box .loading-list{
+  background-color:#222A36;
+  color:#C9C9C9;
+}
+.dark-box  .author {
+  color:#C9C9C9;
+}
+.dark-box .user-tabs,.dark-box .title-tabs{
+  background-color:#222A36;
+  color:#C9C9C9;
+  
+
+}
+.dark-box  .bookmark-tweet , .dark-box .comment-num{
+  background-color:#222A36;
+  color:#C9C9C9;
+}
+.dark-box  button[type=primary] ,.dark-box button[size=mini]{
+  background-color:#6c6c6c;
+
+  color:#222A36;
+}
+
+.dark-box  .joke-buttons .btn {
+  background-color:#6c6c6c;
+}
+
+.dark-box  .tweet-meta .reply,.dark-box .like,.dark-box .bookmark{
+  background-color:#6c6c6c;
+  border: none;
+}
+
+.dark-box .item,.dark-box .reply-item  , .dark-box .reply-header{
+  background:#222A36; 
+  box-shadow:none;
+  /* border-bottom:2rpx solid rgba(255, 253, 204,.5); */
+}
+.dark-box .reply-header,.dark-box .reply-item{
+  border: none;
+  /* border-bottom:2rpx solid rgba(255, 253, 204,.5);  */
+}
+.dark-box .reply-container{
+  box-shadow:none;
+  border: none;
+}
+.dark-box .finish-loaded .notification,.dark-box  .mm-item .title {
+  color:#C9C9C9;
+}
+
+.dark-box .hover-body-link {
+  background:#222A36; 
+}
+
+.dark-box .unbookmark,.dark-box .unblock{
+  background: none;
+}

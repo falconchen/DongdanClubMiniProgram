@@ -8,7 +8,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.94",
+	"libVersion": "2.1.1",
 	"appid": "wx0e6a18e0cefefe0a",
 	"projectname": "dongdanClub",
 	"isGameTourist": false,
@@ -38,7 +38,7 @@
 			]
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 5,
 			"list": [
 				{
 					"id": -1,
@@ -73,6 +73,13 @@
 					"name": "笑话分享页",
 					"pathName": "pages/daily/daily",
 					"query": "currentTab=2&joke_id=2511",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "黑暗模式",
+					"pathName": "pages/myself/myself",
+					"query": "",
 					"scene": null
 				}
 			]

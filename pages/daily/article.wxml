@@ -2,7 +2,7 @@
 <import src="/towxml/entry.wxml" />
 
 
-<view class="container">
+<view class="container {{skinStyle}}-box">
 
   <view class="item">
     <image class='avatar' src="{{cover}}"></image>

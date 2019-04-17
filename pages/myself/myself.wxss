@@ -1,7 +1,8 @@
 /* pages/myself/myself.wxss */
+
 .header{
   margin-bottom:50rpx;
-
+  position: relative;
 }
 .user-avatar-wrap {
   display: flex;
@@ -117,3 +118,32 @@ align-items: center;
   padding-top :120rpx;
   color:#ccc;
 }
+
+.skin-switch{
+  font-size: 30rpx;
+  text-align:right;
+  position:absolute;
+  right:50rpx;
+  top:20rpx;
+
+}
+
+/**
+所定义的三个样式的大小规律如下：
+（1）::before宽度 = switch宽度 - 1 ::before高度 = switch高度 - 3
+（2）::after宽度 = switch宽度 - 3 ::after高度 = switch高度 - 3 
+**/
+
+.wx-switch-input {
+  width: 80rpx !important;
+  height: 40rpx !important;
+}
+
+.wx-switch-input::before{
+  width: 79rpx !important;
+  height: 37rpx !important;
+}
+.wx-switch-input::after{
+  width: 77rpx !important;
+  height: 37rpx !important;
+} 

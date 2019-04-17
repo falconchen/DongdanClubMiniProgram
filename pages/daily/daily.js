@@ -22,20 +22,27 @@ Page({
     scrollTop:[0,0],
     tabTitles:['乱弹', '美图','笑话'],
     mmlist: [],
-    jokeItem:{id:0,content:'',raw:''}
+    jokeItem:{id:0,content:'',raw:''},
+    skinStyle:''
   },
   clickLink: util.clickLink,
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    
+    util.changeBarTabStyle();
+    that.setData({
+      skinStyle:app.globalData.skin
+    });
 
     if (options.currentTab != undefined) {
       this.setData({ currentTab: options.currentTab })
     }
 
     currentBlogPage = 1;
-    var that = this;
+    
     //app.loading();
     util.getUserBlogList(xxbianid, currentBlogPage, blogPerPage, function (data) { //成功
       
@@ -110,14 +117,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    
+    util.changeBarTabStyle();
+    that.setData({
+      skinStyle:app.globalData.skin
+    });
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    
   },
 
   /**

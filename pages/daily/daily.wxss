@@ -4,9 +4,7 @@
 .item{
   min-height: 150rpx;
 }
-page,.container{
-  height: 100%;
-}
+
 .comment-count {
   width:96rpx;
   height:96rpx;
@@ -131,7 +129,9 @@ page,.container{
   box-shadow: 0 0 8px 0 #666;
 }
 .joke-item  .h2w__main {
-  font-size: 28rpx;
+  font-size:32rpx;
+  line-height:1.8;
+
 }
 
 .joke-buttons {

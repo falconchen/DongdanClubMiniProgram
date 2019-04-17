@@ -1,6 +1,7 @@
 // pages/myself/myself.js
 var util = require('../../utils/util.js');
 var modalImg = require('../template/modal-img.js');
+var app = getApp();
 Page({
 
   /**
@@ -13,14 +14,16 @@ Page({
     blocklistHeight:150,
     bookmarklistHeight:150,
     bookmarklist:[],
-    version:''
+    version:'',
+    skinStyle:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {    
-    this.setData({ version: getApp().globalData.version });
+    this.setData({ version: getApp().globalData.version ,skinStyle:getApp().globalData.skin});
+    util.changeBarTabStyle();
   },
 
 
@@ -29,13 +32,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    
     this.refreshBlocklist();
     this.refreshBookmarklist();
     var swiperHeight = this.swiperHeight;
@@ -225,6 +229,32 @@ Page({
 
     })
   },
+  skinChange: function (e) {
+    var that = this
+
+    //设置全局变量
+    if (e.detail.value == true) {
+      app.globalData.skin = "dark"
+      
+    } else {
+      app.globalData.skin = "light"
+    }
+    
+    that.setData({
+      skinStyle: app.globalData.skin
+    })
+    //保存到本地
+    wx.setStorage({
+      key: "skin",
+      data: app.globalData.skin
+    })
+    util.changeBarTabStyle(app.globalData.skin);
+    // wx.reLaunch({
+    //   url: '/pages/myself/myself?currentTab='+ that.data.currentTab
+    // });
+    
+  },
+
   previewImg: modalImg.previewImg
 
 })

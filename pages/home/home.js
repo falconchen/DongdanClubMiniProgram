@@ -9,13 +9,23 @@ var config = {
   data: {
     tweets: [],
     bigImg: '../resources/loading293.gif',
-    loadingMore: false
+    loadingMore: false,
+    skinStyle:''
   },
+
   gotoTweet: util.gotoTweet,
   clickLink: util.clickLink,
   onLoad: function(options) {
+    
+    
     currentPage = 1;
     var that = this;
+    
+    util.changeBarTabStyle();
+    that.setData({
+      skinStyle:app.globalData.skin
+    });
+
     //app.loading();
     util.getTweetList(0, currentPage, tweetPerPage,
       function(resdata) {
@@ -37,6 +47,14 @@ var config = {
 
   },
 
+  onShow: function(){
+    var that = this;
+    that.setData({
+      skinStyle:app.globalData.skin
+    });
+    util.changeBarTabStyle();
+    
+  },
 
 
   /**

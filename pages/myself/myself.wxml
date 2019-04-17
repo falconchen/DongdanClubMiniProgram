@@ -1,14 +1,20 @@
 <!--pages/myself/myself.wxml-->
 <wxs src="../../utils/util.wxs" module="util"></wxs>
 
-<view class="container">
+<view class="container {{skinStyle}}-box">
 <view class="header">
+
+  <view class="skin-switch">
+    暗黑 <switch bindchange="skinChange" color ="#49ab4f" class="switch" checked ="{{skinStyle == 'dark'}}"/>
+  </view>
 
   <view class="user-avatar-wrap">
     <open-data class='user-avatar' mode='aspectFit' type='userAvatarUrl'></open-data>
   </view>
 
   <open-data class='author' type="userNickName"></open-data>
+  
+  
 </view>
 
 <view class="user-tabs swiper-tab">

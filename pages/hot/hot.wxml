@@ -3,7 +3,7 @@
 <import src="/towxml/entry.wxml" />
 
 
-<view class="container">
+<view class="container {{skinStyle}}-box">
 
   <view wx:for="{{tweets}}" wx:key="index" class="item">
     

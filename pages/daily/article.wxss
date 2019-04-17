@@ -1,4 +1,5 @@
 /* pages/daily/article.wxss */
+
 .h2w__p{
   padding:20rpx;
 }
