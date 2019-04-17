@@ -2,7 +2,7 @@
   background-color:#222A36;
   color:#C9C9C9;
 }
-.dark-box  .author {
+.dark-box  .author,.dark-box  .pubdate {
   color:#C9C9C9;
 }
 .dark-box .user-tabs,.dark-box .title-tabs{
