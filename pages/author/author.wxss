@@ -41,6 +41,10 @@
   padding:16rpx; 
 }
 
+/**do not hightlight in author page**/
+.user-tabs view.active::before{
+  display: none;
+}
 .user-tabs view.active {
   border-bottom: 4rpx solid #4eaa4c;
   color:#4eaa4c;

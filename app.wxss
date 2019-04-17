@@ -267,15 +267,16 @@ justify-content:center;
 }
 .user-tabs >view.active,.title-tabs >view.active{
   color:#49ab4f;
+  font-weight: 800;
 }
 
 .user-tabs >view.active:before, .title-tabs >view.active:before {
   content: '';
   position: absolute;
-  right: 30%;  
+  right: 31%;  
   bottom: 0;  
   height: 6rpx;
-  width: 40%;
+  width: 38%;
   /* background-color: #8796a9; */
   background-color:#4eaa4c;
 }
