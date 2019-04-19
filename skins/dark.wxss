@@ -47,12 +47,9 @@
   color:#C9C9C9;
 }
 
-.dark-box .hover-body-link,.dark-box  .bookmark-0 .dark-box .bookmark-1{
-  background:#222A36; 
-}
-
+.dark-box .hover-body-link,.dark-box .bookmark-0 ,.dark-box .bookmark-1,
 .dark-box .unbookmark,.dark-box .unblock,.dark-box .hover-white-link{
-  
+  background:none;
 }
 .dark-box .user-tabs,.dark-box .title-tabs{
   background: none;
