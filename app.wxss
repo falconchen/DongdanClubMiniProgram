@@ -120,6 +120,7 @@
 .h2w__main {
     word-wrap:break-word; 
   word-break: break-all;
+  
 }
 
 .pubdate {
@@ -250,22 +251,26 @@ justify-content:center;
 
 
 .user-tabs,.title-tabs{
-  background-color:#f6f6f6;
-  color:#ccc;
+  /* background-color:#f6f6f6; */
+  background:linear-gradient(rgb(238, 238, 238) 0px, rgb(204, 204, 204) 100%);
+  color:#666;
   padding:0;
   font-size:32rpx;
   font-weight:400;
   display:flex;
   flex-direction:row;
   justify-content:space-between;
+  text-shadow: 0 1px 0 #fff;
 }
 
 .user-tabs >view,.title-tabs >view {
   flex:1;
   text-align: center;
   /* color:#ccc; */
-  padding:16rpx; 
+  padding:16rpx 0; 
   position: relative;
+  
+  
 }
 .user-tabs >view.active,.title-tabs >view.active{
   color:#49ab4f;
