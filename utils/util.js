@@ -850,7 +850,7 @@ function createPosterLocal(postImageLocal, qrcodeLoal, title, excerpt,successCal
   context.setFillStyle("#959595");
   context.setFontSize(20);
   context.setTextAlign('center');
-  context.fillText("围观此动弹, 请长按识别二维码", 300, 900);
+  context.fillText("长按二维码围观此动弹", 300, 900);
   //context.setStrokeStyle(grd)
   context.setFillStyle("#959595");
   // context.beginPath()//分割线
@@ -900,23 +900,23 @@ function drawTitleExcerpt(context, title, excerpt) {
       context.fillText(title.substring(0, 19), 40, 460);
       context.fillText(title.substring(19, 36), 40, 510);
   }
-  context.setFontSize(24);
+  context.setFontSize(22);
   context.setTextAlign('left');
   context.setGlobalAlpha(0.7);    
-  for (var i = 0; i <= 160; i += 30) {
-      //摘要只绘制前50个字，这里是用截取字符串
+  for (var i = 0; i <= 160; i += 24) {
+      //摘要只绘制前160个字，这里是用截取字符串
       if (getStrLength(excerpt)>160)
       {
-          if ( i == 40) {
-              context.fillText(excerpt.substring(i, i + 30) + "...", 40, 570 + i * 2);
+          if ( i == 160) {
+              context.fillText(excerpt.substring(i, i + 24) + "...", 40, 520 + i * 2);
           }
           else {
-              context.fillText(excerpt.substring(i, i + 30), 40, 570 + i * 2);
+              context.fillText(excerpt.substring(i, i + 24), 40, 520 + i * 2);
           }
       }
       else
       {
-        context.fillText(excerpt.substring(i, i + 30), 40, 520 + i * 2);
+        context.fillText(excerpt.substring(i, i + 24), 40, 520 + i * 2);
       }
 
 
