@@ -26,7 +26,8 @@ Page({
     tweetData :'',
     bookmarked : false,
     finishLoadList:true, //第一页评论不加载loading icon
-    skinStyle:''
+    skinStyle:'',
+    posterUrl:''
   },
   clickLink: util.clickLink,
 
@@ -297,6 +298,127 @@ Page({
     })
     return false;
   },
+
+  /**
+   * 生成海报
+   */
+  makePoster: function(e){
+    var that = this;
+    var tweet = JSON.parse(e.currentTarget.dataset.tweet);
+    var path = "pages/detail/detail?id=" + tweet.id;
+    var qrcodeImagePath ='';
+    var imageInlocalFlag = true;
+    var posterImagePath = '';
+    var title = tweet.author + '的动弹';
+    var excerpt = util.stripTags(tweet.body);
+    var flag = false;
+
+    
+    if( tweet.thumbs != undefined ){
+     
+    wx.showLoading({
+      title: "正在生成海报",
+      mask: true,
+    });
+
+      imageInlocalFlag = false;
+      var posterImageUrl = tweet.thumbs[0];
+
+      //请求qrcode
+      util.getWechatQRcode(path,function(data){
+          if(data.success) {
+            var posterQrcodeUrl = data.data.url;
+
+            const downloadTaskQrcodeImage = wx.downloadFile({
+              url: posterQrcodeUrl,
+              success: res => {
+                  if (res.statusCode === 200) {
+                      qrcodeImagePath = res.tempFilePath;
+                      console.log("二维码图片本地位置：" + res.tempFilePath);
+                      
+                      if (!imageInlocalFlag) {
+                          const downloadTaskForPostImage = wx.downloadFile({
+                              url: posterImageUrl,
+                              success: res => {
+                                  if (res.statusCode === 200) {
+                                      posterImagePath = res.tempFilePath;
+                                      console.log("文章图片本地位置：" + res.tempFilePath);
+                                      flag = true;
+                                      if (posterImagePath && qrcodeImagePath) {
+                                          util.createPosterLocal(posterImagePath, qrcodeImagePath, title, excerpt,function(imgPath){
+                                              wx.hideLoading();
+                                                console.log(imgPath);
+                                                that.setData({posterUrl:imgPath});
+
+                                          },function(res){
+                                            wx.hideLoading();
+                                            console.log(res);
+                                          });
+                                      }
+                                  }
+                                  else {
+                                      console.log(res);
+                                      wx.hideLoading();
+                                      wx.showToast({
+                                          title: "生成海报失败...",
+                                          mask: true,
+                                          duration: 2000
+                                      });
+                                      return false;
+
+
+                                  }
+                              }
+                          });
+                          downloadTaskForPostImage.onProgressUpdate((res) => {
+                              console.log('下载文章图片进度：' + res.progress)
+
+                          })
+                      }
+                      else {
+                          if (posterImagePath && qrcodeImagePath) {
+                            util.createPosterLocal(posterImagePath, qrcodeImagePath, title, excerpt,function(imgPath){
+                              wx.hideLoading();
+                              console.log(imgPath);
+                              that.setData({posterUrl:imgPath});
+                            },function(res){
+                              wx.hideLoading();
+                              console.log(res);
+                            });
+                          }
+                      }
+                  }
+                  else {
+                      console.log(res);
+                      wx.hideLoading();
+                      flag = false;
+                      wx.showToast({
+                          title: "生成海报失败...",
+                          mask: true,
+                          duration: 2000
+                      });
+                      return false;
+                  }
+              }
+          });
+          downloadTaskQrcodeImage.onProgressUpdate((res) => {
+              console.log('下载二维码进度', res.progress)
+          })
+
+
+
+          }
+
+      });
+      
+      
+
+    }
+
+    //console.log(tweet);
+  },
+
+  
 
   blockCommentFilter: util.blockCommentFilter,
 

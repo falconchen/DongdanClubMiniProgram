@@ -49,7 +49,7 @@
   
   background-color:#fff;
   border-radius:12rpx;
-  padding:4rpx 20rpx 4rpx 20rpx;
+  padding:6rpx 20rpx;
   font-size:24rpx;
   border:1px solid #eee;
   margin-left:12rpx;
@@ -291,5 +291,9 @@ justify-content:center;
   width: 60%;
   right: 20%;
 }
-
+.canvas-box {
+  position: absolute;
+  bottom: 0;
+  left: -9999rpx;
+}
 @import '/skins/dark.wxss';

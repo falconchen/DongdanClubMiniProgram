@@ -780,7 +780,7 @@ function changeBarTabStyle() {
     });
     
   }else{ //正常模式
-    console.log(app.globalData.skin)
+    //console.log(app.globalData.skin)
     wx.setNavigationBarColor({
       frontColor: '#ffffff',
       backgroundColor: "#45B05D",
@@ -798,8 +798,140 @@ function changeBarTabStyle() {
 
 
   }
+}
+
+  /**
+   * 获取QR Code
+   */
+  function getWechatQRcode(path,  successCallback,errorCallback) {
+
+    try {
+  
+      // 请求数据
+      wx.request({
+        url: apiHost,
+        method: 'POST',
+        data: {
+          osc_api: 'get_wechat_qrcode',
+          path: path,
+        },
+        header: {
+          'content-type':'application/x-www-form-urlencoded',
+          'cache-control': 'max-age=120'
+        },      
+        success: function (res) {                                    
+          successCallback(res.data);          
+        },
+      });
+    } catch (e) {
+      errorCallback();
+      // Do something when catch error
+    }
   
   
+  
+  
+}
+
+ //将canvas转换为图片保存到本地，然后将路径传给image图片的src
+function createPosterLocal(postImageLocal, qrcodeLoal, title, excerpt,successCallback,errorCallback) {
+  var that = this;
+
+  var context = wx.createCanvasContext('mycanvas');
+  context.setFillStyle('#ffffff');//填充背景色
+  context.fillRect(0, 0, 600, 970);
+  context.drawImage(postImageLocal, 0, 0, 600, 400);//绘制首图
+  context.drawImage(qrcodeLoal, 210, 670, 180, 180);//绘制二维码
+  //context.drawImage(that.data.logo, 350, 740, 130, 130);//画logo
+  //const grd = context.createLinearGradient(30, 690, 570, 690)//定义一个线性渐变的颜色
+  //grd.addColorStop(0, 'black')
+  //grd.addColorStop(1, '#118fff')
+  //context.setFillStyle(grd)
+  context.setFillStyle("#959595");
+  context.setFontSize(20);
+  context.setTextAlign('center');
+  context.fillText("围观此动弹, 请长按识别二维码", 300, 900);
+  //context.setStrokeStyle(grd)
+  context.setFillStyle("#959595");
+  // context.beginPath()//分割线
+  // context.moveTo(30, 690)
+  // context.lineTo(570, 690)
+  // context.stroke();
+  // this.setUserInfo(context);//用户信息        
+  that.drawTitleExcerpt(context, title, excerpt);//文章标题
+  context.draw();
+  //将生成好的图片保存到本地，需要延迟一会，绘制期间耗时
+  setTimeout(function () {
+      wx.canvasToTempFilePath({
+          canvasId: 'mycanvas',
+          success: function (res) {
+              var tempFilePath = res.tempFilePath;
+              // that.setData({
+              //     imagePath: tempFilePath,
+              //     maskHidden: "none"
+              // });
+              wx.hideLoading();
+              console.log("海报图片路径：" + res.tempFilePath); 
+              successCallback(res.tempFilePath);
+
+          },
+          fail: function (res) {
+            errorCallback(res);
+          }
+      });
+  }, 900);
+}   
+
+
+//绘制文字：文章题目、摘要、扫码阅读
+function drawTitleExcerpt(context, title, excerpt) {
+
+  context.setFillStyle("#000000");
+  context.setTextAlign('left');
+
+  if (getStrLength(title) <= 14) {
+      //14字以内绘制成一行，美观一点
+      context.setFontSize(40);
+      context.fillText(title, 40, 460);
+  }
+  else {
+      //题目字数很多的，只绘制前36个字（如果题目字数在15到18个字则也是一行，不怎么好看）
+      context.setFontSize(30);
+      context.fillText(title.substring(0, 19), 40, 460);
+      context.fillText(title.substring(19, 36), 40, 510);
+  }
+  context.setFontSize(24);
+  context.setTextAlign('left');
+  context.setGlobalAlpha(0.7);    
+  for (var i = 0; i <= 160; i += 30) {
+      //摘要只绘制前50个字，这里是用截取字符串
+      if (getStrLength(excerpt)>160)
+      {
+          if ( i == 40) {
+              context.fillText(excerpt.substring(i, i + 30) + "...", 40, 570 + i * 2);
+          }
+          else {
+              context.fillText(excerpt.substring(i, i + 30), 40, 570 + i * 2);
+          }
+      }
+      else
+      {
+        context.fillText(excerpt.substring(i, i + 30), 40, 520 + i * 2);
+      }
+
+
+  }
+
+  context.stroke();
+  context.save();
+}
+
+function getStrLength(str){
+  return str.replace(/[\u0391-\uFFE5]/g, "aa").length;
+}
+
+function stripTags(str) {
+  return str.replace(/<[^>]+>/g, "");
 }
 
 module.exports = {
@@ -828,5 +960,10 @@ module.exports = {
   getTweetGirlsList: getTweetGirlsList,
   getOneJoke:getOneJoke,
   copyText:copyText,
-  changeBarTabStyle: changeBarTabStyle
+  changeBarTabStyle: changeBarTabStyle,
+  getWechatQRcode:getWechatQRcode,
+  createPosterLocal:createPosterLocal,
+  drawTitleExcerpt:drawTitleExcerpt,
+  getStrLength:getStrLength,
+  stripTags:stripTags  
 }

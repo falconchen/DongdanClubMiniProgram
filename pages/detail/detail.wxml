@@ -3,7 +3,7 @@
 
 
 <view class="container {{ finishLoadComments? 'container-loaded':'' }}  {{skinStyle}}-box">
-
+  
   <view class="item">
     <navigator class="author avatar-wrap" hover-class='hover-white-link' hover-start-time='100' hover-stay-time='1000' url="/pages/author/author?id={{tweet.authorid}}">
     <image bindlongpress='blockUser' data-authorid='{{tweet.authorid}}' data-author='{{tweet.author}}' data-avatar="{{tweet.portrait}}" class='avatar' src="{{tweet.portrait}}" ></image>
@@ -19,16 +19,21 @@
 
       <view wx:if="{{tweet.thumbs.length}}" class="thumb-container">
       
-        <block wx:for="{{tweet.thumbs}}"  wx:for-index="tid" wx:key="tidx" wx:for-item="thumb">
-          <!-- <image catchtap="modalSubmit" class='thumb' src="{{thumb}}" data-src="{{tweet.bigImgs[tid]}}"></image> -->
+        <block wx:for="{{tweet.thumbs}}"  wx:for-index="tid" wx:key="tidx" wx:for-item="thumb">          
 <image catchtap="previewImg" class='thumb' src="{{thumb}}" data-src="{{tweet.bigImgs[tid]}}" data-srcs="{{ util.joinArray(tweet.bigImgs) }}"></image>
 
         </block>
       </view>
       
+      <view wx:if="{{posterUrl}}" class="thumb-container">
+      <image catchtap="previewImg" class='thumb' src="{{posterUrl}}" data-src="{{posterUrl}}" data-srcs="{{ posterUrl }}"></image>
+      </view>
+
       <view wx:if="{{ !bookmarked }}" class="bookmark" bindtap='bookmark' data-tweet='{{ tweetData }}' > 收藏</view>
       <view wx:else class="bookmark bookmarked" bindtap='unbookmark' data-tweet='{{ tweetData }}' > 已收藏</view>
 
+      <view class="make-poster bookmark" bindtap='makePoster' data-tweet='{{ tweetData }}' > 生成海报</view>
+      
     </view>
   </view>
   <view class="reply-container">
@@ -76,6 +81,11 @@
     </block>
     <include src="../template/loadmore.wxml" />
   </view>
+
+
+<view class="canvas-box" >
+  <canvas style="width: 600px;height: 970px;" canvas-id="mycanvas" />
+</view>
 
 </view>
 

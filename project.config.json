@@ -49,13 +49,6 @@
 				},
 				{
 					"id": -1,
-					"name": "detail",
-					"pathName": "pages/detail/detail",
-					"query": "id=19917762",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "myself",
 					"pathName": "pages/myself/myself",
 					"query": "",
@@ -80,6 +73,13 @@
 					"name": "黑暗模式",
 					"pathName": "pages/myself/myself",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "detail-image",
+					"pathName": "pages/detail/detail",
+					"query": "id=19967279",
 					"scene": null
 				}
 			]

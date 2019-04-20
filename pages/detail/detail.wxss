@@ -13,15 +13,15 @@
 
 .bookmark{
 
-  display:inline-block;
+  display:block;
   float:right;  
   background-color:#fff;
   border-radius:12rpx;
-  padding:5rpx 20rpx;
+  padding:6rpx 20rpx;
   font-size:24rpx;
   border:1rpx solid #ccc; 
   margin-top:20rpx;
-
+  margin-left: 20rpx;
 }
 
 .bookmarked {
