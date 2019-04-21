@@ -850,7 +850,7 @@ function createPosterLocal(postImageLocal, qrcodeLoal, title, excerpt,successCal
   context.setFillStyle("#959595");
   context.setFontSize(20);
   context.setTextAlign('center');
-  context.fillText("长按二维码围观此动弹", 300, 900);
+  context.fillText("长按二维码, 强势围观这条动弹！", 300, 900);
   //context.setStrokeStyle(grd)
   context.setFillStyle("#959595");
   // context.beginPath()//分割线
@@ -889,35 +889,40 @@ function drawTitleExcerpt(context, title, excerpt) {
   context.setFillStyle("#000000");
   context.setTextAlign('left');
 
-  if (getStrLength(title) <= 14) {
-      //14字以内绘制成一行，美观一点
-      context.setFontSize(40);
-      context.fillText(title, 40, 460);
-  }
-  else {
-      //题目字数很多的，只绘制前36个字（如果题目字数在15到18个字则也是一行，不怎么好看）
-      context.setFontSize(30);
-      context.fillText(title.substring(0, 19), 40, 460);
-      context.fillText(title.substring(19, 36), 40, 510);
-  }
+  // if (getStrLength(title) <= 14) {
+  //     //14字以内绘制成一行，美观一点
+  //     context.setFontSize(40);
+  //     context.fillText(title, 40, 460);
+  // }
+  // else {
+  //     //题目字数很多的，只绘制前36个字（如果题目字数在15到18个字则也是一行，不怎么好看）
+  //     context.setFontSize(30);
+  //     context.fillText(title.substring(0, 19), 40, 460);
+  //     //context.fillText(title.substring(19, 36), 40, 510);
+  // }
+  context.setFontSize(30);
+  context.fillText(title, 40, 460);
+
   context.setFontSize(22);
   context.setTextAlign('left');
   context.setGlobalAlpha(0.7);    
-  for (var i = 0; i <= 160; i += 24) {
+  for (var i = 0; i <= excerpt.length; i += 24) {
       //摘要只绘制前160个字，这里是用截取字符串
-      if (getStrLength(excerpt)>160)
-      {
-          if ( i == 160) {
-              context.fillText(excerpt.substring(i, i + 24) + "...", 40, 520 + i * 2);
-          }
-          else {
-              context.fillText(excerpt.substring(i, i + 24), 40, 520 + i * 2);
-          }
-      }
-      else
-      {
-        context.fillText(excerpt.substring(i, i + 24), 40, 520 + i * 2);
-      }
+      // if (getStrLength(excerpt)>160)
+      // {
+      //     if ( i == 160) {
+      //         context.fillText(excerpt.substring(i, i + 24) + "...", 40, 520 + i * 2);
+      //     }
+      //     else {
+      //         context.fillText(excerpt.substring(i, i + 24), 40, 520 + i * 2);
+      //     }
+      // }
+      // else
+      // {
+        
+      // }
+
+      context.fillText(excerpt.substring(i, i + 24), 40, 510 + i * 1.6);
 
 
   }

@@ -1,6 +1,9 @@
 // pages/detail/detail.js
+
 var util = require('../../utils/util.js');
 var modalImg = require('../template/modal-img.js');
+import { ModalView } from '../template/modal-view/modal-view.js';
+
 const commentPerPage = 20;
 var currentPage = 1;
 var app = getApp();
@@ -26,8 +29,7 @@ Page({
     tweetData: '',
     bookmarked: false,
     finishLoadList: true, //第一页评论不加载loading icon
-    skinStyle: '',
-    posterUrl: ''
+    skinStyle: ''    
   },
   clickLink: util.clickLink,
 
@@ -51,6 +53,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
     var that = this;
     util.changeBarTabStyle();
     that.setData({
@@ -111,6 +114,7 @@ Page({
 
     })
     //console.log(options);
+    new ModalView;
   },
 
 
@@ -339,6 +343,9 @@ Page({
     if(excerpt.length > 90) {
       excerpt = excerpt.substr(0,90) + '...';
     }
+    if(title.length > 36) {
+      title = title.substr(0,36) + '...';
+    }
 
     if (tweet.bigImgs != undefined) {
       posterImageUrl = tweet.bigImgs[0];
@@ -351,8 +358,8 @@ Page({
       if(tailPos > 0) {
         posterImageUrl.substr(0,tailPos) ;
       }
-      //posterImageUrl += '!/both/400x270';
-      posterImageUrl += '!/sq/400';
+      posterImageUrl += '!/both/400x270';
+      //posterImageUrl += '!/sq/400';
     }
 
 
@@ -376,59 +383,62 @@ Page({
               qrcodeImagePath = res.tempFilePath;
               console.log("二维码图片本地位置：" + res.tempFilePath);
 
-              if (!imageInlocalFlag) {
-                const downloadTaskForPostImage = wx.downloadFile({
-                  url: posterImageUrl,
-                  success: res => {
-                    if (res.statusCode === 200) {
-                      posterImagePath = res.tempFilePath;
-                      console.log("文章图片本地位置：" + res.tempFilePath);
-                      flag = true;
-                      if (posterImagePath && qrcodeImagePath) {
-                        util.createPosterLocal(posterImagePath, qrcodeImagePath, title, excerpt, function (imgPath) {
-                          wx.hideLoading();
-                          console.log(imgPath);
-                          that.setData({
-                            posterUrl: imgPath
-                          });
+              
+              const downloadTaskForPostImage = wx.downloadFile({
+                url: posterImageUrl,
+                success: res => {
+                  if (res.statusCode === 200) {
+                    posterImagePath = res.tempFilePath;
+                    console.log("文章图片本地位置：" + res.tempFilePath);
+                    flag = true;
+                    if (posterImagePath && qrcodeImagePath) {
+                      util.createPosterLocal(posterImagePath, qrcodeImagePath, title, excerpt, function (imgPath) {
+                        wx.hideLoading();
+                        console.log(imgPath);
 
-                        }, function (res) {
-                          wx.hideLoading();
-                          console.log(res);
-                        });
-                      }
-                    } else {
-                      console.log(res);
-                      wx.hideLoading();
-                      wx.showToast({
-                        title: "生成海报失败...",
-                        mask: true,
-                        duration: 2000
+                        that.modalView.showModal({
+                          title: '保存至相册可以分享到朋友圈',
+                          confirmation: false,
+                          confirmationText: '',
+                          inputFields: [{
+                              fieldName: 'posterImage',
+                              fieldType: 'Image',
+                              fieldPlaceHolder: '',
+                              fieldDatasource: imgPath,
+                              isRequired: false,
+                          }],
+                          confirm: function (res) {
+                              console.log('done');
+                              //用户按确定按钮以后会回到这里，并且对输入的表单数据会带回
+                          }
                       });
-                      return false;
 
+                     
 
+                      }, function (res) {
+                        wx.hideLoading();
+                        console.log(res);
+                      });
                     }
-                  }
-                });
-                downloadTaskForPostImage.onProgressUpdate((res) => {
-                  console.log('下载图片进度：' + res.progress)
-
-                })
-              } else {
-                if (posterImagePath && qrcodeImagePath) {
-                  util.createPosterLocal(posterImagePath, qrcodeImagePath, title, excerpt, function (imgPath) {
-                    wx.hideLoading();
-                    console.log(imgPath);
-                    that.setData({
-                      posterUrl: imgPath
-                    });
-                  }, function (res) {
-                    wx.hideLoading();
+                  } else {
                     console.log(res);
-                  });
+                    wx.hideLoading();
+                    wx.showToast({
+                      title: "生成海报失败...",
+                      mask: true,
+                      duration: 2000
+                    });
+                    return false;
+
+
+                  }
                 }
-              }
+              });
+              downloadTaskForPostImage.onProgressUpdate((res) => {
+                console.log('下载图片进度：' + res.progress)
+
+              })
+              
             } else {
               console.log(res);
               wx.hideLoading();

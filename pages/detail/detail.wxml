@@ -1,5 +1,6 @@
 <wxs src="../../utils/util.wxs" module="util"></wxs>
 <import src="/towxml/entry.wxml" />
+<import src="../template/modal-view/modal-view.wxml" />
 
 
 <view class="container {{ finishLoadComments? 'container-loaded':'' }}  {{skinStyle}}-box">
@@ -82,7 +83,7 @@
     <include src="../template/loadmore.wxml" />
   </view>
 
-
+<template is="modalView" data="{{...__modalView__}}" />
 <view class="canvas-box" >
   <canvas style="width: 600px;height: 970px;" canvas-id="mycanvas" />
 </view>
