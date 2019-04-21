@@ -38,7 +38,7 @@
 			]
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -80,6 +80,13 @@
 					"name": "detail-image",
 					"pathName": "pages/detail/detail",
 					"query": "id=19967279",
+					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "detail-text",
+					"pathName": "pages/detail/detail",
+					"query": "id=19968648",
 					"scene": null
 				}
 			]
