@@ -78,6 +78,7 @@ align-items: center;
   font-size:24rpx;
   border:2rpx solid #eee;  
   text-align:center;
+  line-height: 2;
 }
 
 .unbookmark{
@@ -87,6 +88,7 @@ align-items: center;
   font-size:24rpx;
   border:2rpx solid #eee;  
   text-align:center;
+  line-height:2;
 
 }
 

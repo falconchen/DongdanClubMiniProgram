@@ -30,11 +30,11 @@
       <image catchtap="previewImg" class='thumb' src="{{posterUrl}}" data-src="{{posterUrl}}" data-srcs="{{ posterUrl }}"></image>
       </view>
 
-      <view wx:if="{{ !bookmarked }}" class="bookmark" bindtap='bookmark' data-tweet='{{ tweetData }}' > 收藏</view>
-      <view wx:else class="bookmark bookmarked" bindtap='unbookmark' data-tweet='{{ tweetData }}' > 已收藏</view>
-
-      <view class="make-poster bookmark" bindtap='makePoster' data-tweet='{{ tweetData }}' > 生成海报</view>
-      
+      <view class="btn-bar">
+        <view wx:if="{{ !bookmarked }}" class="bookmark" bindtap='bookmark' data-tweet='{{ tweetData }}' > 收藏</view>
+        <view wx:else class="bookmark bookmarked" bindtap='unbookmark' data-tweet='{{ tweetData }}' > 已收藏</view>
+        <view class="make-poster bookmark" bindtap='makePoster' data-tweet='{{ tweetData }}' > 生成海报</view>
+      </view>
     </view>
   </view>
   <view class="reply-container">

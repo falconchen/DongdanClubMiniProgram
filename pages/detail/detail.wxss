@@ -14,15 +14,16 @@
 
 .bookmark{
 
-  display:block;
-  float:right;  
+    
   background-color:#fff;
   border-radius:12rpx;
   padding:6rpx 20rpx;
   font-size:24rpx;
   border:1rpx solid #ccc; 
-  margin-top:20rpx;
+  /* margin-top:20rpx; */
   margin-left: 20rpx;
+  line-height:1.5;
+
 }
 
 .bookmarked {
@@ -39,3 +40,9 @@
   padding-bottom: 30rpx;
  }
  
+
+ .btn-bar{
+   display: flex;
+   flex-direction:row-reverse;
+   margin-top:20rpx;
+ }

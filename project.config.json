@@ -12,6 +12,8 @@
 	"appid": "wx0e6a18e0cefefe0a",
 	"projectname": "dongdanClub",
 	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -38,7 +40,7 @@
 			]
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 7,
 			"list": [
 				{
 					"id": -1,
@@ -87,6 +89,13 @@
 					"name": "detail-text",
 					"pathName": "pages/detail/detail",
 					"query": "id=19968648",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "girls",
+					"pathName": "pages/daily/daily",
+					"query": "currentTab=1",
 					"scene": null
 				}
 			]
