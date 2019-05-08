@@ -122,11 +122,19 @@ align-items: center;
 }
 
 .skin-switch{
-  font-size: 30rpx;
+  font-size: 22rpx;
   text-align:right;
   position:absolute;
   right:50rpx;
   top:20rpx;
+
+}
+.qa-switch{
+  font-size: 22rpx;
+  text-align:right;
+  position:absolute;
+  right:50rpx;
+  top:80rpx;
 
 }
 

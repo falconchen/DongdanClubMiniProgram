@@ -15,7 +15,8 @@ Page({
     bookmarklistHeight:150,
     bookmarklist:[],
     version:'',
-    skinStyle:''
+    skinStyle:'',
+    qaBlock:false
   },
 
   /**
@@ -24,6 +25,7 @@ Page({
   onLoad: function (options) {    
     this.setData({ version: getApp().globalData.version ,skinStyle:getApp().globalData.skin});
     util.changeBarTabStyle();
+    this.setQaBlockBtnStatus();
   },
 
 
@@ -252,6 +254,31 @@ Page({
     // wx.reLaunch({
     //   url: '/pages/myself/myself?currentTab='+ that.data.currentTab
     // });
+    
+  },
+
+  setQaBlockBtnStatus: function () {
+    var that = this
+            
+    wx.getStorage({
+      key: 'qaBlock',
+      success: function (res) {        
+        that.setData({ qaBlock:res.data})
+      }
+    })
+  },
+
+  qaChange: function (e) {
+    var that = this
+        
+    that.setData({
+      qaBlock: e.detail.value
+    })
+    //保存到本地
+    wx.setStorage({
+      key: "qaBlock",
+      data: e.detail.value
+    })
     
   },
 

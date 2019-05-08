@@ -5,7 +5,11 @@
 <view class="header">
 
   <view class="skin-switch">
-    暗黑 <switch bindchange="skinChange" color ="#49ab4f" class="switch" checked ="{{skinStyle == 'dark'}}"/>
+    夜间模式 <switch bindchange="skinChange" color ="#49ab4f" class="switch" checked ="{{skinStyle == 'dark'}}"/>
+  </view>
+
+  <view class="qa-switch">
+    屏蔽问答 <switch bindchange="qaChange" color ="#49ab4f" class="switch" checked ="{{qaBlock }}"/>
   </view>
 
   <view class="user-avatar-wrap">

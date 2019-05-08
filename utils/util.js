@@ -391,6 +391,8 @@ function subWords(str,limit){
 
 function blockFilter(resdata) {
   var blocklist = wx.getStorageSync('blocklist') || [];
+  var qaBlock = wx.getStorageSync('qaBlock') || false;
+
   if (blocklist.length > 0) {
 
     for (var i = 0; i < resdata.length; i++) {
@@ -405,6 +407,22 @@ function blockFilter(resdata) {
       }
     }
   }
+
+  if (qaBlock) {
+
+    for (var i = 0; i < resdata.length; i++) {
+
+      var body = resdata[i].body;
+      
+      if (resdata[i].body.indexOf('>技术问答<') > 0 ) {
+        console.log('blockedQA: '+resdata[i].body)
+        resdata.splice(i, 1);
+        i--;        
+      }
+
+    }
+  }
+
   return resdata;
 
 }
