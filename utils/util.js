@@ -889,7 +889,7 @@ function createPosterLocal(postImageLocal, qrcodeLoal, title, excerpt,successCal
               //     maskHidden: "none"
               // });
               wx.hideLoading();
-              console.log("海报图片路径：" + res.tempFilePath); 
+              //console.log("海报图片路径：" + res.tempFilePath); 
               successCallback(res.tempFilePath);
 
           },

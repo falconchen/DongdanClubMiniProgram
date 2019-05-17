@@ -351,12 +351,12 @@ Page({
       posterImageUrl = tweet.bigImgs[0];
 
     }
-    console.log(posterImageUrl);
+    //console.log(posterImageUrl);
     if( posterImageUrl.indexOf('oscimg.oschina.net')>0 ){
 
       var tailPos = posterImageUrl.indexOf('!/');
       if(tailPos > 0) {
-        posterImageUrl.substr(0,tailPos) ;
+        posterImageUrl = posterImageUrl.substr(0,tailPos) ;
       }
       posterImageUrl += '!/both/400x270';
       //posterImageUrl += '!/sq/400';
@@ -381,7 +381,7 @@ Page({
           success: res => {
             if (res.statusCode === 200) {
               qrcodeImagePath = res.tempFilePath;
-              console.log("二维码图片本地位置：" + res.tempFilePath);
+              //console.log("二维码图片本地位置：" + res.tempFilePath);
 
               
               const downloadTaskForPostImage = wx.downloadFile({
@@ -389,12 +389,12 @@ Page({
                 success: res => {
                   if (res.statusCode === 200) {
                     posterImagePath = res.tempFilePath;
-                    console.log("文章图片本地位置：" + res.tempFilePath);
+                    //console.log("文章图片本地位置：" + res.tempFilePath);
                     flag = true;
                     if (posterImagePath && qrcodeImagePath) {
                       util.createPosterLocal(posterImagePath, qrcodeImagePath, title, excerpt, function (imgPath) {
                         wx.hideLoading();
-                        console.log(imgPath);
+                        //console.log(imgPath);
 
                         that.modalView.showModal({
                           title: '保存至相册可以分享到朋友圈',
@@ -408,7 +408,7 @@ Page({
                               isRequired: false,
                           }],
                           confirm: function (res) {
-                              console.log('done');
+                              //console.log('done');
                               //用户按确定按钮以后会回到这里，并且对输入的表单数据会带回
                           }
                       });
@@ -417,11 +417,11 @@ Page({
 
                       }, function (res) {
                         wx.hideLoading();
-                        console.log(res);
+                        //console.log(res);
                       });
                     }
                   } else {
-                    console.log(res);
+                    //console.log(res);
                     wx.hideLoading();
                     wx.showToast({
                       title: "生成海报失败...",
@@ -435,12 +435,12 @@ Page({
                 }
               });
               downloadTaskForPostImage.onProgressUpdate((res) => {
-                console.log('下载图片进度：' + res.progress)
+                //console.log('下载图片进度：' + res.progress)
 
               })
               
             } else {
-              console.log(res);
+              //console.log(res);
               wx.hideLoading();
               flag = false;
               wx.showToast({
@@ -453,7 +453,7 @@ Page({
           }
         });
         downloadTaskQrcodeImage.onProgressUpdate((res) => {
-          console.log('下载二维码进度', res.progress)
+          //console.log('下载二维码进度', res.progress)
         })
 
 
