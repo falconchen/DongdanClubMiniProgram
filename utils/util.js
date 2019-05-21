@@ -414,7 +414,7 @@ function blockFilter(resdata) {
 
       var body = resdata[i].body;
       
-      if (resdata[i].body.indexOf('>技术问答<') > 0 ) {
+      if (resdata[i].body.indexOf('www.oschina.net/question') > 0 ) {
         console.log('blockedQA: '+resdata[i].body)
         resdata.splice(i, 1);
         i--;        
