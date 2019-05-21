@@ -5,7 +5,7 @@ App({
 
   globalData: {
     apiHost: 'https://www.cellmean.com',
-    version:'1.6.1',
+    version:'1.6.2',
     skin:"light",    
   },
 
