@@ -21,7 +21,7 @@
       <view wx:if="{{tweet.thumbs.length}}" class="thumb-container">
       
         <block wx:for="{{tweet.thumbs}}"  wx:for-index="tid" wx:key="tidx" wx:for-item="thumb">          
-<image catchtap="previewImg" class='thumb' src="{{thumb}}" data-src="{{tweet.bigImgs[tid]}}" data-srcs="{{ util.joinArray(tweet.bigImgs) }}"></image>
+<image catchtap="previewImg" class='thumb' style="background-image:url({{thumb}});" data-src="{{tweet.bigImgs[tid]}}" data-srcs="{{ util.joinArray(tweet.bigImgs) }}"></image>
 
         </block>
       </view>

@@ -40,7 +40,7 @@
 			]
 		},
 		"miniprogram": {
-			"current": 7,
+			"current": 8,
 			"list": [
 				{
 					"id": -1,
@@ -96,6 +96,12 @@
 					"name": "girls",
 					"pathName": "pages/daily/daily",
 					"query": "currentTab=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "hot",
+					"pathName": "pages/hot/hot",
 					"scene": null
 				}
 			]

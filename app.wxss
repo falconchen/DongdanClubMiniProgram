@@ -91,12 +91,20 @@
 }
 
 .thumb {
+  
   width: 163rpx;
   height: 163rpx;
   border: 2rpx solid #ccc;
+  /* box-shadow: 0 0 0 2rpx #fff,0 0 0 4rpx #ccc; */
   padding:5rpx;
   margin: 5rpx;
   flex-shrink: 0;
+  /* background-size: cover;
+  background-position: center center; */
+  background-size:162rpx auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+
 }
 .thumb-80 {
     width: 80rpx;
