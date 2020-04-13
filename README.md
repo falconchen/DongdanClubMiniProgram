@@ -10,4 +10,4 @@
 
 - 2019.04.01 发布乱弹妹子图
 
-![QRcode](qr.png)
+<img src="qr.png" width=150 alt="QR code"/>
